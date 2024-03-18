@@ -37,15 +37,21 @@ export default function Home() {
     return (
         <main className="flex flex-col items-center w-full px-48">
             <div className="flex flex-col h-screen items-center justify-center">
-                <div className="flex flex-col">
-                    <h1 className="text-6xl font-bold leading-relaxed">
-                        {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        Hi, I'm Miguel
-                    </h1>
-                    <a className="text-lg font-semibold accent-gray-500">
-                        A <span ref={el}/>
-                    </a>
-                </div>
+	            <div className="flex flex-col">
+		            <h1 className="text-6xl font-bold leading-relaxed">
+			            {/* eslint-disable-next-line react/no-unescaped-entities */}
+			            Hi, I'm Miguel
+		            </h1>
+		            <a className="text-lg font-semibold">
+			            A <span ref={el}/>
+		            </a>    
+		            <div
+			            className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-[250px] opacity-20 animate-blob"></div>
+		            <div
+			            className="absolute right-1/2 w-80 h-80 bg-cyan-500 rounded-full filter blur-[250px] opacity-20 animate-blob animation-delay-2000"></div>
+		            <div
+			            className="absolute left-1/2 w-80 h-80 bg-amber-400 rounded-full filter blur-[250px] opacity-20 animate-blob animation-delay-4000"></div>
+	            </div>
             </div>
 	        
 	        <div className="flex flex-col w-full min-h-10 h-screen">
