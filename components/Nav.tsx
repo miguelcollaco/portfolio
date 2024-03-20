@@ -8,7 +8,7 @@ export default function Nav() {
 	
 	useEffect(() => {
 		const scrollHandler = () => {
-			window.scrollY > 10 ? setTop(false) : setTop(true)
+			window.scrollY > 25 ? setTop(false) : setTop(true)
 		};
 		window.addEventListener('scroll', scrollHandler);
 		return () => window.removeEventListener('scroll', scrollHandler);
@@ -27,7 +27,7 @@ export default function Nav() {
 	}
 	
 	return (
-		<nav className={`w-full py-3 px-4 z-20 flex flex-row items-center justify-between fixed uppercase text-white backdrop-blur-2xl transition ease-in-out duration-300 ${!top && `shadow-xl shadow-zinc-900`}`}>
+		<nav className={`w-full py-3 px-4 z-20 flex flex-row items-center justify-between fixed uppercase text-white backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
 			<Link href={"#home"} onClick={handleScroll} className={""}>
 				MC
 			</Link>
@@ -39,7 +39,7 @@ export default function Nav() {
 					['Contact', '#contact'],
 				].map(([title, url]) => (
 					// eslint-disable-next-line react/jsx-key
-					<Link href={url} onClick={handleScroll} className="rounded-lg px-3 py-2 relative after:bg-white after:block after:m-auto after:h-[1.1px] after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
+					<Link href={url} onClick={handleScroll} className="rounded-lg px-3 py-2 relative after:bg-accent after:block after:m-auto after:h-[1.1px] after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
 				))}
 			</div>
 		</nav>

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "accent": "#3590F3"
+      },
       animation: {
         blob: "blob 7s infinite",
       },
