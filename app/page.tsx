@@ -40,8 +40,7 @@ export default function Home() {
 		    <div className="flex flex-col h-screen items-center justify-center" id="home">
 			    <div className="flex flex-col">
 				    <h1 className="text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
-					    {/* eslint-disable-next-line react/no-unescaped-entities */}
-					    Hi, I'm Miguel
+					    Hi, I&apos;m Miguel
 				    </h1>
 				    <a className="text-lg font-semibold z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)]">
 					    A <span ref={el}/>
@@ -83,8 +82,7 @@ export default function Home() {
 			    <div>
 				    <div>
 					    <h1 className="uppercase">Tech Stack</h1>
-					    {/* eslint-disable-next-line react/no-unescaped-entities */}
-					    <h2>Some of the programming languages, frameworks, tools and technologies I've used</h2>
+					    <h2>Some of the programming languages, frameworks, tools and technologies I&apos;ve used</h2>
 				    </div>
 				    <div>
 					    <div className="flex flex-row justify-center" id="buttons">
@@ -145,9 +143,7 @@ export default function Home() {
 						    <div className="mt-4">
 							    <h2 className="py-2 ">Miguel Collaço</h2>
 							    <p>Web Developer</p>
-							    {/* eslint-disable-next-line react/no-unescaped-entities */}
-							    <p className="py-4">I am available for freelance or full-time positions. Contact me and
-								    let's talk.</p>
+							    <p className="py-4">I am available for freelance or full-time positions. Contact me and let&apos;s talk.</p>
 						    </div>
 						    <div>
 							    <p className="uppercase pt-8">Connect With Me</p>
