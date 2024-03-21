@@ -27,8 +27,8 @@ export default function Nav() {
 	}
 	
 	return (
-		<nav className={`w-full py-3 px-4 z-20 flex flex-row items-center justify-between fixed uppercase text-white backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
-			<Link href={"#home"} onClick={handleScroll} className={""}>
+		<nav className={`w-full py-3 px-4 z-20 flex flex-row items-center justify-between fixed uppercase text-text backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
+			<Link href={"#home"} onClick={handleScroll}>
 				MC
 			</Link>
 			<div className="flex items-center justify-between space-x-3 h-full">
@@ -39,7 +39,7 @@ export default function Nav() {
 					['Contact', '#contact'],
 				].map(([title, url]) => (
 					// eslint-disable-next-line react/jsx-key
-					<Link href={url} onClick={handleScroll} className="rounded-lg px-3 py-2 relative after:bg-accent after:block after:m-auto after:h-[1.1px] after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
+					<Link href={url} onClick={handleScroll} className="rounded-lg px-3 py-2 relative after:bg-main-accent after:block after:m-auto after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
 				))}
 			</div>
 		</nav>

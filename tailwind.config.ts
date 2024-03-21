@@ -9,7 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "accent": "#3590F3"
+        "main-bg": "#0B0C10",
+        "lighter-bg": "#1F2833",
+        "text": "C5C6C7",
+        "main-accent": "#66FCF1",
+        "secondary": "#45A29E",
+      },
+      padding: {
+        "1/2": "50%",
+        "full": "100%",
       },
       animation: {
         blob: "blob 7s infinite",
@@ -30,13 +38,13 @@ const config: Config = {
           },
         },
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }: any) {
+      addVariant('child', '& > *');
+      addVariant('child-hover', '& > *:hover');
+    }
+  ],
 };
 export default config;
