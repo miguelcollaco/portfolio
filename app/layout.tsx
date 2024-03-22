@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} scroll-smooth text-text overscroll-none`}>
+      <body className={`${inter.className} scroll-smooth text-text overscroll-none bg-background`}>
         <Nav/>
         {children}
         <Footer/>

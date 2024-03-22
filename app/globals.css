@@ -1,37 +1,48 @@
-@import url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css");
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
 
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  font-family: 'Poppins', serif;
+  font-weight: 400;
 }
 
-@media (prefers-color-scheme: dark) {
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', serif;
+  font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 2.489rem; /* 39.84px */}
+
+h2 {font-size: 2.074rem; /* 33.12px */}
+
+h3 {font-size: 1.728rem; /* 27.68px */}
+
+h4 {font-size: 1.440rem; /* 23.04px */}
+
+h5 {font-size: 1.200rem; /* 19.2px */}
+
+small {font-size: 0.833rem; /* 13.28px */}
+
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --text: 238 241 243;
+    --background: 11 18 24;
+    --primary: 150 192 226;
+    --secondary: 19 95 158;
+    --accent: 36 156 254;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--background);
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   .animation-delay-2000 {
     animation-delay: 2s;
   }
@@ -39,4 +50,3 @@ body {
     animation-delay: 4s;
   }
 }
-

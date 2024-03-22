@@ -36,39 +36,37 @@ export default function Home() {
 	}
 	
 	return (
-		<main className="flex flex-col items-center w-full px-3 md:px-[10vw] lg:px-[15vw]">
-			<div id="loading" className='fixed inset-0 flex space-x-2 justify-center items-center bg-main-bg h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
+		<main className="flex flex-col items-center w-full px-4 sm:px-[6vw] md:px-[10vw] lg:px-[14vw]">
+			<div id="loading"
+			     className='fixed inset-0 flex space-x-2 justify-center items-center bg-background h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
 				<span className='sr-only'>Loading...</span>
-				<div className='size-7 bg-main-accent opacity-75 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-				<div className='size-7 bg-main-accent opacity-75 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-				<div className='size-7 bg-main-accent opacity-75 rounded-full animate-bounce'></div>
+				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce'></div>
 			</div>
 			
-			<div className="flex flex-col items-center justify-center h-screen" id="home">
+			<div className="flex flex-col items-center justify-center h-screen max-h-screen" id="home">
 				<div className="flex flex-col">
-					<h1 className="text-5xl md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
+					<h1 className="text-5xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
 						Hi, I&apos;m Miguel
 					</h1>
-					<a className="text-sm md:text-lg font-semibold z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)]">
+					<a className="text-sm md:text-lg font-semibold z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] overflow-hidden">
 						A <span ref={el}/>
 					</a>
-					<div
-						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
-					<div
-						className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
-					<div
-						className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+					<div className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
+					<div className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+					<div className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
 				</div>
 			</div>
 			
-			<div className="flex flex-col w-full min-h-10m h-screen md:pt-32" id="about">
+			<div className="flex w-full min-h-screen pt-32" id="about">
 				<div
-					className="h-[85%] bg-lighter-bg w-full rounded-2xl bg-opacity-70 flex flex-row p-5 overflow-hidden">
-					<div className=" h-full w-3/5 flex flex-col justify-between p-10 pl-4">
-						<h1 className="w-max text-4xl uppercase font-semibold after:bg-main-accent after:block after:h-0.5 after:w-full after:my-2">
+					className="flex flex-col md:flex-row w-full h-auto bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
+					<div className="h-full w-full flex flex-col justify-between p-10 pl-4">
+						<h1 className="w-max uppercase font-semibold after:bg-accent after:block after:h-1 after:w-full">
 							About Me
 						</h1>
-						<p className="text-xl">
+						<p>
 							Passionate CSE student with a knack for problem-solving and a strong foundation in software
 							development. Experienced in tackling challenges with an analytical mindset. Eager to
 							contribute to innovative projects and continue learning in the dynamic tech landscape.
@@ -78,7 +76,7 @@ export default function Home() {
 						</p>
 					</div>
 					<div
-						className=" h-full w-2/5 rounded-2xl p-4 overflow-hidden relative shadow-[rgba(0,0,0,0.4)] shadow-xl">
+						className="w-full h-full rounded-2xl p-4 overflow-hidden relative shadow-[rgba(0,0,0,0.4)] shadow-xl">
 						<Image
 							src="/thispersondoesnotexist.jpeg"
 							alt="photo"
@@ -90,14 +88,15 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="flex flex-col w-full min-h-10 md:pt-32 h-auto" id="techstack">
+			<div className="flex flex-col w-full min-h-10 pt-32 h-auto" id="techstack">
 				<div>
 					<div className="mb-6">
 						<div className="w-max">
-							<h1 className="uppercase after:bg-main-accent after:block after:h-0.5 after:w-full after:mb-2">Tech
-								Stack</h1>
+							<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">
+								Tech Stack
+							</h3>
 						</div>
-						<h2>Some of the programming languages, frameworks, tools and technologies I&apos;ve used</h2>
+						<h5>Some of the programming languages, frameworks, tools and technologies I&apos;ve used</h5>
 					</div>
 					<div>
 						<div className="flex flex-row justify-center mb-1" id="buttons">
@@ -106,8 +105,8 @@ export default function Home() {
 								["lang", "Programming Languages"],
 								["text", "IDEs / Text Editors"],
 							].map(([id, name]) => (
-								// eslint-disable-next-line react/jsx-key
 								<button
+									key={id}
 									onClick={filterSelection}
 									id={id}
 									className="py-2 px-3 rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]">
@@ -115,7 +114,7 @@ export default function Home() {
 								</button>
 							))}
 						</div>
-						<ul className="pt-2 grid align-middle grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 my-0 mx-auto"
+						<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle"
 						    id="list">
 							{[
 								["javascript", "lang", "JavaScript"],
@@ -138,9 +137,9 @@ export default function Home() {
 								["visualstudio", "text", "Visual Studio"],
 								["vscode", "text", "Visual Studio Code"],
 							].map(([name, id, title]) => (
-								// eslint-disable-next-line react/jsx-key
 								<li
-									className="flex justify-center align-middle aspect-square rounded-lg bg-lighter-bg bg-opacity-70 hover:scale-110 duration-300"
+									key={name}
+									className="m-2 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 hover:scale-105 duration-300"
 									id={id}
 									title={title}>
 									<Image
@@ -149,8 +148,8 @@ export default function Home() {
 										// @ts-ignore
 										onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
 										alt={name}
-										width="100"
-										height="100"
+										width="113"
+										height="113"
 									/>
 								</li>
 							))}
@@ -159,34 +158,46 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="flex flex-col justify-between w-full md:pt-32 min-h-screen" id="contact">
+			<div className="flex flex-col justify-between w-full pt-32 min-h-screen" id="contact">
 				<div className="grid lg:grid-cols-5 gap-8">
 					<div className="col-span-3 lg:col-span-2 w-full">
-						<div className="p-6 sticky top-36 bg-lighter-bg bg-opacity-70 rounded-xl">
+						<div className="p-6 sticky top-36 bg-secondary/30 rounded-xl [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 							<div className="w-max">
-								<h1 className="uppercase after:bg-main-accent after:block after:h-0.5 after:w-full after:mb-2">Contact</h1>
+								<h1 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">Contact</h1>
 							</div>
 							<div className="mt-4">
 								<h2 className="py-2 ">Miguel Collaço</h2>
 								<p className="py-4">I am available to freelance. Contact me!</p>
 							</div>
-							<div className="flex items-center justify-between py-4">
-								<a target="_blank" rel="noreferrer"
-								   href="https://www.linkedin.com/in/miguel-collaço/">
+							<div className="flex items-center justify-around py-4">
+								<a
+									target="_blank"
+									rel="noreferrer"
+									href="https://www.linkedin.com/in/miguel-collaço/">
 									<div
-										className="rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300">
-										<i className="devicon-linkedin-plain"/>
+										className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+										<Image
+											src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
+											alt="linkedin"
+											width="40"
+											height="40"
+										/>
 									</div>
 								</a>
 								<a target="_blank" rel="noreferrer" href="https://github.com/miguelcollaco">
 									<div
-										className="rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300">
-										<i className="devicon-github-plain"/>
+										className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+										<Image
+											src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+											alt="github"
+											width="40"
+											height="40"
+										/>
 									</div>
 								</a>
 								<a href="mailto:miguel.l.collaco@gmail.com" target="_blank" rel="noreferrer">
 									<div
-										className="rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300">
+										className="rounded-full shadow-lg shadow-accent p-6 cursor-pointer hover:scale-110 ease-in duration-300">
 										<svg stroke="currentColor" fill="currentColor" strokeWidth="0"
 										     viewBox="0 0 1024 1024" height="1em" width="1em"
 										     xmlns="http://www.w3.org/2000/svg">
@@ -199,7 +210,7 @@ export default function Home() {
 						</div>
 					</div>
 					<form
-						className="group col-span-3 w-full h-auto rounded-xl bg-lighter-bg bg-opacity-70 flex flex-col justify-center align-middle p-6"
+						className="group col-span-3 w-full h-auto rounded-xl bg-secondary/30 flex flex-col justify-center align-middle p-6 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 						action="https://getform.io/f/" encType="multipart/form-data" method="POST">
 						<div className="grid md:grid-cols-2 gap-4 w-full">
 							<div className="flex flex-col">

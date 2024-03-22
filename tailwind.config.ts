@@ -9,15 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "main-bg": "#0B0C10",
-        "lighter-bg": "#1F2833",
-        "text": "C5C6C7",
-        "main-accent": "#66FCF1",
-        "secondary": "#45A29E",
+        'text': 'rgb(var(--text) / <alpha-value>)',
+        'background': 'rgb(var(--background) / <alpha-value>)',
+        'primary': 'rgb(var(--primary) / <alpha-value>)',
+        'secondary': 'rgb(var(--secondary) / <alpha-value>)',
+        'accent': 'rgb(var(--accent) / <alpha-value>)',
       },
-      padding: {
-        "1/2": "50%",
-        "full": "100%",
+      fontSize: {
+        sm: '0.833rem',
+        base: '1rem',
+        xl: '1.200rem',
+        '2xl': '1.440rem',
+        '3xl': '1.728rem',
+        '4xl': '2.074rem',
+        '5xl': '2.489rem',
+      },
+      fontFamily: {
+        heading: 'Poppins',
+        body: 'Poppins',
+      },
+      fontWeight: {
+        normal: '400',
+        bold: '700',
       },
       animation: {
         blob: "blob 7s infinite",
@@ -40,11 +53,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    function ({ addVariant }: any) {
-      addVariant('child', '& > *');
-      addVariant('child-hover', '& > *:hover');
-    }
-  ],
+  plugins: [],
 };
 export default config;
