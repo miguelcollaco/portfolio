@@ -20,10 +20,12 @@ export default function Nav() {
 		const href = e.currentTarget.href;
 		const targetId = href.replace(/.*\#/, "");
 		
-		const elem = document.getElementById(targetId);
-		elem?.scrollIntoView({
-			behavior: "smooth",
-		});
+		const element = document.getElementById(targetId);
+		// @ts-ignore
+		const elementRect = element.getBoundingClientRect();
+		const absoluteElementTop = elementRect.top + window.pageYOffset;
+		const middle = absoluteElementTop - 110;
+		window.scrollTo({top: middle, behavior: "smooth"})
 	}
 	
 	return (

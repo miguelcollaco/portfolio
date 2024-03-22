@@ -53,6 +53,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }: any) {
+      addVariant('child', '& > *');
+    }
+  ],
 };
 export default config;

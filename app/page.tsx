@@ -11,7 +11,7 @@ export default function Home() {
     
     useEffect(() => {
         const typed: Typed = new Typed(el.current, {
-            strings: ["computer science and engineering student", "tech enthusiast", "freelance developer"],
+            strings: ["CSE student", "tech enthusiast", "freelance developer"],
             loop: true,
             typeSpeed: 100,
             backSpeed: 40,
@@ -36,7 +36,7 @@ export default function Home() {
 	}
 	
 	return (
-		<main className="flex flex-col items-center w-full px-4 sm:px-[6vw] md:px-[10vw] lg:px-[14vw]">
+		<main className="flex flex-col items-center w-full px-4 sm:px-[6vw] md:px-[10vw] lg:px-[14vw] child:mb-52">
 			<div id="loading"
 			     className='fixed inset-0 flex space-x-2 justify-center items-center bg-background h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
 				<span className='sr-only'>Loading...</span>
@@ -47,14 +47,14 @@ export default function Home() {
 				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce'></div>
 			</div>
 			
-			<div className="flex flex-col items-center justify-center h-screen max-h-screen" id="home">
+			<div className="flex flex-col items-center justify-center h-screen w-full" id="home">
 				<div className="flex flex-col">
-					<h1 className="text-5xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
+					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
 						Hi, I&apos;m Miguel
 					</h1>
-					<a className="text-sm md:text-lg font-semibold z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] overflow-hidden">
+					<h6 className="font-semibold z-10 mt-2 [text-shadow:_0_0_15px_rgb(0_0_0_/_70%)]">
 						A <span ref={el}/>
-					</a>
+					</h6>
 					<div
 						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
 					<div
@@ -64,11 +64,11 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="flex w-full min-h-screen lg:h-screen pt-32" id="about">
+			<div className="flex w-full min-h-[80vh]" id="about">
 				<div
-					className="flex flex-col md:flex-row w-full h-auto bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
-					<div className="h-full w-full flex flex-col justify-between p-10 pl-4">
-						<h1 className="w-max uppercase font-semibold after:bg-accent after:block after:h-1 after:w-full">
+					className="flex flex-col justify-center align-middle md:flex-row bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
+					<div className="h-full md:w-[65%] lg:w-[65%] flex flex-col justify-between mb-6 md:m-0">
+						<h1 className="w-max uppercase font-semibold after:bg-accent after:block after:h-1 after:w-full after:mb-6 md:after:m-0">
 							About Me
 						</h1>
 						<p>
@@ -80,22 +80,20 @@ export default function Home() {
 							Currently studying @ NOVA SST
 						</p>
 					</div>
-					<div
-						className="w-full h-auto m-auto rounded-2xl flex items-center">
+					<div className="h-full rounded-2xl flex flex-row align-middle items-center">
 						<Image
 							src="/teste.jpg"
-							loading="lazy"
 							alt="photo"
-							width={3024}
-							height={4032}
-							objectFit="cover"
-							className="w-full h-full rounded-2xl border-accent border-2 shadow-lg shadow-accent/25"
+							sizes="100vw"
+							width={500}
+							height={300}
+							className="rounded-2xl border-accent border-2 shadow-lg shadow-accent/25 mx-auto"
 						/>
 					</div>
 				</div>
 			</div>
 			
-			<div className="flex flex-col w-full min-h-10 pt-32 h-auto" id="techstack">
+			<div className="flex flex-col w-full h-auto" id="techstack">
 				<div>
 					<div className="mb-6">
 						<div className="w-max">
@@ -103,7 +101,9 @@ export default function Home() {
 								Tech Stack
 							</h3>
 						</div>
-						<h5>Some of the programming languages, frameworks, tools and technologies I&apos;ve used</h5>
+						<h5 className="text-[0.9rem] md:text-xl font-normal">
+							Some of the programming languages, frameworks, tools and technologies I&apos;ve used
+						</h5>
 					</div>
 					<div>
 						<div className="flex flex-row justify-center mb-1" id="buttons">
@@ -150,7 +150,7 @@ export default function Home() {
 									id={id}
 									title={title}>
 									<Image
-										className="fill-amber-50"
+										className=""
 										src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
 										// @ts-ignore
 										onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
@@ -165,11 +165,11 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="flex flex-col justify-between w-full pt-32 min-h-screen" id="contact">
+			<div className="flex flex-col justify-between w-full min-h-screen" id="contact">
 				<div className="grid lg:grid-cols-5 gap-8">
 					<div className="col-span-3 lg:col-span-2 w-full">
 						<div
-							className="p-6 sticky top-36 bg-secondary/30 rounded-xl [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
+							className="p-6 sticky top-28 bg-secondary/30 rounded-xl [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 							<div className="w-max">
 								<h1 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">Contact</h1>
 							</div>
@@ -182,38 +182,43 @@ export default function Home() {
 								<a
 									target="_blank"
 									rel="noreferrer"
-									href="https://www.linkedin.com/in/miguel-collaço/">
-									<div
-										className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
-										<Image
-											src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
-											alt="linkedin"
-											width="40"
-											height="40"
-										/>
-									</div>
+									href="https://www.linkedin.com/in/miguel-collaço/"
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									<Image
+										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
+										alt="linkedin"
+										width="40"
+										height="40"
+									/>
 								</a>
-								<a target="_blank" rel="noreferrer" href="https://github.com/miguelcollaco">
-									<div
-										className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
-										<Image
-											src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
-											alt="github"
-											width="40"
-											height="40"
-										/>
-									</div>
+								<a
+									target="_blank"
+									rel="noreferrer"
+									href="https://github.com/miguelcollaco"
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									<Image
+										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+										alt="github"
+										width="40"
+										height="40"
+									/>
 								</a>
-								<a href="mailto:miguel.l.collaco@gmail.com" target="_blank" rel="noreferrer">
-									<div
-										className="rounded-full shadow-lg shadow-accent p-6 cursor-pointer hover:scale-110 ease-in duration-300">
-										<svg stroke="currentColor" fill="currentColor" strokeWidth="0"
-										     viewBox="0 0 1024 1024" height="1em" width="1em"
-										     xmlns="http://www.w3.org/2000/svg">
-											<path
-												d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path>
-										</svg>
-									</div>
+								<a
+									target="_blank"
+									rel="noreferrer"
+									href="mailto:miguel.l.collaco@gmail.com"
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									<svg
+										stroke="currentColor"
+										strokeWidth="1px"
+										viewBox="0 0 1024 1024"
+										height="40"
+										width="40"
+										fill="white"
+										xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path>
+									</svg>
 								</a>
 							</div>
 						</div>
@@ -285,7 +290,7 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="w-screen h-auto mt-32 py-20 mb-60 flex justify-center bg-secondary/30">
+			<div className="w-screen h-auto py-20 mb-60 flex justify-center bg-secondary/30">
 				<div>
 					<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">teste</h3>
 					<p>Lorem ipsum</p>
