@@ -40,8 +40,10 @@ export default function Home() {
 			<div id="loading"
 			     className='fixed inset-0 flex space-x-2 justify-center items-center bg-background h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
 				<span className='sr-only'>Loading...</span>
-				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+				<div
+					className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+				<div
+					className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
 				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce'></div>
 			</div>
 			
@@ -53,13 +55,16 @@ export default function Home() {
 					<a className="text-sm md:text-lg font-semibold z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] overflow-hidden">
 						A <span ref={el}/>
 					</a>
-					<div className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
-					<div className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
-					<div className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+					<div
+						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
+					<div
+						className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+					<div
+						className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
 				</div>
 			</div>
 			
-			<div className="flex w-full min-h-screen pt-32" id="about">
+			<div className="flex w-full min-h-screen lg:h-screen pt-32" id="about">
 				<div
 					className="flex flex-col md:flex-row w-full h-auto bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 					<div className="h-full w-full flex flex-col justify-between p-10 pl-4">
@@ -76,13 +81,15 @@ export default function Home() {
 						</p>
 					</div>
 					<div
-						className="w-full h-full rounded-2xl p-4 overflow-hidden relative shadow-[rgba(0,0,0,0.4)] shadow-xl">
+						className="w-full h-auto m-auto rounded-2xl flex items-center">
 						<Image
-							src="/thispersondoesnotexist.jpeg"
+							src="/teste.jpg"
+							loading="lazy"
 							alt="photo"
-							fill
+							width={3024}
+							height={4032}
 							objectFit="cover"
-							className="w-full h-auto"
+							className="w-full h-full rounded-2xl border-accent border-2 shadow-lg shadow-accent/25"
 						/>
 					</div>
 				</div>
@@ -139,7 +146,7 @@ export default function Home() {
 							].map(([name, id, title]) => (
 								<li
 									key={name}
-									className="m-2 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 hover:scale-105 duration-300"
+									className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
 									id={id}
 									title={title}>
 									<Image
@@ -161,13 +168,15 @@ export default function Home() {
 			<div className="flex flex-col justify-between w-full pt-32 min-h-screen" id="contact">
 				<div className="grid lg:grid-cols-5 gap-8">
 					<div className="col-span-3 lg:col-span-2 w-full">
-						<div className="p-6 sticky top-36 bg-secondary/30 rounded-xl [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
+						<div
+							className="p-6 sticky top-36 bg-secondary/30 rounded-xl [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 							<div className="w-max">
 								<h1 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">Contact</h1>
 							</div>
 							<div className="mt-4">
-								<h2 className="py-2 ">Miguel Collaço</h2>
-								<p className="py-4">I am available to freelance. Contact me!</p>
+								<h3 className="pt-2">Miguel Collaço</h3>
+								<p className="pt-4">I am available to freelance. </p>
+								<p>Don&apos;t hesitate to contact me!</p>
 							</div>
 							<div className="flex items-center justify-around py-4">
 								<a
@@ -276,9 +285,11 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="w-full pt-32 mb-60">
-				<h1>th</h1>
-				<p>teste</p>
+			<div className="w-screen h-auto mt-32 py-20 mb-60 flex justify-center bg-secondary/30">
+				<div>
+					<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">teste</h3>
+					<p>Lorem ipsum</p>
+				</div>
 			</div>
 			
 			<Script
