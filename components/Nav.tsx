@@ -29,11 +29,11 @@ export default function Nav() {
 	}
 	
 	return (
-		<nav className={`w-full py-3 px-4 z-20 flex flex-row items-center justify-between fixed uppercase backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
+		<nav className={`w-full py-3 px-6 z-20 flex flex-row items-center justify-between fixed uppercase backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
 			<Link href={"#home"} onClick={handleScroll}>
-				MC
+				&lt;/MC&gt;
 			</Link>
-			<div className="flex items-center justify-between space-x-3 h-full">
+			<div className="flex items-center justify-between h-full">
 				{[
 					['Home', '#home'],
 					['About', '#about'],
@@ -41,7 +41,7 @@ export default function Nav() {
 					['Contact', '#contact'],
 				].map(([title, url]) => (
 					// eslint-disable-next-line react/jsx-key
-					<Link href={url} onClick={handleScroll} className="rounded-lg px-3 py-2 relative after:bg-accent after:block after:m-auto after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
+					<Link href={url} onClick={handleScroll} className="py-2 pl-6 relative after:bg-accent after:block after:m-auto after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
 				))}
 			</div>
 		</nav>

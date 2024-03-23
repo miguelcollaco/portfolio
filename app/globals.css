@@ -38,10 +38,6 @@ small {font-size: 0.833rem; /* 13.28px */}
   }
 }
 
-body {
-  background: var(--background);
-}
-
 @layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;

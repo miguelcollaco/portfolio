@@ -47,8 +47,8 @@ export default function Home() {
 				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce'></div>
 			</div>
 			
-			<div className="flex flex-col items-center justify-center h-screen w-full" id="home">
-				<div className="flex flex-col">
+			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden" id="home">
+				<div className="flex flex-col overflow-x-hidden">
 					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
 						Hi, I&apos;m Miguel
 					</h1>
@@ -56,18 +56,18 @@ export default function Home() {
 						A <span ref={el}/>
 					</h6>
 					<div
-						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
+						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob overflow-x-hidden"></div>
 					<div
-						className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+						className="absolute left-1/2 top-1/3 w-80 h-80 bg-amber-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-4000 overflow-x-hidden"></div>
 					<div
-						className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+						className="absolute right-1/2 top-1/3 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000 overflow-x-hidden"></div>
 				</div>
 			</div>
 			
 			<div className="flex w-full min-h-[80vh]" id="about">
 				<div
 					className="flex flex-col justify-center align-middle md:flex-row bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
-					<div className="h-full md:w-[65%] lg:w-[65%] flex flex-col justify-between mb-6 md:m-0">
+					<div className="h-full p-10 md:w-[65%] lg:w-[65%] flex flex-col justify-between mb-6 md:m-0">
 						<h1 className="w-max uppercase font-semibold after:bg-accent after:block after:h-1 after:w-full after:mb-6 md:after:m-0">
 							About Me
 						</h1>
@@ -82,7 +82,7 @@ export default function Home() {
 					</div>
 					<div className="h-full rounded-2xl flex flex-row align-middle items-center">
 						<Image
-							src="/teste.jpg"
+							src="/photo.png"
 							alt="photo"
 							sizes="100vw"
 							width={500}
@@ -94,74 +94,72 @@ export default function Home() {
 			</div>
 			
 			<div className="flex flex-col w-full h-auto" id="techstack">
+				<div className="mb-6">
+					<div className="w-max">
+						<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">
+							Tech Stack
+						</h3>
+					</div>
+					<h5 className="text-[0.9rem] md:text-xl font-normal">
+						Some of the programming languages, frameworks, tools and technologies I&apos;ve used
+					</h5>
+				</div>
 				<div>
-					<div className="mb-6">
-						<div className="w-max">
-							<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">
-								Tech Stack
-							</h3>
-						</div>
-						<h5 className="text-[0.9rem] md:text-xl font-normal">
-							Some of the programming languages, frameworks, tools and technologies I&apos;ve used
-						</h5>
+					<div className="flex flex-row justify-center mb-1" id="buttons">
+						{[
+							["all", "All"],
+							["lang", "Programming Languages"],
+							["text", "IDEs / Text Editors"],
+						].map(([id, name]) => (
+							<button
+								key={id}
+								onClick={filterSelection}
+								id={id}
+								className="py-2 px-3 text-sm md:text-base rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]">
+								{name}
+							</button>
+						))}
 					</div>
-					<div>
-						<div className="flex flex-row justify-center mb-1" id="buttons">
-							{[
-								["all", "All"],
-								["lang", "Programming Languages"],
-								["text", "IDEs / Text Editors"],
-							].map(([id, name]) => (
-								<button
-									key={id}
-									onClick={filterSelection}
-									id={id}
-									className="py-2 px-3 rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]">
-									{name}
-								</button>
-							))}
-						</div>
-						<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle"
-						    id="list">
-							{[
-								["javascript", "lang", "JavaScript"],
-								["typescript", "lang", "TypeScript"],
-								["java", "lang", "Java"],
-								["python", "lang", "Python"],
-								["c", "lang", "C"],
-								["lua", "lang", "Lua"],
-								["html5", "", "HTML"],
-								["css3", "", "CSS"],
-								["arduino", "lang", "Arduino"],
-								["mysql", "", "MySQL"],
-								["dotnetcore", "", ".NET (Visual Basic)"],
-								["tailwindcss", "", "TailwindCSS"],
-								["nextjs", "", "Next.js"],
-								["prisma", "", "Prisma"],
-								["github", "", "GitHub"],
-								["git", "", "Git"],
-								["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
-								["visualstudio", "text", "Visual Studio"],
-								["vscode", "text", "Visual Studio Code"],
-							].map(([name, id, title]) => (
-								<li
-									key={name}
-									className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
-									id={id}
-									title={title}>
-									<Image
-										className=""
-										src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
-										// @ts-ignore
-										onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
-										alt={name}
-										width="113"
-										height="113"
-									/>
-								</li>
-							))}
-						</ul>
-					</div>
+					<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle"
+					    id="list">
+						{[
+							["javascript", "lang", "JavaScript"],
+							["typescript", "lang", "TypeScript"],
+							["java", "lang", "Java"],
+							["python", "lang", "Python"],
+							["c", "lang", "C"],
+							["lua", "lang", "Lua"],
+							["html5", "", "HTML"],
+							["css3", "", "CSS"],
+							["arduino", "lang", "Arduino"],
+							["mysql", "", "MySQL"],
+							["dotnetcore", "", ".NET (Visual Basic)"],
+							["tailwindcss", "", "TailwindCSS"],
+							["nextjs", "", "Next.js"],
+							["prisma", "", "Prisma"],
+							["github", "", "GitHub"],
+							["git", "", "Git"],
+							["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
+							["visualstudio", "text", "Visual Studio"],
+							["vscode", "text", "Visual Studio Code"],
+						].map(([name, id, title]) => (
+							<li
+								key={name}
+								className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
+								id={id}
+								title={title}>
+								<Image
+									className=""
+									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
+									// @ts-ignore
+									onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
+									alt={name}
+									width="113"
+									height="113"
+								/>
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 			
@@ -174,11 +172,11 @@ export default function Home() {
 								<h1 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">Contact</h1>
 							</div>
 							<div className="mt-4">
-								<h3 className="pt-2">Miguel Collaço</h3>
+								<h4 className="pt-2 font-normal">Miguel Collaço</h4>
 								<p className="pt-4">I am available to freelance. </p>
 								<p>Don&apos;t hesitate to contact me!</p>
 							</div>
-							<div className="flex items-center justify-around py-4">
+							<div className="flex items-center justify-around pt-10 pb-4">
 								<a
 									target="_blank"
 									rel="noreferrer"
@@ -224,9 +222,9 @@ export default function Home() {
 						</div>
 					</div>
 					<form
-						className="group col-span-3 w-full h-auto rounded-xl bg-secondary/30 flex flex-col justify-center align-middle p-6 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
-						action="https://getform.io/f/" encType="multipart/form-data" method="POST">
-						<div className="grid md:grid-cols-2 gap-4 w-full">
+						className="group col-span-3 w-full h-auto rounded-xl bg-secondary/30 flex flex-col justify-center align-middle p-8 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
+						action="https://getform.io/f/lbjkepxa" encType="multipart/form-data" method="POST">
+						<div className="grid md:grid-cols-2 gap-6 w-full">
 							<div className="flex flex-col">
 								<label htmlFor="name"
 								       className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">Name</label>
@@ -287,13 +285,6 @@ export default function Home() {
 							</button>
 						</div>
 					</form>
-				</div>
-			</div>
-			
-			<div className="w-screen h-auto py-20 mb-60 flex justify-center bg-secondary/30">
-				<div>
-					<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">teste</h3>
-					<p>Lorem ipsum</p>
 				</div>
 			</div>
 			
