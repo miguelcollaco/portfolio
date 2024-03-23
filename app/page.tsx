@@ -36,7 +36,7 @@ export default function Home() {
 	}
 	
 	return (
-		<main className="flex flex-col items-center w-full px-4 sm:px-[6vw] md:px-[10vw] lg:px-[14vw] child:mb-52">
+		<main className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
 			<div id="loading"
 			     className='fixed inset-0 flex space-x-2 justify-center items-center bg-background h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
 				<span className='sr-only'>Loading...</span>
@@ -48,7 +48,7 @@ export default function Home() {
 			</div>
 			
 			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden" id="home">
-				<div className="flex flex-col overflow-x-hidden">
+				<div className="flex flex-col">
 					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
 						Hi, I&apos;m Miguel
 					</h1>
