@@ -150,9 +150,9 @@ export default function Home() {
 								title={title}>
 								<Image
 									className=""
-									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
+									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
 									// @ts-ignore
-									onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
+									onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
 									alt={name}
 									width="113"
 									height="113"
