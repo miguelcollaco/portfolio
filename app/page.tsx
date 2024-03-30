@@ -29,7 +29,7 @@ export default function Home() {
 		e.target.id = e.target.id.replace("all", "")
 		// @ts-ignore
 		for (const el of document.getElementById("list")?.children)
-			if (el.id.includes(e.target.id))
+			if (el.dataset.category.includes(e.target.id))
 				el.className = el.className.replace(" hidden", "")
 			else if (!el.className.includes("hidden"))
 				el.className += " hidden"
@@ -37,16 +37,6 @@ export default function Home() {
 	
 	return (
 		<main className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
-			<div id="loading"
-			     className='fixed inset-0 flex space-x-2 justify-center items-center bg-background h-screen w-screen z-30 overflow-hidden duration-[450ms]'>
-				<span className='sr-only'>Loading...</span>
-				<div
-					className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-				<div
-					className='size-7 bg-secondary opacity-75 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-				<div className='size-7 bg-secondary opacity-75 rounded-full animate-bounce'></div>
-			</div>
-			
 			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden" id="home">
 				<div className="flex flex-col">
 					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
@@ -142,17 +132,15 @@ export default function Home() {
 							["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
 							["visualstudio", "text", "Visual Studio"],
 							["vscode", "text", "Visual Studio Code"],
-						].map(([name, id, title]) => (
+						].map(([name, category, title]) => (
 							<li
 								key={name}
 								className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
-								id={id}
+								data-category={category}
 								title={title}>
 								<Image
 									className=""
 									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
-									// @ts-ignore
-									onError={e => e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`}
 									alt={name}
 									width="113"
 									height="113"
@@ -292,7 +280,7 @@ export default function Home() {
 				id=""
 				strategy="afterInteractive"
 				dangerouslySetInnerHTML={{
-					__html: `(function(){document.getElementById("all").click();document.getElementById("loading").setAttribute("style","height:0")})();`,
+					__html: `(function(){document.getElementById("all").click();})();`,
 				}}
 			/>
 		</main>
