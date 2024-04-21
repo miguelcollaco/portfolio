@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Miguel Collaço",
   authors: { name: "Miguel Collaço" },
   description: "CSE student based in Portugal",
-  keywords: ["miguel", "collaço"],
+  keywords: ["miguel", "collaço", "freelancer", "nova"],
 };
 
 export default function RootLayout({
@@ -22,15 +22,14 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return (
+return (
     <html lang="en">
-      <body className={`${inter.className} scroll-smooth text-text overscroll-none bg-background`}>
-        <Nav />
-        {children}
-        <Footer />
-        <SpeedInsights />
-        <Analytics />
-      </body>
+        <body className={`${inter.className} scroll-smooth text-text overscroll-none bg-background`}>
+            <Nav />
+            {children}
+            <Footer />
+            <SpeedInsights />
+            <Analytics />
+        </body>
     </html>
-  );
-}
+)}

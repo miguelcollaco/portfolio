@@ -29,7 +29,7 @@ export default function Nav() {
 	}
 	
 	return (
-		<nav className={`w-full py-3 px-6 z-20 flex flex-row items-center justify-between fixed uppercase backdrop-blur-2xl transition ease-in-out duration-500 ${!top && `shadow-xl shadow-zinc-900`} hidden md:flex`}>
+		<nav className={`w-full py-3 px-6 z-20 flex flex-row items-center justify-between fixed uppercase backdrop-blur-2xl transition ease-in-out duration-500 ${!top && 'shadow-xl'} shadow-zinc-950 hidden md:flex`}>
 			<Link href={"#home"} onClick={handleScroll}>
 				&lt;/MC&gt;
 			</Link>
