@@ -40,8 +40,7 @@ export default function Nav() {
 					['Tech Stack', '#techstack'],
 					['Contact', '#contact'],
 				].map(([title, url]) => (
-					// eslint-disable-next-line react/jsx-key
-					<Link href={url} onClick={handleScroll} className="py-2 pl-6 relative after:bg-accent after:block after:m-auto after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
+					<Link key={url} href={url} onClick={handleScroll} className="py-2 pl-6 relative after:bg-accent after:block after:m-auto after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:duration-300 ">{title}</Link>
 				))}
 			</div>
 		</nav>

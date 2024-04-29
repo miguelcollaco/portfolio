@@ -72,7 +72,7 @@ export default function Home() {
 					</div>
 					<div className="h-full rounded-2xl flex flex-row align-middle items-center">
 						<Image
-							src="/photo.png"
+							src="/portrait.JPG"
 							alt="photo"
 							sizes="100vw"
 							width={500}
@@ -110,8 +110,7 @@ export default function Home() {
 							</button>
 						))}
 					</div>
-					<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle"
-					    id="list">
+					<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle" id="list">
 						{[
 							["javascript", "lang", "JavaScript"],
 							["typescript", "lang", "TypeScript"],
