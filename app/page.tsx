@@ -1,62 +1,19 @@
-"use client";
-
-import { useRef, useEffect, useState } from 'react';
-import Typed from 'typed.js';
-
+import Typed from "@/components/Typed"
+import TechStack from "@/components/TechStack"
 import Image from "next/image";
 
 export default function Home() {
-    const el = useRef(null);
-    useEffect(() => {
-        const typed: Typed = new Typed(el.current, {
-            strings: ["CSE student", "tech enthusiast", "freelance developer"],
-            loop: true,
-            typeSpeed: 100,
-            backSpeed: 40,
-        });
-		
-        return(): void => typed.destroy();
-    }, []);
-	
-	const filters: string[][] = [
-		["", "All"],
-		["lang", "Programming Languages"],
-		["text", "IDEs / Text Editors"],
-	]
-	
-	const [filter, setFilter] = useState("")
-	
-	const techStack: string[][] = [
-		["javascript", "lang", "JavaScript"],
-		["typescript", "lang", "TypeScript"],
-		["java", "lang", "Java"],
-		["python", "lang", "Python"],
-		["c", "lang", "C"],
-		["lua", "lang", "Lua"],
-		["html5", "", "HTML"],
-		["css3", "", "CSS"],
-		["arduino", "lang", "Arduino"],
-		["mysql", "", "MySQL"],
-		["dotnetcore", "", ".NET (Visual Basic)"],
-		["tailwindcss", "", "TailwindCSS"],
-		["nextjs", "", "Next.js"],
-		["prisma", "", "Prisma"],
-		["github", "", "GitHub"],
-		["git", "", "Git"],
-		["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
-		["visualstudio", "text", "Visual Studio"],
-		["vscode", "text", "Visual Studio Code"],
-	]
-	
 	return (
-		<main className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
-			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden" id="home">
+		<main
+			className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
+			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden"
+			     id="home">
 				<div className="flex flex-col">
 					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
 						Hi, I&apos;m Miguel
 					</h1>
 					<h6 className="font-semibold z-10 mt-2 [text-shadow:_0_0_15px_rgb(0_0_0_/_70%)]">
-						A <span ref={el}/>
+						<Typed/>
 					</h6>
 					<div
 						className="absolute top-1/3 w-80 h-80 bg-red-600 rounded-full filter blur-3xl opacity-50 animate-blob overflow-x-hidden"></div>
@@ -95,7 +52,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			
 			<div className="flex flex-col w-full h-auto" id="techstack">
 				<div className="mb-6">
 					<div className="w-max">
@@ -107,38 +63,7 @@ export default function Home() {
 						Some of the programming languages, frameworks, tools and technologies I&apos;ve used
 					</h5>
 				</div>
-				<div>
-					<div className="flex flex-row justify-center mb-1" id="buttons">
-						{filters.map(([category, label]) => (
-							<button
-								key={category}
-								onClick={() => setFilter(category)}
-								id={category}
-								disabled={filter == category}
-								className="py-2 px-3 text-sm md:text-base rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]"
-							>
-								{label}
-							</button>
-						))}
-					</div>
-					<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle" id="list">
-						{techStack.filter(([, category,]) => category.includes(filter)).map(([name, category, title]) => (
-							<li
-								key={name}
-								className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
-								data-category={category}
-								title={title}>
-								<Image
-									className=""
-									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
-									alt={name}
-									width="113"
-									height="113"
-								/>
-							</li>
-						))}
-					</ul>
-				</div>
+				<TechStack/>
 			</div>
 			
 			<div className="flex flex-col justify-between w-full min-h-screen" id="contact">
