@@ -1,14 +1,12 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Typed from 'typed.js';
 
 import Image from "next/image";
-import Script from "next/script";
 
 export default function Home() {
     const el = useRef(null);
-    
     useEffect(() => {
         const typed: Typed = new Typed(el.current, {
             strings: ["CSE student", "tech enthusiast", "freelance developer"],
@@ -20,20 +18,35 @@ export default function Home() {
         return(): void => typed.destroy();
     }, []);
 	
-	function filterSelection(e: any): void {
-		// @ts-ignore
-		for (const el of document.getElementById("buttons")?.children)
-			el.removeAttribute("disabled")
-		e.target.disabled = true;
-		
-		e.target.id = e.target.id.replace("all", "")
-		// @ts-ignore
-		for (const el of document.getElementById("list")?.children)
-			if (el.dataset.category.includes(e.target.id))
-				el.className = el.className.replace(" hidden", "")
-			else if (!el.className.includes("hidden"))
-				el.className += " hidden"
-	}
+	const filters: string[][] = [
+		["", "All"],
+		["lang", "Programming Languages"],
+		["text", "IDEs / Text Editors"],
+	]
+	
+	const [filter, setFilter] = useState("")
+	
+	const techStack: string[][] = [
+		["javascript", "lang", "JavaScript"],
+		["typescript", "lang", "TypeScript"],
+		["java", "lang", "Java"],
+		["python", "lang", "Python"],
+		["c", "lang", "C"],
+		["lua", "lang", "Lua"],
+		["html5", "", "HTML"],
+		["css3", "", "CSS"],
+		["arduino", "lang", "Arduino"],
+		["mysql", "", "MySQL"],
+		["dotnetcore", "", ".NET (Visual Basic)"],
+		["tailwindcss", "", "TailwindCSS"],
+		["nextjs", "", "Next.js"],
+		["prisma", "", "Prisma"],
+		["github", "", "GitHub"],
+		["git", "", "Git"],
+		["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
+		["visualstudio", "text", "Visual Studio"],
+		["vscode", "text", "Visual Studio Code"],
+	]
 	
 	return (
 		<main className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
@@ -96,42 +109,20 @@ export default function Home() {
 				</div>
 				<div>
 					<div className="flex flex-row justify-center mb-1" id="buttons">
-						{[
-							["all", "All"],
-							["lang", "Programming Languages"],
-							["text", "IDEs / Text Editors"],
-						].map(([id, name]) => (
+						{filters.map(([category, label]) => (
 							<button
-								key={id}
-								onClick={filterSelection}
-								id={id}
-								className="py-2 px-3 text-sm md:text-base rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]">
-								{name}
+								key={category}
+								onClick={() => setFilter(category)}
+								id={category}
+								disabled={filter == category}
+								className="py-2 px-3 text-sm md:text-base rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]"
+							>
+								{label}
 							</button>
 						))}
 					</div>
 					<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle" id="list">
-						{[
-							["javascript", "lang", "JavaScript"],
-							["typescript", "lang", "TypeScript"],
-							["java", "lang", "Java"],
-							["python", "lang", "Python"],
-							["c", "lang", "C"],
-							["lua", "lang", "Lua"],
-							["html5", "", "HTML"],
-							["css3", "", "CSS"],
-							["arduino", "lang", "Arduino"],
-							["mysql", "", "MySQL"],
-							["dotnetcore", "", ".NET (Visual Basic)"],
-							["tailwindcss", "", "TailwindCSS"],
-							["nextjs", "", "Next.js"],
-							["prisma", "", "Prisma"],
-							["github", "", "GitHub"],
-							["git", "", "Git"],
-							["jetbrains", "text", "JetBrains (IntelliJ IDEA, WebStorm, PyCharm)"],
-							["visualstudio", "text", "Visual Studio"],
-							["vscode", "text", "Visual Studio Code"],
-						].map(([name, category, title]) => (
+						{techStack.filter(([, category,]) => category.includes(filter)).map(([name, category, title]) => (
 							<li
 								key={name}
 								className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent hover:scale-105 duration-300"
@@ -168,7 +159,8 @@ export default function Home() {
 									target="_blank"
 									rel="noreferrer"
 									href="https://www.linkedin.com/in/miguel-collaço/"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+								>
 									<Image
 										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
 										alt="linkedin"
@@ -180,7 +172,8 @@ export default function Home() {
 									target="_blank"
 									rel="noreferrer"
 									href="https://github.com/miguelcollaco"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+								>
 									<Image
 										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
 										alt="github"
@@ -192,7 +185,8 @@ export default function Home() {
 									target="_blank"
 									rel="noreferrer"
 									href="mailto:miguel.l.collaco@gmail.com"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300">
+									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+								>
 									<svg
 										stroke="currentColor"
 										strokeWidth="1px"
@@ -213,29 +207,41 @@ export default function Home() {
 						action="https://getform.io/f/lbjkepxa" encType="multipart/form-data" method="POST">
 						<div className="grid md:grid-cols-2 gap-6 w-full">
 							<div className="flex flex-col">
-								<label htmlFor="name"
-								       className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">Name</label>
+								<label
+									htmlFor="name"
+									className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+									Name
+								</label>
 								<input
 									id="name"
 									required
 									className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
 									type="text"
 									name="name"
-									pattern="([a-zA-Z0-9_\s]+)"/>
+									pattern="([a-zA-Z0-9_\s]+)"
+								/>
 							</div>
 							<div className="flex flex-col">
-								<label htmlFor="phone" className="uppercase text-sm py-2">Phone Number</label>
+								<label
+									htmlFor="phone"
+									className="uppercase text-sm py-2">
+									Phone Number
+								</label>
 								<input
 									id="phone"
 									className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
 									type="text"
 									name="phone"
-									pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"/>
+									pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"
+								/>
 							</div>
 						</div>
 						<div className="flex flex-col py-2">
-							<label htmlFor="email"
-							       className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">Email</label>
+							<label
+								htmlFor="email"
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								Email
+							</label>
 							<input
 								id="email"
 								required
@@ -245,8 +251,11 @@ export default function Home() {
 								pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"/>
 						</div>
 						<div className="flex flex-col py-2">
-							<label htmlFor="subject"
-							       className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">Subject</label>
+							<label
+								htmlFor="subject"
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								Subject
+							</label>
 							<input
 								id="subject"
 								required
@@ -255,8 +264,11 @@ export default function Home() {
 								name="subject"/>
 						</div>
 						<div className="flex flex-col py-2">
-							<label htmlFor="message"
-							       className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">Message</label>
+							<label
+								htmlFor="message"
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								Message
+							</label>
 							<textarea
 								id="message"
 								required
@@ -266,22 +278,15 @@ export default function Home() {
 								minLength={10}/>
 						</div>
 						<div className="flex justify-center align-middle py-2">
-							<button type="submit"
-							        className="w-5/6 p-4 rounded-xl bg-gradient-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
+							<button
+								type="submit"
+								className="w-5/6 p-4 rounded-xl bg-gradient-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
 								Send
 							</button>
 						</div>
 					</form>
 				</div>
 			</div>
-			
-			<Script
-				id=""
-				strategy="afterInteractive"
-				dangerouslySetInnerHTML={{
-					__html: `(function(){document.getElementById("all").click();})();`,
-				}}
-			/>
 		</main>
 	);
 }
