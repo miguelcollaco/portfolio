@@ -19,6 +19,7 @@ export default function TechStack() {
 		["java", "lang", "Java"],
 		["python", "lang", "Python"],
 		["c", "lang", "C"],
+		["ocaml", "lang", "OCaml"],
 		["lua", "lang", "Lua"],
 		["html5", "", "HTML"],
 		["css3", "", "CSS"],
@@ -62,7 +63,7 @@ export default function TechStack() {
 							transition={{duration: 0.35 }}
 							whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
 							key={name}
-							className="m-3 w-20 md:w-32 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
+							className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 							data-category={category}
 							title={title}>
 							<Image
