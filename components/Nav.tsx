@@ -24,7 +24,7 @@ export default function Nav() {
 		e.preventDefault();
 		let href = e.currentTarget.href;
 		let targetId = href.replace(/.*\#/, "");
-		document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 	
 	return (

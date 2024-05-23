@@ -55,7 +55,7 @@ const config: Config = {
   },
   plugins: [
     function ({ addVariant }: any) {
-      addVariant('child', '& > *');
+      addVariant('notFirstChild', '& > *:not(:first-child)');
     }
   ],
 };

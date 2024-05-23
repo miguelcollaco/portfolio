@@ -5,8 +5,8 @@ import Image from "next/image";
 export default function Home() {
 	return (
 		<main
-			className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-72">
-			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden"
+			className="flex flex-col items-center w-full notFirstChild:px-4 notFirstChild:sm:px-[6vw] notFirstChild:md:px-[10vw] notFirstChild:lg:px-[12vw] notFirstChild:xl:px-[14vw] notFirstChild:pt-40 notFirstChild:mb-56">
+			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden pt-0"
 			     id="home">
 				<div className="flex flex-col">
 					<h1 className="text-[2.9rem] md:text-6xl font-bold leading-relaxed z-10 [text-shadow:_0_0_15px_rgb(0_0_0_/_50%)]">
@@ -44,14 +44,15 @@ export default function Home() {
 						<Image
 							src="/portrait.JPG"
 							alt="photo"
-							sizes="100vw"
-							width={500}
+							sizes="100vh"
+							width={400}
 							height={300}
 							className="rounded-2xl border-accent border-2 shadow-lg shadow-accent/25 mx-auto"
 						/>
 					</div>
 				</div>
 			</div>
+			
 			<div className="flex flex-col w-full h-auto" id="techstack">
 				<div className="mb-6">
 					<div className="w-max">
@@ -66,7 +67,7 @@ export default function Home() {
 				<TechStack/>
 			</div>
 			
-			<div className="flex flex-col justify-between w-full">
+			<div className="flex flex-col justify-between w-full" id="contact">
 				<div className="grid lg:grid-cols-5 gap-8">
 					<div className="col-span-3 lg:col-span-2 w-full">
 						<div
@@ -129,7 +130,6 @@ export default function Home() {
 						</div>
 					</div>
 					<form
-						id="contact"
 						className="group col-span-3 w-full h-auto rounded-xl bg-secondary/30 flex flex-col justify-center align-middle p-8 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 						action="https://getform.io/f/lbjkepxa" encType="multipart/form-data" method="POST">
 						<div className="grid md:grid-cols-2 gap-6 w-full">

@@ -17,6 +17,7 @@ export default function TechStack() {
 		["javascript", "lang", "JavaScript"],
 		["typescript", "lang", "TypeScript"],
 		["java", "lang", "Java"],
+		["kotlin", "lang", "Kotlin"],
 		["python", "lang", "Python"],
 		["c", "lang", "C"],
 		["ocaml", "lang", "OCaml"],
@@ -28,6 +29,7 @@ export default function TechStack() {
 		["dotnetcore", "", ".NET (Visual Basic)"],
 		["tailwindcss", "", "TailwindCSS"],
 		["framermotion", "", "Framer Motion"],
+		["react", "", "React"],
 		["nextjs", "", "Next.js"],
 		["prisma", "", "Prisma"],
 		["github", "", "GitHub"],
@@ -60,10 +62,10 @@ export default function TechStack() {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							transition={{duration: 0.35 }}
+							transition={{ duration: 0.35 }}
 							whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
 							key={name}
-							className="m-2 lg:m-3.5 w-1/6 min-w-[4.3rem] max-w-40 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
+							className="m-2 w-[5.5rem] sm:w-24 lg:m-3 lg:w-28 2xl:w-32 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 							data-category={category}
 							title={title}>
 							<Image
