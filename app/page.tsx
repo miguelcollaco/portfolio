@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
 	return (
 		<main
-			className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-52">
+			className="flex flex-col items-center w-full child:px-4 child:sm:px-[6vw] child:md:px-[10vw] child:lg:px-[14vw] child:mb-72">
 			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden"
 			     id="home">
 				<div className="flex flex-col">
@@ -24,7 +24,7 @@ export default function Home() {
 				</div>
 			</div>
 			
-			<div className="flex w-full min-h-[80vh]" id="about">
+			<div className="flex w-full" id="about">
 				<div
 					className="flex flex-col justify-center align-middle md:flex-row bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 					<div className="h-full p-10 md:w-[65%] lg:w-[65%] flex flex-col justify-between mb-6 md:m-0">
@@ -37,7 +37,7 @@ export default function Home() {
 							contribute to innovative projects and continue learning in the dynamic tech landscape.
 						</p>
 						<p>
-							Currently studying @ NOVA SST
+							Currently studying @ <abbr title="NOVA School of Science and Technology" className="no-underline italic">NOVA SST</abbr>
 						</p>
 					</div>
 					<div className="h-full rounded-2xl flex flex-row align-middle items-center">
@@ -66,7 +66,7 @@ export default function Home() {
 				<TechStack/>
 			</div>
 			
-			<div className="flex flex-col justify-between w-full min-h-screen" id="contact">
+			<div className="flex flex-col justify-between w-full">
 				<div className="grid lg:grid-cols-5 gap-8">
 					<div className="col-span-3 lg:col-span-2 w-full">
 						<div
@@ -104,6 +104,7 @@ export default function Home() {
 										alt="github"
 										width="40"
 										height="40"
+										style={{filter: "invert(1)"}}
 									/>
 								</a>
 								<a
@@ -128,6 +129,7 @@ export default function Home() {
 						</div>
 					</div>
 					<form
+						id="contact"
 						className="group col-span-3 w-full h-auto rounded-xl bg-secondary/30 flex flex-col justify-center align-middle p-8 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 						action="https://getform.io/f/lbjkepxa" encType="multipart/form-data" method="POST">
 						<div className="grid md:grid-cols-2 gap-6 w-full">

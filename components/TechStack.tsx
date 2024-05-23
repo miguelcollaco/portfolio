@@ -63,7 +63,7 @@ export default function TechStack() {
 							transition={{duration: 0.35 }}
 							whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
 							key={name}
-							className="m-3 w-20 md:w-36 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
+							className="m-2 lg:m-3.5 w-1/6 min-w-[4.3rem] max-w-40 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
 							data-category={category}
 							title={title}>
 							<Image
