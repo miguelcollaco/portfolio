@@ -8,6 +8,7 @@ export default function TechStack() {
 	const filters: string[][] = [
 		["", "All"],
 		["lang", "Programming Languages"],
+		["libfw", "Libraries / Frameworks"],
 		["text", "IDEs / Text Editors"],
 	]
 	
@@ -26,11 +27,12 @@ export default function TechStack() {
 		["css3", "", "CSS"],
 		["arduino", "lang", "Arduino"],
 		["mysql", "", "MySQL"],
+		["sqlite", "", "SQLite"],
 		["dotnetcore", "", ".NET (Visual Basic)"],
-		["tailwindcss", "", "TailwindCSS"],
-		["framermotion", "", "Framer Motion"],
-		["react", "", "React"],
-		["nextjs", "", "Next.js"],
+		["tailwindcss", "libfw", "TailwindCSS"],
+		["framermotion", "libfw", "Framer Motion"],
+		["react", "libfw", "React"],
+		["nextjs", "libfw", "Next.js"],
 		["prisma", "", "Prisma"],
 		["github", "", "GitHub"],
 		["git", "", "Git"],
