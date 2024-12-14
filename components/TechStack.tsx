@@ -26,6 +26,7 @@ export default function TechStack() {
 		["css3", "", "CSS"],
 		["arduino", "lang", "Arduino"],
 		["mysql", "", "MySQL"],
+		["sqlite", "", "SQLite"],
 		["dotnetcore", "", ".NET (Visual Basic)"],
 		["tailwindcss", "", "TailwindCSS"],
 		["framermotion", "", "Framer Motion"],
@@ -56,27 +57,31 @@ export default function TechStack() {
 			</div>
 			<ul className="pt-2 flex flex-auto grow justify-center flex-wrap align-middle">
 				<AnimatePresence>
-					{techStack.filter(([, category,]) => category.includes(filter)).map(([name, category, title]) => (
-						<motion.li
-							layout
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ duration: 0.35 }}
-							whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-							key={name}
-							className="m-2 w-[5.5rem] sm:w-24 lg:m-3 lg:w-28 2xl:w-32 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
-							data-category={category}
-							title={title}>
-							<Image
-								className=""
-								src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
-								alt={name}
-								width="113"
-								height="113"
-							/>
-						</motion.li>
-					))}
+					{
+						techStack
+						.filter(([, category,]) => category.includes(filter))
+						.map(([name, category, title]) => (
+							<motion.li
+								layout
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								transition={{ duration: 0.35 }}
+								whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+								key={name}
+								className="m-2 w-[5.5rem] sm:w-24 lg:m-3 lg:w-28 2xl:w-32 p-2 flex justify-center align-middle aspect-square rounded-lg bg-secondary/30 [box-shadow:_0_0_15px_rgba(36,156,254,0.6)] border-2 border-solid border-accent"
+								data-category={category}
+								title={title}>
+								<Image
+									className=""
+									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
+									alt={name}
+									width="113"
+									height="113"
+								/>
+							</motion.li>
+						))
+					}
 				</AnimatePresence>
 			</ul>
 		</div>
