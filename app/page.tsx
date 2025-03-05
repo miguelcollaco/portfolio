@@ -154,16 +154,17 @@ export default function Home() {
 							<div className="flex flex-col">
 								<label
 									htmlFor="name"
-									className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+									className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5 after:relative after:-top-0.5">
 									Name
 								</label>
 								<input
 									id="name"
 									required
-									className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+									placeholder=""
+									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
 									type="text"
 									name="name"
-									pattern="([a-zA-Z0-9_\s]+)"
+									pattern="^(?![\x20\x27\x2D]|.*?[\p{Lu}]{2}|.*?[\x20]{2}|.*?[\x27]{2}|.*?[\x2D]{2}|.*?(\x20\x2D|\x2D\x20)|.*?(\x27\x2D|\x2D\x27)|.*?(\x27[\w]+\x27(\x20|$)))[\p{L}\x20\x27\x2D]+$(?<![\x20\x2D])"
 								/>
 							</div>
 							<div className="flex flex-col">
@@ -174,50 +175,58 @@ export default function Home() {
 								</label>
 								<input
 									id="phone"
-									className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
-									type="text"
+									placeholder=""
+									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+									type="tel"
 									name="phone"
-									pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"
+									pattern="^\\+?\\d{1,3}[ -]?(\\(?\\d{1,4}\\)?[ -]?)?\\d{1,4}[ -]?\\d{1,4}[ -]?\\d{1,9}$"
 								/>
 							</div>
 						</div>
 						<div className="flex flex-col py-2">
 							<label
 								htmlFor="email"
-								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:relative after:-top-0.5">
 								Email
 							</label>
 							<input
 								id="email"
 								required
-								className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+								placeholder=""
+								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
 								type="email"
 								name="email"
-								pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"/>
+								pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$"
+							/>
 						</div>
 						<div className="flex flex-col py-2">
 							<label
 								htmlFor="subject"
-								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5 after:relative after:-top-0.5">
 								Subject
 							</label>
 							<input
 								id="subject"
 								required
-								className="border-2 rounded-lg p-2 flex border-gray-300 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+								placeholder=""
+								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
 								type="text"
-								name="subject"/>
+								name="subject"
+								minLength={10}
+								maxLength={50}
+							/>
 						</div>
 						<div className="flex flex-col py-2">
 							<label
 								htmlFor="message"
-								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5">
+								className="uppercase text-sm py-2 after:content-['*'] after:text-red-600 after:font-bold after:ml-0.5 after:relative after:-top-0.5">
 								Message
 							</label>
 							<textarea
 								id="message"
 								required
-								className="border-2 rounded-lg p-2 border-gray-300 text-black"
+								placeholder=""
+								className="border-2 rounded-lg p-2 border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
 								name="message"
 								rows={8}
 								minLength={10}/>
@@ -225,7 +234,7 @@ export default function Home() {
 						<div className="flex justify-center align-middle py-2">
 							<button
 								type="submit"
-								className="w-5/6 p-4 rounded-xl bg-gradient-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
+								className="w-2/3 p-4 rounded-xl bg-gradient-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
 								Send
 							</button>
 						</div>
