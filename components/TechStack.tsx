@@ -49,7 +49,7 @@ export default function TechStack() {
 						onClick={() => setFilter(category)}
 						id={category}
 						disabled={filter == category}
-						className="py-2 px-3 text-sm md:text-base rounded-lg bg-gradient-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]"
+						className="py-2 px-3 text-sm md:text-base rounded-lg bg-linear-to-r from-[#017ca6] to-[#004682] mx-2 disabled:scale-110 transition [text-shadow:_0_0_15px_rgb(0_0_0_/_60%)] disabled:shadow-md disabled:shadow-[rgba(255,255,255,0.1)] shadow-inner shadow-[rgba(0,0,0,0.5)]"
 					>
 						{label}
 					</button>
