@@ -73,11 +73,11 @@ export default function TechStack() {
 								data-category={category}
 								title={title}>
 								<Image
-									className=""
 									src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`}
 									alt={name}
-									width="113"
-									height="113"
+									width={0}
+									height={0}
+									className="w-auto"
 								/>
 							</motion.li>
 						))
