@@ -2,6 +2,10 @@ import Typed from "@/components/Typed"
 import TechStack from "@/components/TechStack"
 import Image from "next/image";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedinIn, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faFileLines } from "@fortawesome/free-solid-svg-icons";
+
 export default function Home() {
 	return (
 		<main
@@ -80,69 +84,42 @@ export default function Home() {
 								<p className="pt-4">I am available to freelance. </p>
 								<p>Don&apos;t hesitate to contact me!</p>
 							</div>
-							<div className="flex items-center justify-around pt-10 pb-4">
+							<div className="flex text-xl mt-10 justify-evenly gap-4 z-10 [&>*]:rounded-lg [&>*]:bg-background [&>*]:[&>*]:aspect-square [&>*]:p-3 [&>*]:grid [&>*]:place-items-center [&>*]:[box-shadow:_0_0_20px_rgba(36,156,254,0.3)] [&>*]:border-2 [&>*]:border-solid [&>*]:border-accent">
 								<a
 									title="LinkedIn"
 									target="_blank"
 									rel="noreferrer"
 									href="https://www.linkedin.com/in/miguel-collaço/"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+									className="cursor-pointer hover:scale-110 ease-in duration-200"
 								>
-									<Image
-										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
-										alt="linkedin"
-										width="40"
-										height="40"
-									/>
+									<FontAwesomeIcon icon={faLinkedinIn} size="xl" />
 								</a>
 								<a
 									title="GitHub"
 									target="_blank"
 									rel="noreferrer"
 									href="https://github.com/miguelcollaco"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+									className="cursor-pointer hover:scale-110 ease-in duration-200"
 								>
-									<Image
-										src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
-										alt="github"
-										width="40"
-										height="40"
-										style={{filter: "invert(1)"}}
-									/>
+									<FontAwesomeIcon icon={faGithub} size="xl" />
 								</a>
 								<a
 									title="Email"
 									target="_blank"
 									rel="noreferrer"
 									href="mailto:miguel.l.collaco@gmail.com"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+									className="cursor-pointer hover:scale-110 ease-in duration-200"
 								>
-									<svg
-										stroke="currentColor"
-										strokeWidth="1px"
-										viewBox="0 0 1024 1024"
-										height="40"
-										width="40"
-										fill="white"
-										xmlns="http://www.w3.org/2000/svg">
-										<path
-											d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path>
-									</svg>
+									<FontAwesomeIcon icon={faEnvelope} size="xl" />
 								</a>
 								<a
 									title="CV"
 									target="_blank"
 									rel="noreferrer"
 									href="/files/CV_Miguel_Collaco.pdf"
-									className="rounded-full shadow-lg shadow-accent p-3.5 cursor-pointer hover:scale-110 ease-in duration-300"
+									className="cursor-pointer hover:scale-110 ease-in duration-200"
 								>
-									<Image
-										src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zIDI0aDE5di0yM2gtMXYyMmgtMTh2MXptMTctMjRoLTE4djIyaDE4di0yMnptLTEgMWgtMTZ2MjBoMTZ2LTIwem0tMiAxNmgtMTJ2MWgxMnYtMXptMC0zaC0xMnYxaDEydi0xem0wLTNoLTEydjFoMTJ2LTF6bS03LjM0OC0zLjg2M2wuOTQ4LjNjLS4xNDUuNTI5LS4zODcuOTIyLS43MjUgMS4xNzgtLjMzOC4yNTctLjc2Ny4zODUtMS4yODcuMzg1LS42NDMgMC0xLjE3MS0uMjItMS41ODUtLjY1OS0uNDE0LS40MzktLjYyMS0xLjA0LS42MjEtMS44MDIgMC0uODA2LjIwOC0xLjQzMi42MjQtMS44NzguNDE2LS40NDYuOTYzLS42NjkgMS42NDItLjY2OS41OTIgMCAxLjA3My4xNzUgMS40NDMuNTI1LjIyMS4yMDcuMzg2LjUwNS40OTYuODkybC0uOTY4LjIzMWMtLjA1Ny0uMjUxLS4xNzctLjQ0OS0uMzU4LS41OTQtLjE4Mi0uMTQ2LS40MDMtLjIxOC0uNjYzLS4yMTgtLjM1OSAwLS42NS4xMjktLjg3NC4zODYtLjIyMy4yNTgtLjMzNS42NzUtLjMzNSAxLjI1MiAwIC42MTMuMTEgMS4wNDkuMzMxIDEuMzA4LjIyLjI2LjUwNi4zOS44NTguMzkuMjYgMCAuNDg0LS4wODIuNjcxLS4yNDguMTg3LS4xNjUuMzIyLS40MjUuNDAzLS43Nzl6bTMuMDIzIDEuNzhsLTEuNzMxLTQuODQyaDEuMDZsMS4yMjYgMy41ODQgMS4xODYtMy41ODRoMS4wMzdsLTEuNzM0IDQuODQyaC0xLjA0NHoiLz48L3N2Zz4="
-										alt="github"
-										width="40"
-										height="40"
-										style={{filter: "invert(1)"}}
-									/>
+									<FontAwesomeIcon icon={faFileLines} size="xl" />
 								</a>
 							</div>
 						</div>
