@@ -9,7 +9,7 @@ import { faEnvelope, faFileLines } from "@fortawesome/free-solid-svg-icons";
 export default function Home() {
 	return (
 		<main
-			className="flex flex-col items-center w-full notFirstChild:px-4 notFirstChild:sm:px-[6vw] notFirstChild:md:px-[10vw] notFirstChild:lg:px-[12vw] notFirstChild:xl:px-[14vw] notFirstChild:pt-40 notFirstChild:mb-56">
+			className="flex flex-col items-center w-full notFirstChild:px-4 sm:notFirstChild:px-[6vw] md:notFirstChild:px-[10vw] lg:notFirstChild:px-[12vw] xl:notFirstChild:px-[14vw] notFirstChild:pt-40 notFirstChild:mb-56">
 			<div className="flex flex-col items-center justify-center h-screen w-full relative overflow-x-hidden pt-0"
 			     id="home">
 				<div className="flex flex-col">
@@ -84,7 +84,7 @@ export default function Home() {
 								<p className="pt-4">I am available to freelance. </p>
 								<p>Don&apos;t hesitate to contact me!</p>
 							</div>
-							<div className="flex text-xl mt-10 justify-evenly gap-4 z-10 [&>*]:rounded-lg [&>*]:bg-background [&>*]:[&>*]:aspect-square [&>*]:p-3 [&>*]:grid [&>*]:place-items-center [&>*]:[box-shadow:_0_0_20px_rgba(36,156,254,0.3)] [&>*]:border-2 [&>*]:border-solid [&>*]:border-accent">
+							<div className="flex text-xl mt-10 justify-evenly gap-4 z-10 *:rounded-lg *:bg-background *:*:aspect-square *:p-3 *:grid *:place-items-center *:[box-shadow:0_0_20px_rgba(36,156,254,0.3)] *:border-2 *:border-solid *:border-accent">
 								<a
 									title="LinkedIn"
 									target="_blank"
@@ -138,7 +138,7 @@ export default function Home() {
 									id="name"
 									required
 									placeholder=""
-									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 									type="text"
 									name="name"
 									pattern="^(?![\x20\x27\x2D]|.*?[\p{Lu}]{2}|.*?[\x20]{2}|.*?[\x27]{2}|.*?[\x2D]{2}|.*?(\x20\x2D|\x2D\x20)|.*?(\x27\x2D|\x2D\x27)|.*?(\x27[\w]+\x27(\x20|$)))[\p{L}\x20\x27\x2D]+$(?<![\x20\x2D])"
@@ -153,7 +153,7 @@ export default function Home() {
 								<input
 									id="phone"
 									placeholder=""
-									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 									type="tel"
 									name="phone"
 									pattern="^\\+?\\d{1,3}[ -]?(\\(?\\d{1,4}\\)?[ -]?)?\\d{1,4}[ -]?\\d{1,4}[ -]?\\d{1,9}$"
@@ -170,7 +170,7 @@ export default function Home() {
 								id="email"
 								required
 								placeholder=""
-								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 								type="email"
 								name="email"
 								pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$"
@@ -186,7 +186,7 @@ export default function Home() {
 								id="subject"
 								required
 								placeholder=""
-								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+								className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 								type="text"
 								name="subject"
 								minLength={10}
@@ -203,7 +203,7 @@ export default function Home() {
 								id="message"
 								required
 								placeholder=""
-								className="border-2 rounded-lg p-2 border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-none"
+								className="border-2 rounded-lg p-2 border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 								name="message"
 								rows={8}
 								minLength={10}/>
@@ -211,7 +211,7 @@ export default function Home() {
 						<div className="flex justify-center align-middle py-2">
 							<button
 								type="submit"
-								className="w-2/3 p-4 rounded-xl bg-gradient-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
+								className="w-2/3 p-4 rounded-xl bg-linear-to-r from-[#017ca6] to-[#004682] mt-4 hover:scale-105 ease-in duration-300 cursor-pointer opacity-100 group-invalid:pointer-events-none group-invalid:opacity-30">
 								Send
 							</button>
 						</div>

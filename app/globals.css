@@ -1,32 +1,115 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
-@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400') layer(base);
 
-@tailwind base;
-@tailwind utilities;
+@import 'tailwindcss';
 
-body {
-  font-family: 'Poppins', serif;
-  font-weight: 400;
+@theme {
+  --color-text: rgb(var(--text));
+  --color-background: rgb(var(--background));
+  --color-primary: rgb(var(--primary));
+  --color-secondary: rgb(var(--secondary));
+  --color-accent: rgb(var(--accent));
+
+  --text-sm: 0.833rem;
+  --text-base: 1rem;
+  --text-xl: 1.2rem;
+  --text-2xl: 1.44rem;
+  --text-3xl: 1.728rem;
+  --text-4xl: 2.074rem;
+  --text-5xl: 2.489rem;
+
+  --font-heading: Poppins;
+  --font-body: Poppins;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --animate-blob: blob 7s infinite;
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Poppins', serif;
-  font-weight: 700;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-html {font-size: 100%;} /* 16px */
+@utility animation-delay-2000 {
+  animation-delay: 2s;
+}
 
-h1 {font-size: 2.489rem; /* 39.84px */}
+@utility animation-delay-4000 {
+  animation-delay: 4s;
+}
 
-h2 {font-size: 2.074rem; /* 33.12px */}
+@layer utilities {
+  body {
+    font-family: 'Poppins', serif;
+    font-weight: 400;
+  }
 
-h3 {font-size: 1.728rem; /* 27.68px */}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: 'Poppins', serif;
+    font-weight: 700;
+  }
 
-h4 {font-size: 1.440rem; /* 23.04px */}
+  html {
+    font-size: 100%;
+  } /* 16px */
 
-h5 {font-size: 1.200rem; /* 19.2px */}
+  h1 {
+    font-size: 2.489rem; /* 39.84px */
+  }
 
-small {font-size: 0.833rem; /* 13.28px */}
+  h2 {
+    font-size: 2.074rem; /* 33.12px */
+  }
+
+  h3 {
+    font-size: 1.728rem; /* 27.68px */
+  }
+
+  h4 {
+    font-size: 1.44rem; /* 23.04px */
+  }
+
+  h5 {
+    font-size: 1.2rem; /* 19.2px */
+  }
+
+  small {
+    font-size: 0.833rem; /* 13.28px */
+  }
+}
 
 @layer base {
   :root {
@@ -35,15 +118,6 @@ small {font-size: 0.833rem; /* 13.28px */}
     --primary: 150 192 226;
     --secondary: 19 95 158;
     --accent: 36 156 254;
-  }
-}
-
-@layer utilities {
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  .animation-delay-4000 {
-    animation-delay: 4s;
   }
 }
 
@@ -64,3 +138,5 @@ small {font-size: 0.833rem; /* 13.28px */}
     padding: 3px;
   }
 }
+
+@custom-variant notFirstChild '& > *:not(:first-child)'
