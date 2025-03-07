@@ -8,6 +8,10 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ReactNode } from "react";
 
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
