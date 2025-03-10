@@ -153,10 +153,10 @@ export default function Home() {
 								<input
 									id="phone"
 									placeholder=""
-									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
+									className="border-2 rounded-lg p-2 flex border-accent bg-text ease-in duration-200 text-black invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 focus:[box-shadow:_0_0_27px_rgba(36,156,254,0.6)] focus:outline-hidden"
 									type="tel"
 									name="phone"
-									pattern="^\\+?\\d{1,3}[ -]?(\\(?\\d{1,4}\\)?[ -]?)?\\d{1,4}[ -]?\\d{1,4}[ -]?\\d{1,9}$"
+									pattern="(^[+]\d{1,3}\s?)?(\d{5,9})"
 								/>
 							</div>
 						</div>
