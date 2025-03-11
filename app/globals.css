@@ -3,42 +3,42 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-text: rgb(var(--text));
-  --color-background: rgb(var(--background));
-  --color-primary: rgb(var(--primary));
-  --color-secondary: rgb(var(--secondary));
-  --color-accent: rgb(var(--accent));
+    --color-text: rgb(var(--text));
+    --color-background: rgb(var(--background));
+    --color-primary: rgb(var(--primary));
+    --color-secondary: rgb(var(--secondary));
+    --color-accent: rgb(var(--accent));
 
-  --text-sm: 0.833rem;
-  --text-base: 1rem;
-  --text-xl: 1.2rem;
-  --text-2xl: 1.44rem;
-  --text-3xl: 1.728rem;
-  --text-4xl: 2.074rem;
-  --text-5xl: 2.489rem;
+    --text-sm: 0.833rem;
+    --text-base: 1rem;
+    --text-xl: 1.2rem;
+    --text-2xl: 1.44rem;
+    --text-3xl: 1.728rem;
+    --text-4xl: 2.074rem;
+    --text-5xl: 2.489rem;
 
-  --font-heading: Poppins;
-  --font-body: Poppins;
+    --font-heading: Poppins;
+    --font-body: Poppins;
 
-  --font-weight-normal: 400;
-  --font-weight-bold: 700;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
 
-  --animate-blob: blob 7s infinite;
+    --animate-blob: blob 7s infinite;
 
-  @keyframes blob {
-    0% {
-      transform: translate(0px, 0px) scale(1);
+    @keyframes blob {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+            transform: translate(30px, -50px) scale(1.1);
+        }
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+        100% {
+            transform: translate(0px, 0px) scale(1);
+        }
     }
-    33% {
-      transform: translate(30px, -50px) scale(1.1);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-  }
 }
 
 /*
@@ -50,93 +50,117 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
 }
 
 @utility animation-delay-2000 {
-  animation-delay: 2s;
+    animation-delay: 2s;
 }
 
 @utility animation-delay-4000 {
-  animation-delay: 4s;
+    animation-delay: 4s;
 }
 
 @layer utilities {
-  body {
-    font-family: 'Poppins', serif;
-    font-weight: 400;
-  }
+    body {
+        font-family: 'Poppins', serif;
+        font-weight: 400;
+        overflow-x: hidden;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-family: 'Poppins', serif;
-    font-weight: 700;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: 'Poppins', serif;
+        font-weight: 700;
+    }
 
-  html {
-    font-size: 100%;
-  } /* 16px */
+    html {
+        font-size: 100%;
+    } /* 16px */
 
-  h1 {
-    font-size: 2.489rem; /* 39.84px */
-  }
+    h1 {
+        font-size: 2.489rem; /* 39.84px */
+    }
 
-  h2 {
-    font-size: 2.074rem; /* 33.12px */
-  }
+    h2 {
+        font-size: 2.074rem; /* 33.12px */
+    }
 
-  h3 {
-    font-size: 1.728rem; /* 27.68px */
-  }
+    h3 {
+        font-size: 1.728rem; /* 27.68px */
+    }
 
-  h4 {
-    font-size: 1.44rem; /* 23.04px */
-  }
+    h4 {
+        font-size: 1.44rem; /* 23.04px */
+    }
 
-  h5 {
-    font-size: 1.2rem; /* 19.2px */
-  }
+    h5 {
+        font-size: 1.2rem; /* 19.2px */
+    }
 
-  small {
-    font-size: 0.833rem; /* 13.28px */
-  }
+    small {
+        font-size: 0.833rem; /* 13.28px */
+    }
+
+    [data-title]:hover:after {
+        opacity: 1;
+        transition: all 0.1s ease 0.5s;
+        visibility: visible;
+    }
+    [data-title]:after {
+        content: attr(data-title);
+        position: absolute;
+        font-size: .8rem;
+        width: fit-content;
+        bottom: -1.6em;
+        left: 100%;
+        padding: 2px 4px;
+        background-color: var(--color-background);
+        border-radius: 5px;
+        color: var(--color-text);
+        opacity: 0;
+        z-index: 99999;
+        box-shadow: 0 0 27px rgba(0,0,0,0.6);
+        border: 1px solid var(--color-accent);
+        visibility: hidden;
+    }
 }
 
 @layer base {
-  :root {
-    --text: 238 241 243;
-    --background: 11 18 24;
-    --primary: 150 192 226;
-    --secondary: 19 95 158;
-    --accent: 36 156 254;
-  }
+    :root {
+        --text: 238 241 243;
+        --background: 11 18 24;
+        --primary: 150 192 226;
+        --secondary: 19 95 158;
+        --accent: 36 156 254;
+    }
 }
 
 @media (pointer: coarse), (hover: none) {
-  [title] {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-  }
-  [title]:focus::after {
-    content: attr(title);
-    position: absolute;
-    top: 90%;
-    color: #000;
-    background-color: #fff;
-    border: 1px solid;
-    width: fit-content;
-    padding: 3px;
-  }
+    [title] {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+    }
+    [title]:focus::after {
+        content: attr(title);
+        position: absolute;
+        top: 90%;
+        color: #000;
+        background-color: #fff;
+        border: 1px solid;
+        width: fit-content;
+        padding: 3px;
+    }
 }
 
 @custom-variant notFirstChild '& > *:not(:first-child)'
