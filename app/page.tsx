@@ -30,7 +30,7 @@ export default function Home() {
 			
 			<div className="flex w-full" id="about">
 				<div
-					className="flex flex-col justify-center align-middle md:flex-row bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
+					className="flex flex-col justify-between align-middle md:flex-row bg-secondary/30 rounded-2xl p-5 [box-shadow:_0_0_27px_rgba(36,156,254,0.6)] border-2 border-solid border-accent">
 					<div className="h-full p-10 md:w-[65%] lg:w-[65%] flex flex-col justify-between mb-6 md:m-0">
 						<h1 className="w-max uppercase font-semibold after:bg-accent after:block after:h-1 after:w-full after:mb-6 md:after:m-0">
 							About Me
@@ -41,7 +41,7 @@ export default function Home() {
 							contribute to innovative projects and continue learning in the dynamic tech landscape.
 						</p>
 						<p>
-							Currently studying @ <abbr title="NOVA School of Science and Technology" className="no-underline italic">NOVA SST</abbr>
+							Currently studying @ NOVA School of Science and Technology
 						</p>
 					</div>
 					<div className="h-full rounded-2xl flex flex-row align-middle items-center">
@@ -58,16 +58,6 @@ export default function Home() {
 			</div>
 			
 			<div className="flex flex-col w-full h-auto" id="techstack">
-				<div className="mb-6">
-					<div className="w-max">
-						<h3 className="uppercase after:bg-accent after:block after:h-0.5 after:w-full after:mb-2">
-							Tech Stack
-						</h3>
-					</div>
-					<h5 className="text-[0.9rem] md:text-xl font-normal">
-						Some of the programming languages, frameworks, tools and technologies I&apos;ve used
-					</h5>
-				</div>
 				<TechStack/>
 			</div>
 			
@@ -86,7 +76,7 @@ export default function Home() {
 							</div>
 							<div className="flex text-xl mt-10 justify-evenly gap-4 z-10 *:rounded-lg *:bg-background *:*:aspect-square *:p-3 *:grid *:place-items-center *:[box-shadow:0_0_20px_rgba(36,156,254,0.3)] *:border-2 *:border-solid *:border-accent">
 								<a
-									title="LinkedIn"
+									data-title="LinkedIn"
 									target="_blank"
 									rel="noreferrer"
 									href="https://www.linkedin.com/in/miguel-collaço/"
@@ -95,7 +85,7 @@ export default function Home() {
 									<FontAwesomeIcon icon={faLinkedinIn} size="xl" />
 								</a>
 								<a
-									title="GitHub"
+									data-title="GitHub"
 									target="_blank"
 									rel="noreferrer"
 									href="https://github.com/miguelcollaco"
@@ -104,7 +94,7 @@ export default function Home() {
 									<FontAwesomeIcon icon={faGithub} size="xl" />
 								</a>
 								<a
-									title="Email"
+									data-title="Email"
 									target="_blank"
 									rel="noreferrer"
 									href="mailto:miguel.l.collaco@gmail.com"
@@ -113,7 +103,7 @@ export default function Home() {
 									<FontAwesomeIcon icon={faEnvelope} size="xl" />
 								</a>
 								<a
-									title="CV"
+									data-title="CV"
 									target="_blank"
 									rel="noreferrer"
 									href="/files/CV_Miguel_Collaco.pdf"
