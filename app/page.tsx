@@ -106,7 +106,7 @@ export default function Home() {
 									data-title="CV"
 									target="_blank"
 									rel="noreferrer"
-									href="/files/CV_Miguel_Collaco.pdf"
+									href="/files/Miguel_Collaco_CV.pdf"
 									className="cursor-pointer hover:scale-110 ease-in duration-200"
 								>
 									<FontAwesomeIcon icon={faFileLines} size="xl" />
