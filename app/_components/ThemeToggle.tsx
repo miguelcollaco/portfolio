@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { LuMoon, LuSun } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { Button } from "@/app/_components/ui/Button";
 
@@ -32,7 +32,7 @@ export default function ThemeToggle() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="absolute"
       >
-        <Moon className="w-5 h-5" />
+        <LuMoon className="w-5 h-5" />
       </motion.div>
       <motion.div
         initial={false}
@@ -43,7 +43,7 @@ export default function ThemeToggle() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="absolute"
       >
-        <Sun className="w-5 h-5" />
+        <LuSun className="w-5 h-5" />
       </motion.div>
     </Button>
   );

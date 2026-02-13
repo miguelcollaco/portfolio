@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, ArrowRight } from "lucide-react";
+import { LuCodeXml , LuArrowRight  } from "react-icons/lu";
 import ThemeToggle from "./ThemeToggle";
-import { Button } from "./ui/Button";
+import Link from "next/link";
 
 export default function Navbar() {
   const navItems = ["Hero", "Experience", "Expertise", "Contact"];
@@ -31,7 +31,7 @@ export default function Navbar() {
               whileHover={{ rotate: 10 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Code2 className="w-5 h-5 text-primary" />
+              <LuCodeXml className="w-5 h-5 text-primary" />
             </motion.div>
             <span className="font-bold text-lg">MC</span>
           </motion.div>
@@ -64,13 +64,14 @@ export default function Navbar() {
             transition={{ delay: 0.5 }}
           >
             <ThemeToggle />
-            <Button 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2"
-              onClick={() => scrollToSection("contact")}
+            <Link 
+              className="bg-primary flex items-center py-2 px-3 rounded-lg text-primary-foreground hover:bg-primary/90 gap-2"
+              href="/Miguel_Collaco_CV.pdf"
+              target="_blank"
             >
               Download CV
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+              <LuArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </div>
