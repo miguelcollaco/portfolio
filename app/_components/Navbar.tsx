@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { LuCodeXml , LuArrowRight  } from "react-icons/lu";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
@@ -14,55 +13,29 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div 
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.02 }}
-          >
-            <motion.div 
-              className="p-2 bg-primary/10 rounded-lg"
-              whileHover={{ rotate: 10 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
+          <div className="flex items-center gap-2">
+            <div className="p-2 bg-primary/10 rounded-lg">
               <LuCodeXml className="w-5 h-5 text-primary" />
-            </motion.div>
+            </div>
             <span className="font-bold text-lg">MC</span>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="hidden md:flex items-center gap-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, index) => (
-              <motion.button
+              <button
                 key={item}
                 onClick={() => scrollToSection(item)}
                 className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors relative"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                whileHover={{ y: -2 }}
               >
                 {item}
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="flex items-center gap-3"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
-          >
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link 
               className="bg-primary flex items-center py-2 px-3 rounded-lg text-primary-foreground hover:bg-primary/90 gap-2"
@@ -72,9 +45,9 @@ export default function Navbar() {
               Download CV
               <LuArrowRight className="w-4 h-4" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   LuMail,
   LuLinkedin,
@@ -12,11 +11,6 @@ import {
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
-import {
-  AnimatedSection,
-  AnimatedStaggerContainer,
-  AnimatedStaggerItem,
-} from "./animations/AnimatedSection";
 import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
@@ -144,7 +138,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-6">
-        <AnimatedSection className="mb-12">
+        <div className="mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="section-label">OPEN TO OPPORTUNITIES</span>
@@ -154,24 +148,14 @@ export default function Contact() {
             I'm always open to discussing Computer Science projects, research
             collaborations, or technical inquiries. Feel free to reach out.
           </p>
-        </AnimatedSection>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
-          <AnimatedSection delay={0.1} className="h-full">
-            <motion.div
-              className="h-full bg-card border border-border rounded-xl p-6"
-              whileHover={{ borderColor: "hsl(var(--primary) / 0.3)" }}
-              transition={{ duration: 0.3 }}
-            >
+          <div className="h-full">
+            <div className="h-full bg-card border border-border rounded-xl p-6">
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <motion.div
-                    className="space-y-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                  >
+                  <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       Full Name
                     </label>
@@ -181,14 +165,8 @@ export default function Contact() {
                       className="bg-secondary"
                       {...register("name", { required: true })}
                     />
-                  </motion.div>
-                  <motion.div
-                    className="space-y-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
+                  </div>
+                  <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       Email Address
                     </label>
@@ -199,15 +177,9 @@ export default function Contact() {
                       className="bg-secondary"
                       {...register("email", { required: true })}
                     />
-                  </motion.div>
+                  </div>
                 </div>
-                <motion.div
-                  className="space-y-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                >
+                <div className="space-y-2">
                   <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Message
                   </label>
@@ -218,7 +190,7 @@ export default function Contact() {
                     className="bg-secondary resize-none"
                     {...register("message", { required: true })}
                   />
-                </motion.div>
+                </div>
                 <HCaptcha
                   ref={captchaRef}
                   sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
@@ -239,12 +211,7 @@ export default function Contact() {
                     ❌ Something went wrong. Please try again later.
                   </p>
                 )}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                >
+                <div>
                   <Button
                     className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2"
                     type="submit"
@@ -253,24 +220,21 @@ export default function Contact() {
                     {status === "sending" ? "Sending..." : "Send Message"}
                     <LuArrowRight className="w-4 h-4" />
                   </Button>
-                </motion.div>
+                </div>
               </form>
-            </motion.div>
-          </AnimatedSection>
+            </div>
+          </div>
 
-          <AnimatedStaggerContainer className="h-full flex flex-col justify-between gap-6">
-            <AnimatedStaggerItem>
+          <div className="h-full flex flex-col justify-between gap-6">
+            <div>
               <a
                 href="mailto:tiago.dev@example.pt"
                 className="flex items-center justify-between p-4 bg-card border rounded-xl card-hover-scale group"
               >
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    className="p-3 bg-primary/10 rounded-lg"
-                    whileHover={{ scale: 1.1 }}
-                  >
+                  <div className="p-3 bg-primary/10 rounded-lg">
                     <LuMail className="w-5 h-5 text-primary" />
-                  </motion.div>
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
                       Email me
@@ -280,20 +244,17 @@ export default function Contact() {
                 </div>
                 <LuExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
-            </AnimatedStaggerItem>
+            </div>
 
-            <AnimatedStaggerItem>
+            <div>
               <div className="grid grid-cols-2 gap-4">
                 <a
                   href="https://www.linkedin.com/in/miguelcollaco/"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
-                  <motion.div
-                    className="p-3 bg-primary/10 rounded-lg"
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                  >
+                  <div className="p-3 bg-primary/10 rounded-lg">
                     <LuLinkedin className="w-5 h-5 text-primary" />
-                  </motion.div>
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                       Connect
@@ -305,12 +266,9 @@ export default function Contact() {
                   href="https://github.com/miguelcollaco"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
-                  <motion.div
-                    className="p-3 bg-primary/10 rounded-lg"
-                    whileHover={{ scale: 1.1, rotate: -10 }}
-                  >
+                  <div className="p-3 bg-primary/10 rounded-lg">
                     <LuGithub className="w-5 h-5 text-primary" />
-                  </motion.div>
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                       Explore
@@ -319,16 +277,13 @@ export default function Contact() {
                   </div>
                 </a>
               </div>
-            </AnimatedStaggerItem>
+            </div>
 
-            <AnimatedStaggerItem>
+            <div>
               <div className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover group">
-                <motion.div
-                  className="p-3 bg-primary/10 rounded-lg"
-                  whileHover={{ scale: 1.1, rotate: -10 }}
-                >
+                <div className="p-3 bg-primary/10 rounded-lg">
                   <LuMapPin className="w-5 h-5 text-primary" />
-                </motion.div>
+                </div>
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                     Location
@@ -339,8 +294,8 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-            </AnimatedStaggerItem>
-          </AnimatedStaggerContainer>
+            </div>
+          </div>
         </div>
       </div>
     </section>

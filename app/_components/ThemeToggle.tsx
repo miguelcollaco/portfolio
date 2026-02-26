@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
-import { motion } from "framer-motion";
 import { Button } from "@/app/_components/ui/Button";
 
 export default function ThemeToggle() {
@@ -23,28 +22,12 @@ export default function ThemeToggle() {
       onClick={toggle}
       className="relative w-9 h-9 rounded-lg"
     >
-      <motion.div
-        initial={false}
-        animate={{ 
-          rotate: isDark ? 0 : 180,
-          scale: isDark ? 1 : 0
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="absolute"
-      >
+      <div className={`absolute duration-500 transition-transform ${isDark ? "scale-100 rotate-0" : "scale-0 rotate-180"}`}>
         <LuMoon className="w-5 h-5" />
-      </motion.div>
-      <motion.div
-        initial={false}
-        animate={{ 
-          rotate: !isDark ? 0 : -180,
-          scale: !isDark ? 1 : 0
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="absolute"
-      >
+      </div>
+      <div className={`absolute duration-500 transition-transform ${isDark ? "scale-0 rotate-180" : "scale-100 rotate-0"}`}>
         <LuSun className="w-5 h-5" />
-      </motion.div>
+      </div>
     </Button>
   );
 };
