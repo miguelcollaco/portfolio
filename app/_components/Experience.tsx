@@ -1,40 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { LuGraduationCap, LuBriefcase  } from "react-icons/lu";
-
-const listVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -16 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.4 },
-  },
-} as const;
-
-const badgeContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.15,
-    },
-  },
-} as const;
-
-const badgeVariants = {
-  hidden: { opacity: 0, scale: 0.96 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
-} as const;
 
 const experiences = [
   {
@@ -70,38 +36,19 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="container mx-auto px-6">
-        <motion.div 
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="mb-12">
           <span className="section-label">PROFESSIONAL JOURNEY</span>
           <h2 className="section-title mt-4">Experience & Education</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
             A curated timeline of my academic foundations and professional growth in Computer Science and Engineering.
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative">
-          <motion.div 
-            className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border"
-            initial={{ scaleY: 0, originY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          />
-          
-          <motion.div
-            className="space-y-8"
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-          >
+          <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border"/>
+          <div className="space-y-8">
             {experiences.map((exp) => (
-              <motion.div key={exp.title} className="relative pl-10" variants={itemVariants}>
+              <div key={exp.title} className="relative pl-10">
                 <div className="absolute left-0 top-2 w-3 h-3 rounded-full bg-primary border-4 border-background" />
 
                 <div className="bg-card border border-border rounded-xl p-6 card-hover">
@@ -129,17 +76,17 @@ export default function Experience() {
                     ))}
                   </ul>
 
-                  <motion.div className="flex flex-wrap gap-2" variants={badgeContainerVariants}>
+                  <div className="flex flex-wrap gap-2">
                     {exp.tags.map((tag) => (
-                      <motion.span key={tag} className="skill-badge" variants={badgeVariants}>
+                      <span key={tag} className="skill-badge">
                         {tag}
-                      </motion.span>
+                      </span>
                     ))}
-                  </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
