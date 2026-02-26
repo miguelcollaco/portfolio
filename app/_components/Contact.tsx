@@ -11,129 +11,203 @@ import {
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 
+const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
+const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+
 const PLACEHOLDERS: { name: string; email: string; message: string }[] = [
   {
-    name: "Tony Stark",
-    email: "DefinitelyNotIronMan@starkmail.com",
-    message: "",
+    name: "Batman",
+    email: "DefinitelyNotTheDarkKnight@wayneenterprises.com",
+    message: "I prefer working at night, but your contact form will do.",
   },
   {
-    name: "Peter Parker",
-    email: "TotallyNotSpiderman@dailybugle.net",
-    message: "",
+    name: "Superman",
+    email: "MildManneredReporter@dailyplanet.com",
+    message: "This looks like a job for your support team.",
   },
-  { name: "Bruce Wayne", email: "NotBatman321@hotmail.com", message: "" },
   {
-    name: "Clark Kent",
-    email: "GlassesAreDisguise@dailyplanet.com",
-    message: "",
+    name: "Spider-Man",
+    email: "FriendlyNeighborhood@WebSlinger.net",
+    message: "Just swinging by to say your form validation is amazing.",
   },
-  { name: "Darth Vader", email: "NotYourFather@deathstar.empire", message: "" },
+  {
+    name: "Iron Man",
+    email: "GeniusBillionaire@starkindustries.ai",
+    message: "Your UI could use a little more red and gold. Just saying.",
+  },
+  {
+    name: "Joker",
+    email: "WhySoSerious@gothamchaos.com",
+    message: "Let's put a smile on that error message.",
+  },
+  {
+    name: "Harry Potter",
+    email: "TheBoyWhoClicked@hogwarts.edu",
+    message: "I solemnly swear this form is up to no good.",
+  },
+  {
+    name: "Lord Voldemort",
+    email: "HeWhoMustNotBeEmailed@darklord.magic",
+    message: "There is no good or evil, only properly submitted forms.",
+  },
+  {
+    name: "Gandalf",
+    email: "YouShallNotPass@middleearth.org",
+    message:
+      "Your password requirements shall not pass without a capital letter.",
+  },
+  {
+    name: "Darth Vader",
+    email: "BreathingHeavily@empire.gal",
+    message: "I find your lack of auto-reply disturbing.",
+  },
+  {
+    name: "Luke Skywalker",
+    email: "FarmBoyNoMore@rebellion.space",
+    message: "I feel the force is strong with this submit button.",
+  },
+  {
+    name: "Yoda",
+    email: "WiseAndSmall@dagobah.sw",
+    message: "Submit successfully, you must.",
+  },
+  {
+    name: "Mario",
+    email: "ItsAMe@kingdom.mush",
+    message: "It's-a me, testing your contact form!",
+  },
+  {
+    name: "Princess Peach",
+    email: "NotInAnotherCastle@toadstool.gov",
+    message: "Thank you for rescuing this message from spam.",
+  },
+  {
+    name: "Sonic",
+    email: "GottaGoFast@greenhill.zone",
+    message: "Your form loads fast. I approve.",
+  },
+  {
+    name: "Elsa",
+    email: "LetItGo@arendelle.ice",
+    message: "The cold never bothered your UX anyway.",
+  },
+  {
+    name: "Shrek",
+    email: "GetOutOfMySwamp@farfaraway.fairytale",
+    message: "This contact form has layers. Like onions.",
+  },
+  {
+    name: "James Bond",
+    email: "Bond.James@mi6.uk",
+    message: "This message will not self-destruct… I hope.",
+  },
 ];
 
+type FormValues = {
+  access_key: string;
+  name: string;
+  email: string;
+  message: string;
+  "h-captcha-response": string;
+};
+
+type Status = "idle" | "sending" | "success" | "error";
+
+const DEFAULT_VALUES: FormValues = {
+  access_key: ACCESS_KEY,
+  name: "",
+  email: "",
+  message: "",
+  "h-captcha-response": "",
+};
+
 export default function Contact() {
-  const [placeholder, setPlaceholder] = useState(PLACEHOLDERS[0]);
-  useEffect(() => {
-    setPlaceholder(
-      PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)],
-    );
+  const [status, setStatus] = useState<Status>("idle");
+
+  const placeholder = useMemo(() => {
+    return PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)];
   }, []);
 
-  const { register, handleSubmit, setValue, reset } = useForm({
-    defaultValues: {
-      access_key: "a399e8e5-c236-40be-b194-9837d4494a83",
-      name: "",
-      email: "",
-      message: "",
-      "h-captcha-response": "",
-    },
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { isSubmitting },
+  } = useForm<FormValues>({
+    defaultValues: DEFAULT_VALUES,
   });
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
-
-  type FormValues = {
-    access_key: string;
-    name: string;
-    email: string;
-    message: string;
-    "h-captcha-response": string;
-  };
 
   const captchaRef = useRef<HCaptcha>(null);
 
-  const pendingDataRef = useRef<Omit<FormValues, "h-captcha-response"> | null>(
-    null,
-  );
+  const resetCaptcha = useCallback(() => {
+    captchaRef.current?.resetCaptcha();
+  }, []);
 
-  const onSubmit = (data: FormValues) => {
+  const setErrorState = useCallback(() => {
+    setStatus("error");
+    resetCaptcha();
+  }, [resetCaptcha]);
+
+  const onSubmit = useCallback(() => {
     setStatus("sending");
-    const { ["h-captcha-response"]: _token, ...rest } = data;
-    pendingDataRef.current = rest;
     captchaRef.current?.execute();
-  };
+  }, []);
 
-  const onVerify = async (token: string) => {
-    try {
-      const pending = pendingDataRef.current;
-      if (!pending) {
-        setStatus("error");
-        return;
-      }
+  const onVerify = useCallback(
+    async (token: string) => {
+      try {
+        const { access_key, name, email, message } = getValues();
 
-      const payload: FormValues = {
-        ...pending,
-        "h-captcha-response": token,
-      };
+        if (!name || !email || !message) {
+          setErrorState();
+          return;
+        }
 
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+        const payload: FormValues = {
+          access_key,
+          name,
+          email,
+          message,
+          "h-captcha-response": token,
+        };
 
-      const result = await res.json();
-
-      if (result.success) {
-        setStatus("success");
-
-        reset({
-          access_key: "a399e8e5-c236-40be-b194-9837d4494a83",
-          name: "",
-          email: "",
-          message: "",
-          "h-captcha-response": "",
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
 
-        captchaRef.current?.resetCaptcha();
-        pendingDataRef.current = null;
+        const result = await res.json();
 
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        setStatus("error");
-        captchaRef.current?.resetCaptcha();
-        pendingDataRef.current = null;
+        if (result?.success) {
+          setStatus("success");
+          reset(DEFAULT_VALUES);
+          resetCaptcha();
+
+          window.setTimeout(() => setStatus("idle"), 5000);
+        } else {
+          setErrorState();
+        }
+      } catch {
+        setErrorState();
       }
-    } catch (e) {
-      setStatus("error");
-      captchaRef.current?.resetCaptcha();
-      pendingDataRef.current = null;
-    }
-  };
+    },
+    [getValues, reset, resetCaptcha, setErrorState],
+  );
 
-  const onExpire = () => {
+  const onClose = useCallback(() => {
     setStatus("idle");
-    pendingDataRef.current = null;
-  };
+    resetCaptcha();
+  }, [resetCaptcha]);
 
-  const onError = () => {
-    setStatus("error");
-    pendingDataRef.current = null;
-  };
+  const onError = useCallback(() => {
+    setErrorState();
+  }, [setErrorState]);
 
   return (
     <section id="contact" className="py-24">
@@ -179,6 +253,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Message
@@ -191,15 +266,18 @@ export default function Contact() {
                     {...register("message", { required: true })}
                   />
                 </div>
+
                 <HCaptcha
                   ref={captchaRef}
-                  sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                  sitekey={HCAPTCHA_SITEKEY}
                   size="invisible"
                   reCaptchaCompat={false}
                   onVerify={onVerify}
-                  onExpire={onExpire}
+                  onExpire={onClose}
+                  onClose={onClose}
                   onError={onError}
                 />
+
                 {status === "success" && (
                   <p className="text-green-500 text-sm">
                     ✅ Message sent successfully! I’ll get back to you soon.
@@ -211,11 +289,12 @@ export default function Contact() {
                     ❌ Something went wrong. Please try again later.
                   </p>
                 )}
-                <div>
+
+                <div className="flex justify-center">
                   <Button
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 gap-3"
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={status === "sending" || isSubmitting}
                   >
                     {status === "sending" ? "Sending..." : "Send Message"}
                     <LuArrowRight className="w-4 h-4" />
@@ -228,7 +307,7 @@ export default function Contact() {
           <div className="h-full flex flex-col justify-between gap-6">
             <div>
               <a
-                href="mailto:tiago.dev@example.pt"
+                href="mailto:miguel.l.collaco@gmail.com"
                 className="flex items-center justify-between p-4 bg-card border rounded-xl card-hover-scale group"
               >
                 <div className="flex items-center gap-4">
@@ -247,9 +326,11 @@ export default function Contact() {
             </div>
 
             <div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-8">
                 <a
                   href="https://www.linkedin.com/in/miguelcollaco/"
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
                   <div className="p-3 bg-primary/10 rounded-lg">
@@ -264,6 +345,8 @@ export default function Contact() {
                 </a>
                 <a
                   href="https://github.com/miguelcollaco"
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
                   <div className="p-3 bg-primary/10 rounded-lg">

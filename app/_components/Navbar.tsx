@@ -42,7 +42,7 @@ export default function Navbar() {
               href="/Miguel_Collaco_CV.pdf"
               target="_blank"
             >
-              Download CV
+              View CV
               <LuArrowRight className="w-4 h-4" />
             </Link>
           </div>
