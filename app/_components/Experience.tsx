@@ -1,6 +1,7 @@
 "use client";
 
-import { LuGraduationCap, LuBriefcase  } from "react-icons/lu";
+import { LuGraduationCap, LuBriefcase } from "react-icons/lu";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -32,23 +33,37 @@ const experiences = [
   }
 ];
 
+const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 } };
+const viewport = { once: true, margin: "-80px" };
+
 export default function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="container mx-auto px-6">
-        <div className="mb-12">
+        <motion.div
+          {...fadeUp}
+          viewport={viewport}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <span className="section-label">PROFESSIONAL JOURNEY</span>
           <h2 className="section-title mt-4">Experience & Education</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
             A curated timeline of my academic foundations and professional growth in Computer Science and Engineering.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative">
-          <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border"/>
+          <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
           <div className="space-y-8">
-            {experiences.map((exp) => (
-              <div key={exp.title} className="relative pl-10">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={exp.title}
+                {...fadeUp}
+                viewport={viewport}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                className="relative pl-10"
+              >
                 <div className="absolute left-0 top-2 w-3 h-3 rounded-full bg-primary border-4 border-background" />
 
                 <div className="bg-card border border-border rounded-xl p-6 card-hover">
@@ -78,17 +93,15 @@ export default function Experience() {
 
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((tag) => (
-                      <span key={tag} className="skill-badge">
-                        {tag}
-                      </span>
+                      <span key={tag} className="skill-badge">{tag}</span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
     </section>
   );
-};
+}

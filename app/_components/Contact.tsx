@@ -11,9 +11,10 @@ import {
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useMemo, useRef, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { motion } from "framer-motion";
 
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
@@ -125,7 +126,13 @@ const DEFAULT_VALUES: FormValues = {
   "h-captcha-response": "",
 };
 
+const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 } };
+const fadeLeft = { initial: { opacity: 0, x: -32 }, whileInView: { opacity: 1, x: 0 } };
+const fadeRight = { initial: { opacity: 0, x: 32 }, whileInView: { opacity: 1, x: 0 } };
+const viewport = { once: true, margin: "-80px" };
+
 export default function Contact() {
+
   const [status, setStatus] = useState<Status>("idle");
 
   const placeholder = useMemo(() => {
@@ -212,7 +219,12 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-6">
-        <div className="mb-12">
+        <motion.div
+          {...fadeUp}
+          viewport={viewport}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="section-label">OPEN TO OPPORTUNITIES</span>
@@ -222,10 +234,15 @@ export default function Contact() {
             I'm always open to discussing Computer Science projects, research
             collaborations, or technical inquiries. Feel free to reach out.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
-          <div className="h-full">
+          <motion.div
+            {...fadeLeft}
+            viewport={viewport}
+            transition={{ duration: 0.6 }}
+            className="h-full"
+          >
             <div className="h-full bg-card border border-border rounded-xl p-6">
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -302,9 +319,14 @@ export default function Contact() {
                 </div>
               </form>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="h-full flex flex-col justify-between gap-6">
+          <motion.div
+            {...fadeRight}
+            viewport={viewport}
+            transition={{ duration: 0.6 }}
+            className="h-full flex flex-col justify-between gap-6"
+          >
             <div>
               <a
                 href="mailto:miguel.l.collaco@gmail.com"
@@ -378,7 +400,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
