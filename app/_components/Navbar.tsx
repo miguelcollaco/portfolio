@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 
 export default function Navbar() {
-  const navItems = ["Hero", "Experience", "Expertise", "Contact"];
+  const navItems = ["Experience", "Expertise", "Contact"];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id.toLowerCase());
@@ -28,7 +28,7 @@ export default function Navbar() {
               <button
                 key={item}
                 onClick={() => scrollToSection(item)}
-                className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors relative"
+                className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors relative after:block after:bg-primary after:h-0.5 after:w-0 after:m-auto hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
               </button>
