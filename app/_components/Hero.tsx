@@ -1,7 +1,6 @@
 "use client";
 
-import { LuArrowRight } from "react-icons/lu";
-import { Button } from "./ui/Button";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { motion } from "framer-motion";
 
 const fadeUp = (delay = 0) => ({
@@ -34,14 +33,25 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            <motion.div {...fadeUp(0.3)} className="flex flex-wrap gap-4">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2 px-6">
-                View GitHub
-                <LuArrowRight className="w-4 h-4" />
-              </Button>
-              <Button variant="outline" className="border-border hover:bg-secondary gap-2 px-6">
-                Let's talk
-              </Button>
+            <motion.div {...fadeUp(0.2)} className="flex items-center gap-3">
+              <a
+                href="https://github.com/miguelcollaco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                aria-label="GitHub"
+              >
+                <SiGithub className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/miguelcollaco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <SiLinkedin className="w-5 h-5" />
+              </a>
             </motion.div>
           </div>
 
