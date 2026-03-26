@@ -11,7 +11,7 @@ import {
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
-import { useMemo, useRef, useState, useCallback } from "react";
+import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { motion } from "framer-motion";
@@ -134,6 +134,24 @@ const viewport = { once: true, margin: "-80px" };
 export default function Contact() {
 
   const [status, setStatus] = useState<Status>("idle");
+
+  const [lisbonTime, setLisbonTime] = useState<string>("");
+  const [lisbonTZ, setLisbonTZ] = useState<string>("");
+
+  useEffect(() => {
+    const tz = new Intl.DateTimeFormat("en", { timeZone: "Europe/Lisbon", timeZoneName: "short" })
+      .formatToParts(new Date())
+      .find(p => p.type === "timeZoneName")?.value ?? "";
+    setLisbonTZ(tz);
+
+    const update = () => {
+      const now = new Date();
+      setLisbonTime(now.toLocaleTimeString("pt-PT", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit" }));
+    };
+    update();
+    const id = setInterval(update, 60000);
+    return () => clearInterval(id);
+  }, []);
 
   const placeholder = useMemo(() => {
     return PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)];
@@ -395,7 +413,9 @@ export default function Contact() {
                   </p>
                   <div className="flex items-center gap-2">
                     <p className="font-medium">Lisbon, Portugal</p>
-                    <span className="skill-badge">GMT (UTC+0)</span>
+                    <div className="skill-badge">
+                      {`${lisbonTime} (${lisbonTZ})`}
+                    </div>
                   </div>
                 </div>
               </div>
