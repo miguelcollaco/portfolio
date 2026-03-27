@@ -407,15 +407,17 @@ export default function Contact() {
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <LuMapPin className="w-5 h-5 text-primary" />
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                    Location
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <p className="font-medium">Lisbon, Portugal</p>
-                    <div className="skill-badge">
-                      {`${lisbonTime} (${lisbonTZ})`}
+                <div className="flex gap-4 justify-between w-full">
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
+                      Location
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium">Lisbon, Portugal</p>
                     </div>
+                  </div>
+                  <div className="skill-badge h-fit my-auto">
+                    {`${lisbonTime} (${lisbonTZ})`}
                   </div>
                 </div>
               </div>
