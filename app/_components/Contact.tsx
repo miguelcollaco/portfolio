@@ -366,7 +366,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-5 md:gap-8">
                 <a
                   href="https://www.linkedin.com/in/miguelcollaco/"
                   target="_blank"
@@ -407,16 +407,16 @@ export default function Contact() {
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <LuMapPin className="w-5 h-5 text-primary" />
                 </div>
-                <div className="flex gap-4 justify-between w-full">
+                <div className="flex gap-2 justify-between w-full">
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                       Location
                     </p>
-                    <div className="flex items-center gap-2">
-                      <p className="font-medium">Lisbon, Portugal</p>
+                    <div className="font-medium whitespace-normal">
+                      Lisbon, Portugal
                     </div>
                   </div>
-                  <div className="skill-badge h-fit my-auto">
+                  <div className="skill-badge h-fit my-auto whitespace-nowrap px-2">
                     {`${lisbonTime} (${lisbonTZ})`}
                   </div>
                 </div>

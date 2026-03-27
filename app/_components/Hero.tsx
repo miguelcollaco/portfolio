@@ -12,7 +12,7 @@ const fadeUp = (delay = 0) => ({
 export default function Hero() {
   return (
     <section id="hero" className="min-h-screen flex items-center pt-20 pb-16">
-      <div className="ml-20 max-w-4xl">
+      <div className="ml-3 md:ml-20 max-w-4xl">
         <div className="space-y-8">
           <motion.div
             {...fadeUp(0)}
