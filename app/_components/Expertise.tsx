@@ -42,7 +42,7 @@ const viewport = { once: true, margin: "-150px" };
 
 export default function Expertise() {
   return (
-    <section id="expertise" className="py-24 bg-secondary/30">
+    <section id="expertise" className="py-24">
       <div className="container mx-auto px-6">
         <motion.div
           {...fadeUp}
