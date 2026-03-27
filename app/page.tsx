@@ -6,6 +6,7 @@ import About from "./_components/About";
 import Experience from "./_components/Experience";
 import Expertise from "./_components/Expertise";
 import Contact from "./_components/Contact";
+import Footer from "./_components/Footer";
 
 export default function Index() {
   return (
@@ -16,6 +17,7 @@ export default function Index() {
       <Experience />
       <Expertise />
       <Contact />
+      <Footer />
     </div>
   );
 };
