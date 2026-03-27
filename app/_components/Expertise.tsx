@@ -47,7 +47,7 @@ export default function Expertise() {
         <motion.div
           {...fadeUp}
           viewport={viewport}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="mb-12"
         >
           <span className="section-label">MY CAPABILITIES</span>
@@ -60,7 +60,7 @@ export default function Expertise() {
               key={category.title}
               {...fadeUp}
               viewport={viewport}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
               className="bg-card border rounded-xl p-6 card-hover"
             >
               <div className="flex items-center gap-3 mb-4">
