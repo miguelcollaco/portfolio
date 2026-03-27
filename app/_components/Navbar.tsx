@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 
 export default function Navbar() {
-  const navItems = ["Experience", "Expertise", "Contact"];
+  const navItems = ["About", "Experience", "Expertise", "Contact"];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id.toLowerCase());

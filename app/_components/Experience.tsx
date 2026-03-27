@@ -3,36 +3,78 @@
 import { LuGraduationCap, LuBriefcase } from "react-icons/lu";
 import { motion } from "framer-motion";
 
-type experienceType = {
-    title: string;
-    organization: string;
-    period: string;
-    description?: string;
-    highlights?: string[];
-    tags?: string[];
-}[]
+type Role = {
+  title: string;
+  period: string;
+  description?: string;
+  highlights?: string[];
+  tags?: string[];
+};
 
-const workExperiences = [
+type WorkEntry = {
+  organization: string;
+  roles: Role[];
+};
+
+type EducationEntry = {
+  title: string;
+  organization: string;
+  period: string;
+  highlights?: string[];
+};
+
+const workExperiences: WorkEntry[] = [
   {
-    title: "Junior Software Developer Intern",
-    organization: "Tech Innovations Hub",
-    period: "JUL 2023 - SEP 2023",
-    description:
-      "Contributed to the development of microservices and automated CI/CD pipelines.",
-    highlights: [
-      "Developed backend services using Spring Boot and PostgreSQL",
-      "Implemented Docker containers for streamlined local development",
-      "Collaborated in an Agile team of 5 developers",
+    organization: "In-Nova",
+    roles: [
+      {
+        title: "Projects Department Director",
+        period: "June 2025 – Present",
+        highlights: [
+          "Lead the Projects Department, managing teams of developers and project managers.",
+          "Oversee project portfolio planning, execution, and delivery across multiple initiatives.",
+          "Serve as a member of the company's board, contributing to strategic decision-making."
+        ],
+      },
+      {
+        title: "Project Manager",
+        period: "Feb 2025 – June 2025",
+        highlights: [
+          "Led cross-functional teams of developers and coordinated end-to-end technical project delivery.",
+          "Planned and tracked project scope, timelines, and deliverables using Agile / SCRUM methodologies.",
+          "Acted as the main point of contact between technical teams and stakeholders."
+        ],
+      },
+      {
+        title: "Frontend Developer",
+        period: "Apr 2024 – June 2025",
+        highlights: [
+          "Developed web and mobile applications using Next.js, React, and React Native.",
+          "Implemented API integrations and built responsive, user-focused interfaces across platforms."
+        ],
+      },
     ],
-    tags: ["Java", "Docker", "Git"],
   },
+  {
+    organization: "Clearis S.A.",
+    roles: [
+      {
+        title: "Fullstack Developer Intern",
+        period: "Feb 2025 – July 2025",
+        highlights: [
+          "Built responsive Vue.js interfaces for a Procurement Platform used by GALP.",
+          "Implemented back-end logic and optimized MongoDB aggregations and indexes for performance"
+        ],
+      }
+    ],
+  },  
 ];
 
-const educationExperiences = [
+const educationExperiences: EducationEntry[] = [
   {
     title: "MSc in Computer Science and Engineering",
     organization: "NOVA School of Science and Technology",
-    period: "SEP 2025 - PRESENT",
+    period: "Sep 2025 – Present",
     highlights: [
       "Major: Programming Languages and Software Systems",
       "Minor: Systems and Software Security",
@@ -41,7 +83,7 @@ const educationExperiences = [
   {
     title: "BSc in Computer Science and Engineering",
     organization: "NOVA School of Science and Technology",
-    period: "SEP 2022 - JUNE 2025",
+    period: "Sep 2022 – June 2025",
   },
 ];
 
@@ -51,7 +93,74 @@ const fadeUp = {
 };
 const viewport = { once: true, margin: "-80px" };
 
-function Timeline({ items }: { items: experienceType }) {
+function WorkTimeline({ items }: { items: WorkEntry[] }) {
+  return (
+    <section className="relative">
+      <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
+      <div className="space-y-8">
+        {items.map((entry, i) => (
+          <motion.div
+            key={entry.organization}
+            {...fadeUp}
+            viewport={viewport}
+            transition={{ duration: 0.6, delay: i * 0.15 }}
+            className="relative pl-10"
+          >
+            <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
+
+            <div className="bg-card border border-border rounded-xl p-6 card-hover">
+              <p className={`text-primary font-semibold ${entry.roles.length > 1 ? 'mb-2.5' : ''}`}>
+                {entry.organization}
+              </p>
+
+              {entry.roles.map((role, j) => (
+                <div key={role.title} className="space-y-4">
+                  {j > 0 && <hr className="border-border mt-5" />}
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                    <h3 className="font-semibold text-lg">{role.title}</h3>
+                    <span className="text-xs text-muted-foreground font-medium shrink-0">
+                      {role.period}
+                    </span>
+                  </div>
+
+                  {role.description && (
+                    <p className="text-muted-foreground">{role.description}</p>
+                  )}
+
+                  {role.highlights && (
+                    <ul className="space-y-2">
+                      {role.highlights.map((highlight) => (
+                        <li
+                          key={highlight}
+                          className="text-sm text-muted-foreground flex items-start gap-2"
+                        >
+                          <span className="text-primary">•</span>
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {role.tags && (
+                    <div className="flex flex-wrap gap-2">
+                      {role.tags.map((tag) => (
+                        <span key={tag} className="skill-badge">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function EducationTimeline({ items }: { items: EducationEntry[] }) {
   return (
     <section className="relative">
       <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
@@ -77,10 +186,6 @@ function Timeline({ items }: { items: experienceType }) {
                 </span>
               </div>
 
-              {exp.description && (
-                <p className="text-muted-foreground">{exp.description}</p>
-              )}
-
               {exp.highlights && (
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight) => (
@@ -93,16 +198,6 @@ function Timeline({ items }: { items: experienceType }) {
                     </li>
                   ))}
                 </ul>
-              )}
-
-              {exp.tags && (
-                <div className="flex flex-wrap gap-2">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="skill-badge">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               )}
             </div>
           </motion.div>
@@ -143,7 +238,7 @@ export default function Experience() {
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
             </motion.div>
-            <Timeline items={workExperiences} />
+            <WorkTimeline items={workExperiences} />
           </div>
 
           <div>
@@ -158,7 +253,7 @@ export default function Experience() {
               </div>
               <h3 className="text-xl font-semibold">Education</h3>
             </motion.div>
-            <Timeline items={educationExperiences} />
+            <EducationTimeline items={educationExperiences} />
           </div>
         </div>
       </div>
