@@ -3,17 +3,19 @@
 import { LuCodeXml , LuArrowRight  } from "react-icons/lu";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const navItems = ["About", "Experience", "Expertise", "Contact"];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id.toLowerCase());
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border">
+    <motion.nav
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border"
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -24,10 +26,10 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <button
                 key={item}
-                onClick={() => scrollToSection(item)}
+                onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView()}
                 className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors relative after:block after:bg-primary after:h-0.5 after:w-0 after:m-auto hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
@@ -48,6 +50,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
