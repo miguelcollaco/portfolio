@@ -3,6 +3,15 @@
 import { LuGraduationCap, LuBriefcase } from "react-icons/lu";
 import { motion } from "framer-motion";
 
+type experienceType = {
+    title: string;
+    organization: string;
+    period: string;
+    description?: string;
+    highlights?: string[];
+    tags?: string[];
+}[]
+
 const workExperiences = [
   {
     title: "Junior Software Developer Intern",
@@ -42,7 +51,7 @@ const fadeUp = {
 };
 const viewport = { once: true, margin: "-80px" };
 
-function Timeline({ items }: { items: typeof workExperiences }) {
+function Timeline({ items }: { items: experienceType }) {
   return (
     <div className="relative">
       <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
