@@ -53,7 +53,7 @@ const viewport = { once: true, margin: "-80px" };
 
 function Timeline({ items }: { items: experienceType }) {
   return (
-    <div className="relative">
+    <section className="relative">
       <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
       <div className="space-y-8">
         {items.map((exp, i) => (
@@ -64,7 +64,7 @@ function Timeline({ items }: { items: experienceType }) {
             transition={{ duration: 0.6, delay: i * 0.15 }}
             className="relative pl-10"
           >
-            <div className="absolute left-0 top-2 w-3 h-3 rounded-full bg-primary border-4 border-background" />
+            <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
 
             <div className="bg-card border border-border rounded-xl p-6 card-hover space-y-5">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
@@ -108,7 +108,7 @@ function Timeline({ items }: { items: experienceType }) {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
