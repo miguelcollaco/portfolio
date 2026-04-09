@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import PHOTO from "@/public/photo.webp";
+
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -28,16 +30,14 @@ export default function About() {
             {...fadeUp}
             viewport={viewport}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="order-2 lg:order-1 space-y-6"
+            className="order-2 lg:order-1"
           >
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm Miguel Collaço, a Computer Science & Engineering student at NOVA School of Science and Technology in Portugal. I'm currently pursuing my MSc, with a major in Programming Languages and Software Systems and a minor in Systems and Software Security.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm passionate about building reliable, scalable software — from distributed systems and cloud architecture to backend services and developer tooling. I enjoy turning complex problems into clean, robust solutions.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Outside of coding, I'm always looking for new challenges — whether that's exploring new technologies, contributing to open source, or collaborating with teams that push the boundaries of what's possible.
+              I'm a Computer Science and Engineering student based in Portugal with a strong interest in technology and how it shapes the way we live and connect. From a young age, I've always been drawn to tech, and over time I developed a particular interest in cybersecurity, distributed systems, and web development.
+              <br/><br/>
+              I enjoy learning how systems work behind the scenes, building reliable applications, and exploring ways to make technology more secure and efficient.
+              <br/><br/>
+              Outside of tech, I enjoy movies, music, gaming, and going to the gym.
             </p>
           </motion.div>
 
@@ -45,16 +45,15 @@ export default function About() {
             {...fadeUp}
             viewport={viewport}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-full w-full order-1 lg:order-2 lg:justify-self-end max-w-sm mx-auto relative"
+            className="h-5/6 w-full order-1 lg:order-2 lg:justify-self-end max-w-sm mx-auto relative"
           >
             <Image
-              src="/photo.webp"
+              src={PHOTO}
               alt="Miguel Collaço"
-              fill
               priority
-              className="object-contain"
+              className="h-full object-contain"
             />
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-background to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-background" />
           </motion.div>
         </div>
       </div>
