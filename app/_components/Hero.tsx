@@ -1,6 +1,7 @@
 "use client";
 
-import { SiGithub, SiLinkedin, SiGmail } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
+import { IoIosMail, IoIosMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
 
 const fadeUp = (delay = 0) => ({
@@ -39,28 +40,29 @@ export default function Hero() {
               href="https://github.com/miguelcollaco"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="w-9 h-9 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="GitHub"
             >
-              <SiGithub className="w-5 h-5" />
+              <SiGithub className="h-full w-full" />
             </a>
             <a
               href="https://www.linkedin.com/in/miguelcollaco"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="w-9 h-9 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="LinkedIn"
             >
-              <SiLinkedin className="w-5 h-5" />
+              <SiLinkedin className="h-full w-full" />
             </a>
             <a
               href="mailto:miguel.l.collaco@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="group w-9 h-9 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="Email"
             >
-              <SiGmail className="w-5 h-5" />
+              <IoIosMail className="h-full w-full group-hover:hidden" />
+              <IoIosMailOpen className="h-full w-full hidden group-hover:block" />
             </a>
           </motion.div>
         </div>
