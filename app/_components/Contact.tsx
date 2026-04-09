@@ -2,6 +2,7 @@
 
 import {
   LuMail,
+  LuMailOpen,
   LuLinkedin,
   LuGithub,
   LuMapPin,
@@ -361,11 +362,12 @@ export default function Contact() {
             <div>
               <a
                 href="mailto:miguel.l.collaco@gmail.com"
-                className="flex items-center justify-between p-4 bg-card border rounded-xl card-hover-scale group"
+                className="group flex items-center justify-between p-4 bg-card border rounded-xl card-hover-scale group"
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
-                    <LuMail className="w-5 h-5 text-primary" />
+                    <LuMail className="w-5 h-5 text-primary group-hover:hidden" />
+                    <LuMailOpen className="w-5 h-5 text-primary hidden group-hover:block" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
