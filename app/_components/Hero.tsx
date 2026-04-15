@@ -1,7 +1,7 @@
 "use client";
 
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { IoIosMail, IoIosMailOpen } from "react-icons/io";
+import { Mail, MailOpen } from "lucide-react";
+import { Github, LinkedIn } from "@/components/icons";
 import { motion } from "framer-motion";
 
 const fadeUp = (delay = 0) => ({
@@ -43,7 +43,7 @@ export default function Hero() {
               className="w-9 h-9 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="GitHub"
             >
-              <SiGithub className="h-full w-full" />
+              <Github className="h-full w-full" />
             </a>
             <a
               href="https://www.linkedin.com/in/miguelcollaco"
@@ -52,7 +52,7 @@ export default function Hero() {
               className="w-9 h-9 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="LinkedIn"
             >
-              <SiLinkedin className="h-full w-full" />
+              <LinkedIn className="h-full w-full" />
             </a>
             <a
               href="mailto:miguel.l.collaco@gmail.com"
@@ -61,8 +61,8 @@ export default function Hero() {
               className="group w-9 h-9 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="Email"
             >
-              <IoIosMail className="h-full w-full group-hover:hidden" />
-              <IoIosMailOpen className="h-full w-full hidden group-hover:block" />
+              <Mail className="h-full w-full group-hover:hidden" />
+              <MailOpen className="h-full w-full hidden group-hover:block" />
             </a>
           </motion.div>
         </div>

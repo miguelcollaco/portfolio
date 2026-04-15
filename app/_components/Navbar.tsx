@@ -1,6 +1,7 @@
 "use client";
 
-import { LuCodeXml , LuArrowRight  } from "react-icons/lu";
+import { Code2, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -20,7 +21,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="p-2 bg-primary/10 rounded-lg">
-              <LuCodeXml className="w-5 h-5 text-primary" />
+              <Code2 className="w-5 h-5 text-primary" />
             </div>
             <span className="font-bold text-lg">MC</span>
           </div>
@@ -30,7 +31,7 @@ export default function Navbar() {
               <button
                 key={item}
                 onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView()}
-                className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors relative after:block after:bg-primary after:h-0.5 after:w-0 after:m-auto hover:after:w-full after:transition-all after:duration-300"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors relative after:block after:bg-primary after:h-0.5 after:w-0 after:m-auto hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
               </button>
@@ -39,14 +40,18 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <Link 
-              className="bg-primary flex items-center py-2 px-3 rounded-lg text-primary-foreground hover:bg-primary/90 gap-2"
-              href="/Miguel_Collaco_CV.pdf"
-              target="_blank"
+            <Button
+              asChild
+              className="gap-2"
             >
-              View CV
-              <LuArrowRight className="w-4 h-4" />
-            </Link>
+              <Link
+                href="/Miguel_Collaco_CV.pdf"
+                target="_blank"
+              >
+                View CV
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

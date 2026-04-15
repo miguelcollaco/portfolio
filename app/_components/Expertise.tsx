@@ -1,37 +1,36 @@
 "use client";
 
-import { LuMonitor, LuServer, LuDatabase, LuWrench, LuNotebookPen } from "react-icons/lu";
-import { FaCode } from "react-icons/fa6";
+import { Monitor, Server, Database, Wrench, NotebookPen, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const skillCategories = [
   {
-    icon: FaCode,
+    icon: Code2,
     title: "Languages",
     skills: ["Java", "JavaScript", "Typescript", "Kotlin", "C", "Python", "SQL"],
   },
   {
-    icon: LuMonitor,
+    icon: Monitor,
     title: "Frontend",
     skills: ["React", "Next.js", "Tailwind CSS", "Vue.js"],
   },
   {
-    icon: LuServer,
+    icon: Server,
     title: "Backend",
     skills: ["Spring Boot", "Express.js", "Docker"],
   },
   {
-    icon: LuDatabase,
+    icon: Database,
     title: "Data",
     skills: ["MySQL", "PostgreSQL", "MongoDB"],
   },
   {
-    icon: LuWrench,
+    icon: Wrench,
     title: "Tools & Workflow",
     skills: ["Git", "CI/CD", "Scrum", "Figma"],
   },
   {
-    icon: LuNotebookPen,
+    icon: NotebookPen,
     title: "Currently Learning",
     skills: ["Go", "Rust"],
   },

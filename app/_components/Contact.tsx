@@ -1,17 +1,16 @@
 "use client";
 
 import {
-  LuMail,
-  LuMailOpen,
-  LuLinkedin,
-  LuGithub,
-  LuMapPin,
-  LuArrowRight,
-  LuExternalLink,
-} from "react-icons/lu";
-import { Button } from "./ui/Button";
-import { Input } from "./ui/Input";
-import { Textarea } from "./ui/Textarea";
+  Mail,
+  MailOpen,
+  MapPin,
+  ArrowRight,
+  ExternalLink,
+} from "lucide-react";
+import { Github, LinkedIn } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
@@ -19,6 +18,7 @@ import { motion } from "framer-motion";
 
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const PLACEHOLDERS: { name: string; email: string; message: string }[] = [
   {
@@ -298,7 +298,10 @@ export default function Contact() {
                       type="email"
                       placeholder={placeholder.email}
                       className="bg-secondary"
-                      {...register("email", { required: true })}
+                      {...register("email", {
+                        required: true,
+                        pattern: EMAIL_PATTERN
+                      })}
                     />
                   </div>
                 </div>
@@ -343,10 +346,11 @@ export default function Contact() {
                   <Button
                     className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 gap-3"
                     type="submit"
+                    size={"lg"}
                     disabled={status === "sending" || isSubmitting}
                   >
                     {status === "sending" ? "Sending..." : "Send Message"}
-                    <LuArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
               </form>
@@ -362,12 +366,12 @@ export default function Contact() {
             <div>
               <a
                 href="mailto:miguel.l.collaco@gmail.com"
-                className="group flex items-center justify-between p-4 bg-card border rounded-xl card-hover-scale group"
+                className="group flex items-center justify-between p-5 bg-card border rounded-xl card-hover-scale group"
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
-                    <LuMail className="w-5 h-5 text-primary group-hover:hidden" />
-                    <LuMailOpen className="w-5 h-5 text-primary hidden group-hover:block" />
+                    <Mail className="w-5 h-5 text-primary group-hover:hidden" />
+                    <MailOpen className="w-5 h-5 text-primary hidden group-hover:block" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
@@ -376,7 +380,7 @@ export default function Contact() {
                     <p className="font-medium">miguel.l.collaco@gmail.com</p>
                   </div>
                 </div>
-                <LuExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
             </div>
 
@@ -389,7 +393,7 @@ export default function Contact() {
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
                   <div className="p-3 bg-primary/10 rounded-lg">
-                    <LuLinkedin className="w-5 h-5 text-primary" />
+                    <LinkedIn className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
@@ -405,7 +409,7 @@ export default function Contact() {
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
                 >
                   <div className="p-3 bg-primary/10 rounded-lg">
-                    <LuGithub className="w-5 h-5 text-primary" />
+                    <Github className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
@@ -420,7 +424,7 @@ export default function Contact() {
             <div>
               <div className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover group">
                 <div className="p-3 bg-primary/10 rounded-lg">
-                  <LuMapPin className="w-5 h-5 text-primary" />
+                  <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex gap-2 justify-between w-full">
                   <div>

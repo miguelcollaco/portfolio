@@ -1,6 +1,6 @@
 "use client";
 
-import { LuGraduationCap, LuBriefcase } from "react-icons/lu";
+import { GraduationCap, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 
 type Role = {
@@ -234,7 +234,7 @@ export default function Experience() {
               className="flex items-center gap-3 mb-8"
             >
               <div className="p-2 bg-primary/10 rounded-lg">
-                <LuBriefcase className="w-5 h-5 text-primary" />
+                <Briefcase className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
             </motion.div>
@@ -249,7 +249,7 @@ export default function Experience() {
               className="flex items-center gap-3 mb-8"
             >
               <div className="p-2 bg-primary/10 rounded-lg">
-                <LuGraduationCap className="w-5 h-5 text-primary" />
+                <GraduationCap className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-xl font-semibold">Education</h3>
             </motion.div>
