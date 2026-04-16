@@ -58,7 +58,7 @@ export default function Hero() {
               href="mailto:miguel.l.collaco@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group w-9 h-9 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="group w-9 h-9 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               aria-label="Email"
             >
               <Mail className="h-full w-full group-hover:hidden" />
