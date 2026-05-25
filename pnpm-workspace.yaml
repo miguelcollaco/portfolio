@@ -1,7 +1,3 @@
 allowBuilds:
-  es5-ext: set this to true or false
-  sharp: true
-  unrs-resolver: true
-
-overrides:
-  postcss: "^8.5.10"
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false

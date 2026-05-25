@@ -23,6 +23,15 @@
     "react-hook-form": "^7.76.1",
     "tailwind-merge": "^3.6.0"
   },
+  "pnpm": {
+    "overrides": {
+      "postcss": "^8.5.10"
+    },
+    "onlyBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ]
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^20",
