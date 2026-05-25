@@ -6,8 +6,9 @@ import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const navItems = ["About", "Experience", "Expertise", "Contact"];
+
 export default function Navbar() {
-  const navItems = ["About", "Experience", "Expertise", "Contact"];
 
 
   return (

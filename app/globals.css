@@ -134,12 +134,12 @@ html {
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: "Inter", sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-geist-sans), sans-serif;
   }
 
   .font-mono {
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-geist-mono), monospace;
   }
 }
 
