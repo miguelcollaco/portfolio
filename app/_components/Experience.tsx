@@ -76,8 +76,7 @@ const educationExperiences: EducationEntry[] = [
     organization: "NOVA School of Science and Technology",
     period: "Sep 2025 – Present",
     highlights: [
-      "Major: Programming Languages and Software Systems",
-      "Minor: Systems and Software Security",
+      "Major: Security and Privacy",
     ],
   },
   {

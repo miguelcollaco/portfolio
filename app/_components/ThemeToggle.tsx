@@ -28,7 +28,7 @@ export default function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggle}
-      className="relative w-9 h-9 rounded-lg"
+      className="relative w-9 h-9 rounded-full hover:bg-accent/10 hover:text-foreground"
     >
       <div className={`absolute duration-500 transition-transform ${isDark ? "scale-100 rotate-0" : "scale-0 rotate-180"}`}>
         <Moon className="w-5 h-5" />

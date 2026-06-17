@@ -12,22 +12,22 @@ const skillCategories = [
   {
     icon: Monitor,
     title: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "Vue.js"],
+    skills: ["React", "Next.js", "Tailwind CSS", "React Native", "Expo", "Vue.js"],
   },
   {
     icon: Server,
     title: "Backend",
-    skills: ["Spring Boot", "Express.js", "Docker"],
+    skills: ["Spring Boot", "Express.js"],
   },
   {
     icon: Database,
     title: "Data",
-    skills: ["MySQL", "PostgreSQL", "MongoDB"],
+    skills: ["MongoDB", "PostgreSQL", "MySQL"],
   },
   {
     icon: Wrench,
     title: "Tools & Workflow",
-    skills: ["Git", "CI/CD", "Scrum", "Figma"],
+    skills: ["Git", "Docker", "Postman", "CI/CD", "Scrum", "Figma"],
   },
   {
     icon: NotebookPen,
@@ -68,7 +68,7 @@ export default function Expertise() {
                 </div>
                 <h3 className="font-semibold">{category.title}</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {category.skills.map((skill) => (
                   <span key={skill} className="skill-badge">{skill}</span>
                 ))}
