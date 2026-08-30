@@ -11,10 +11,10 @@ import { Github, LinkedIn } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useSyncExternalStore } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
@@ -119,6 +119,44 @@ type FormValues = {
 
 type Status = "idle" | "sending" | "success" | "error";
 
+const LISBON_TIME = new Intl.DateTimeFormat("pt-PT", {
+  timeZone: "Europe/Lisbon",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+const LISBON_ZONE = new Intl.DateTimeFormat("en", {
+  timeZone: "Europe/Lisbon",
+  timeZoneName: "short",
+});
+
+function subscribeToMinute(onChange: () => void) {
+  const now = new Date();
+  const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+
+  let intervalId: ReturnType<typeof setInterval>;
+  const timeoutId = setTimeout(() => {
+    onChange();
+    intervalId = setInterval(onChange, 60_000);
+  }, msUntilNextMinute);
+
+  return () => {
+    clearTimeout(timeoutId);
+    clearInterval(intervalId);
+  };
+}
+
+function getLisbonClock() {
+  const now = new Date();
+  const zone =
+    LISBON_ZONE.formatToParts(now).find((p) => p.type === "timeZoneName")?.value ?? "";
+  return `${LISBON_TIME.format(now)} (${zone})`;
+}
+
+function getLisbonClockServer() {
+  return "";
+}
+
 const DEFAULT_VALUES: FormValues = {
   access_key: ACCESS_KEY,
   name: "",
@@ -127,47 +165,24 @@ const DEFAULT_VALUES: FormValues = {
   "h-captcha-response": "",
 };
 
-const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 } };
-const fadeLeft = { initial: { opacity: 0, x: -32 }, whileInView: { opacity: 1, x: 0 } };
-const fadeRight = { initial: { opacity: 0, x: 32 }, whileInView: { opacity: 1, x: 0 } };
-const viewport = { once: true, margin: "-80px" };
-
 export default function Contact() {
 
   const [status, setStatus] = useState<Status>("idle");
 
-  const [lisbonTime, setLisbonTime] = useState<string>("");
-  const [lisbonTZ, setLisbonTZ] = useState<string>("");
-
-  useEffect(() => {
-    const tz = new Intl.DateTimeFormat("en", { timeZone: "Europe/Lisbon", timeZoneName: "short" })
-      .formatToParts(new Date())
-      .find(p => p.type === "timeZoneName")?.value ?? "";
-    setLisbonTZ(tz);
-
-    const update = () => {
-      const now = new Date();
-      setLisbonTime(now.toLocaleTimeString("pt-PT", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit" }));
-    };
-    update();
-
-    const now = new Date();
-    const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-    let intervalId: ReturnType<typeof setInterval>;
-    const timeoutId = setTimeout(() => {
-      update();
-      intervalId = setInterval(update, 60_000);
-    }, msUntilNextMinute);
-
-    return () => {
-      clearTimeout(timeoutId);
-      clearInterval(intervalId);
-    };
-  }, []);
+  // Ticks on the minute boundary. The snapshot is a stable string within any
+  // given minute, which is what useSyncExternalStore requires.
+  const lisbonClock = useSyncExternalStore(
+    subscribeToMinute,
+    getLisbonClock,
+    getLisbonClockServer,
+  );
 
   const [placeholder, setPlaceholder] = useState(PLACEHOLDERS[0]);
 
   useEffect(() => {
+    // Deliberately client-only: the page is statically prerendered, so picking
+    // at render time would bake one placeholder into the HTML for everyone.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPlaceholder(PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)]);
   }, []);
 
@@ -176,24 +191,46 @@ export default function Contact() {
     handleSubmit,
     reset,
     getValues,
-    formState: { isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     defaultValues: DEFAULT_VALUES,
   });
 
   const captchaRef = useRef<HCaptcha>(null);
 
+  // hCaptcha injects a third-party script on mount, so it is kept out of the
+  // initial page load and mounted on first interaction with the form instead.
+  const [captchaMounted, setCaptchaMounted] = useState(false);
+  const pendingSubmit = useRef(false);
+
+  const mountCaptcha = useCallback(() => setCaptchaMounted(true), []);
+
   const resetCaptcha = useCallback(() => {
     captchaRef.current?.resetCaptcha();
   }, []);
 
   const setErrorState = useCallback(() => {
+    pendingSubmit.current = false;
     setStatus("error");
     resetCaptcha();
   }, [resetCaptcha]);
 
   const onSubmit = useCallback(() => {
     setStatus("sending");
+
+    if (!captchaMounted) {
+      // Submitted before the widget was mounted - run it once it loads.
+      pendingSubmit.current = true;
+      setCaptchaMounted(true);
+      return;
+    }
+
+    captchaRef.current?.execute();
+  }, [captchaMounted]);
+
+  const onCaptchaLoad = useCallback(() => {
+    if (!pendingSubmit.current) return;
+    pendingSubmit.current = false;
     captchaRef.current?.execute();
   }, []);
 
@@ -224,6 +261,7 @@ export default function Contact() {
         const result = await res.json();
 
         if (result?.success) {
+          pendingSubmit.current = false;
           setStatus("success");
           reset(DEFAULT_VALUES);
           resetCaptcha();
@@ -240,6 +278,7 @@ export default function Contact() {
   );
 
   const onClose = useCallback(() => {
+    pendingSubmit.current = false;
     setStatus("idle");
     resetCaptcha();
   }, [resetCaptcha]);
@@ -251,93 +290,129 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-6">
-        <motion.div
-          {...fadeUp}
-          viewport={viewport}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
+        <Reveal className="mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="section-label">OPEN TO OPPORTUNITIES</span>
           </div>
-          <h2 className="section-title">Let's Connect</h2>
+          <h2 className="section-title">Let&apos;s Connect</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
-            I'm always open to discussing Computer Science projects, research
+            I&apos;m always open to discussing Computer Science projects, research
             collaborations, or technical inquiries. Feel free to reach out.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
-          <motion.div
-            {...fadeLeft}
-            viewport={viewport}
-            transition={{ duration: 0.6 }}
-            className="h-full"
-          >
+          <Reveal direction="left" className="h-full">
             <div className="h-full bg-card border border-border rounded-xl p-6">
-              <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+              <form
+                className="space-y-6"
+                noValidate
+                onSubmit={(e) => handleSubmit(onSubmit)(e)}
+                onFocusCapture={mountCaptcha}
+              >
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    <label
+                      htmlFor="contact-name"
+                      className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+                    >
                       Full Name
                     </label>
                     <Input
+                      id="contact-name"
                       suppressHydrationWarning
+                      autoComplete="name"
                       placeholder={placeholder.name}
                       className="bg-secondary"
-                      {...register("name", { required: true })}
+                      aria-invalid={errors.name ? true : undefined}
+                      aria-describedby={errors.name ? "contact-name-error" : undefined}
+                      {...register("name", { required: "Please enter your name." })}
                     />
+                    {errors.name && (
+                      <p id="contact-name-error" role="alert" className="text-destructive text-xs">
+                        {errors.name.message}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    <label
+                      htmlFor="contact-email"
+                      className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+                    >
                       Email Address
                     </label>
                     <Input
+                      id="contact-email"
                       suppressHydrationWarning
                       type="email"
+                      autoComplete="email"
                       placeholder={placeholder.email}
                       className="bg-secondary"
+                      aria-invalid={errors.email ? true : undefined}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                       {...register("email", {
-                        required: true,
-                        pattern: EMAIL_PATTERN
+                        required: "Please enter your email address.",
+                        pattern: {
+                          value: EMAIL_PATTERN,
+                          message: "Please enter a valid email address.",
+                        },
                       })}
                     />
+                    {errors.email && (
+                      <p id="contact-email-error" role="alert" className="text-destructive text-xs">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  <label
+                    htmlFor="contact-message"
+                    className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+                  >
                     Message
                   </label>
                   <Textarea
+                    id="contact-message"
                     suppressHydrationWarning
                     placeholder={placeholder.message}
                     rows={5}
                     className="bg-secondary resize-none"
-                    {...register("message", { required: true })}
+                    aria-invalid={errors.message ? true : undefined}
+                    aria-describedby={errors.message ? "contact-message-error" : undefined}
+                    {...register("message", { required: "Please write a message." })}
                   />
+                  {errors.message && (
+                    <p id="contact-message-error" role="alert" className="text-destructive text-xs">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
 
-                <HCaptcha
-                  ref={captchaRef}
-                  sitekey={HCAPTCHA_SITEKEY}
-                  size="invisible"
-                  reCaptchaCompat={false}
-                  onVerify={onVerify}
-                  onExpire={onClose}
-                  onClose={onClose}
-                  onError={onError}
-                />
+                {captchaMounted && (
+                  <HCaptcha
+                    ref={captchaRef}
+                    sitekey={HCAPTCHA_SITEKEY}
+                    size="invisible"
+                    reCaptchaCompat={false}
+                    onLoad={onCaptchaLoad}
+                    onVerify={onVerify}
+                    onExpire={onClose}
+                    onClose={onClose}
+                    onError={onError}
+                  />
+                )}
 
                 {status === "success" && (
-                  <p className="text-green-500 text-sm">
+                  <p role="status" className="text-green-500 text-sm">
                     ✅ Message sent successfully! I’ll get back to you soon.
                   </p>
                 )}
 
                 {status === "error" && (
-                  <p className="text-red-500 text-sm">
+                  <p role="alert" className="text-red-500 text-sm">
                     ❌ Something went wrong. Please try again later.
                   </p>
                 )}
@@ -355,12 +430,10 @@ export default function Contact() {
                 </div>
               </form>
             </div>
-          </motion.div>
+          </Reveal>
 
-          <motion.div
-            {...fadeRight}
-            viewport={viewport}
-            transition={{ duration: 0.6 }}
+          <Reveal
+            direction="right"
             className="h-full flex flex-col justify-between gap-6"
           >
             <div>
@@ -436,12 +509,12 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="skill-badge h-fit my-auto whitespace-nowrap px-2">
-                    {`${lisbonTime} (${lisbonTZ})`}
+                    {lisbonClock}
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

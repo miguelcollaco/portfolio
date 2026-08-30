@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   Code2,
@@ -11,7 +9,6 @@ import {
 } from "lucide-react";
 import { Github, LinkedIn } from "@/components/icons";
 import ThemeToggle from "./ThemeToggle";
-import { motion, type Variants } from "framer-motion";
 
 const links = [
   {
@@ -46,16 +43,6 @@ const links = [
   },
 ];
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 function isExternal(href: string) {
   return href.startsWith("http") || href.startsWith("mailto:");
 }
@@ -74,47 +61,49 @@ export default function Links() {
         <ThemeToggle />
       </div>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="w-full max-w-md flex flex-col items-center mt-14"
-      >
+      <div className="w-full max-w-md flex flex-col items-center mt-14">
         {/* Monogram */}
-        <motion.div
-          variants={item}
-          className="flex size-16 items-center justify-center rounded-2xl border border-border bg-card text-xl font-bold tracking-tight"
+        <div
+          className="reveal-load flex size-16 items-center justify-center rounded-2xl border border-border bg-card text-xl font-bold tracking-tight"
+          style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
         >
           MC
-        </motion.div>
+        </div>
 
-        <motion.h1 variants={item} className="mt-5 text-2xl font-bold">
+        <h1
+          className="reveal-load mt-5 text-2xl font-bold"
+          style={{ "--reveal-delay": "0.17s" } as React.CSSProperties}
+        >
           Miguel Collaço
-        </motion.h1>
+        </h1>
 
-        <motion.div
-          variants={item}
-          className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-muted-foreground"
+        <div
+          className="reveal-load mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-muted-foreground"
+          style={{ "--reveal-delay": "0.24s" } as React.CSSProperties}
         >
           <span>Software Engineer</span>
           <span className="text-border">•</span>
           <span>CSE Student</span>
           <span className="text-border">•</span>
           <span>Projects Director</span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={item}
-          className="mt-3 flex items-center gap-1.5 text-sm text-muted-foreground"
+        <div
+          className="reveal-load mt-3 flex items-center gap-1.5 text-sm text-muted-foreground"
+          style={{ "--reveal-delay": "0.31s" } as React.CSSProperties}
         >
           <MapPin className="w-4 h-4" />
           <span>Based in Portugal</span>
-        </motion.div>
+        </div>
 
         {/* Link cards */}
         <div className="mt-9 w-full flex flex-col gap-2.5">
-          {links.map((l) => (
-            <motion.div key={l.label} variants={item}>
+          {links.map((l, i) => (
+            <div
+              key={l.label}
+              className="reveal-load"
+              style={{ "--reveal-delay": `${0.38 + i * 0.07}s` } as React.CSSProperties}
+            >
               <Link
                 href={l.href}
                 target={isExternal(l.href) ? "_blank" : undefined}
@@ -130,10 +119,10 @@ export default function Links() {
                 </div>
                 <ArrowUpRight className="ml-auto w-4 h-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Footer */}
       <footer className="mt-auto pt-12 w-full max-w-md flex flex-col items-center text-sm text-muted-foreground">

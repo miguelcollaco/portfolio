@@ -1,7 +1,5 @@
-"use client";
-
 import { GraduationCap, Briefcase } from "lucide-react";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 type Role = {
   title: string;
@@ -28,8 +26,13 @@ const workExperiences: WorkEntry[] = [
     organization: "In-Nova",
     roles: [
       {
+        title: "Chief Financial Officer",
+        period: "June 2026 – Present",
+        highlights: [],
+      },
+      {
         title: "Projects Department Director",
-        period: "June 2025 – Present",
+        period: "June 2025 – June 2026",
         highlights: [
           "Lead the Projects Department, managing teams of developers and project managers.",
           "Oversee project portfolio planning, execution, and delivery across multiple initiatives.",
@@ -56,6 +59,16 @@ const workExperiences: WorkEntry[] = [
     ],
   },
   {
+    organization: "Sky",
+    roles: [
+      {
+        title: "Technology Summer Intern",
+        period: "July 2026 – Aug 2026",
+        highlights: [],
+      }
+    ],
+  },
+  {
     organization: "Clearis S.A.",
     roles: [
       {
@@ -67,7 +80,7 @@ const workExperiences: WorkEntry[] = [
         ],
       }
     ],
-  },  
+  }, 
 ];
 
 const educationExperiences: EducationEntry[] = [
@@ -76,7 +89,8 @@ const educationExperiences: EducationEntry[] = [
     organization: "NOVA School of Science and Technology",
     period: "Sep 2025 – Present",
     highlights: [
-      "Major: Security and Privacy",
+      "Major: Programming Languages and Software Systems",
+      "Minor: Systems and Software Security",
     ],
   },
   {
@@ -86,23 +100,15 @@ const educationExperiences: EducationEntry[] = [
   },
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-};
-const viewport = { once: true, margin: "-80px" };
-
 function WorkTimeline({ items }: { items: WorkEntry[] }) {
   return (
     <section className="relative">
       <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
       <div className="space-y-8">
         {items.map((entry, i) => (
-          <motion.div
+          <Reveal
             key={entry.organization}
-            {...fadeUp}
-            viewport={viewport}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
+            delay={i * 0.15}
             className="relative pl-10"
           >
             <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
@@ -126,7 +132,7 @@ function WorkTimeline({ items }: { items: WorkEntry[] }) {
                     <p className="text-muted-foreground">{role.description}</p>
                   )}
 
-                  {role.highlights && (
+                  {role.highlights && role.highlights.length > 0 && (
                     <ul className="space-y-2">
                       {role.highlights.map((highlight) => (
                         <li
@@ -140,7 +146,7 @@ function WorkTimeline({ items }: { items: WorkEntry[] }) {
                     </ul>
                   )}
 
-                  {role.tags && (
+                  {role.tags && role.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                       {role.tags.map((tag) => (
                         <span key={tag} className="skill-badge">
@@ -152,7 +158,7 @@ function WorkTimeline({ items }: { items: WorkEntry[] }) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -165,11 +171,9 @@ function EducationTimeline({ items }: { items: EducationEntry[] }) {
       <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
       <div className="space-y-8">
         {items.map((exp, i) => (
-          <motion.div
+          <Reveal
             key={exp.title}
-            {...fadeUp}
-            viewport={viewport}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
+            delay={i * 0.15}
             className="relative pl-10"
           >
             <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
@@ -185,7 +189,7 @@ function EducationTimeline({ items }: { items: EducationEntry[] }) {
                 </span>
               </div>
 
-              {exp.highlights && (
+              {exp.highlights && exp.highlights.length > 0 && (
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight) => (
                     <li
@@ -199,7 +203,7 @@ function EducationTimeline({ items }: { items: EducationEntry[] }) {
                 </ul>
               )}
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -210,48 +214,33 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="container mx-auto px-6">
-        <motion.div
-          {...fadeUp}
-          viewport={viewport}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
+        <Reveal className="mb-12">
           <span className="section-label">PROFESSIONAL JOURNEY</span>
           <h2 className="section-title mt-4">Experience & Education</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
             A curated timeline of my academic foundations and professional
             growth in Computer Science and Engineering.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="space-y-16">
           <div>
-            <motion.div
-              {...fadeUp}
-              viewport={viewport}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-3 mb-8"
-            >
+            <Reveal delay={0.1} className="flex items-center gap-3 mb-8">
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Briefcase className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
-            </motion.div>
+            </Reveal>
             <WorkTimeline items={workExperiences} />
           </div>
 
           <div>
-            <motion.div
-              {...fadeUp}
-              viewport={viewport}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-3 mb-8"
-            >
+            <Reveal delay={0.1} className="flex items-center gap-3 mb-8">
               <div className="p-2 bg-primary/10 rounded-lg">
                 <GraduationCap className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-xl font-semibold">Education</h3>
-            </motion.div>
+            </Reveal>
             <EducationTimeline items={educationExperiences} />
           </div>
         </div>
