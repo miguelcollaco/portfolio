@@ -1,8 +1,41 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Drive `dark:` utilities from the .dark class on <html> (set before paint by
+   the bootstrap script) instead of the OS-level prefers-color-scheme, so the
+   theme toggle actually controls them. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------------
+   Reveal animations (pure CSS, no JS animation library)
+   - `.js` is set on <html> by the inline head script in layout.tsx,
+     so without JS every element renders fully visible.
+   - Load-time reveals (`.reveal-load`) paint on the first frame.
+   - Scroll reveals (`.reveal`) are toggled by the Reveal component.
+   --------------------------------------------------------------- */
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: none; }
 }
 
 :root {
@@ -165,6 +198,18 @@ html {
     @apply transition duration-300 ease-in-out hover:scale-102 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30;
   }
 
+  /* Sliding highlight in the desktop nav. Position, size and opacity are
+     written by Navbar.tsx; the timing lives here so that clearing the inline
+     `transition` restores exactly these curves. The slight overshoot on
+     transform is what makes the movement read as a glide rather than a swap. */
+  .nav-indicator {
+    transition:
+      transform 420ms cubic-bezier(0.34, 1.15, 0.64, 1),
+      width 420ms cubic-bezier(0.34, 1.15, 0.64, 1),
+      height 420ms cubic-bezier(0.34, 1.15, 0.64, 1),
+      opacity 200ms ease-out;
+  }
+
   .skill-badge {
     @apply px-3 py-1.5 text-sm font-medium bg-secondary border border-border rounded-lg text-muted-foreground hover:border-primary/50 hover:text-foreground transition-all duration-200;
   }
@@ -177,3 +222,35 @@ html {
     @apply absolute left-1.25 top-6 w-0.5 h-full bg-border;
   }
 }
+
+@layer components {
+  /* Load-time reveal: runs immediately, so above-the-fold content is
+     painted by CSS on the first frame instead of waiting for hydration. */
+  .reveal-load {
+    animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  .reveal-load-down {
+    animation-name: reveal-down;
+  }
+
+  /* Scroll reveal: hidden only when JS is available to un-hide it. */
+  .js .reveal {
+    opacity: 0;
+  }
+
+  .js .reveal[data-visible="true"] {
+    animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  .js .reveal-left[data-visible="true"] {
+    animation-name: reveal-left;
+  }
+
+  .js .reveal-right[data-visible="true"] {
+    animation-name: reveal-right;
+  }
+}
+
