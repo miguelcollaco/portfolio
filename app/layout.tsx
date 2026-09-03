@@ -63,7 +63,7 @@ const personJsonLd = {
   image: "https://miguelcollaco.com/opengraph-image",
   jobTitle: "Software Engineer",
   description:
-    "Computer Science and Engineering student and Projects Director at In-Nova",
+    "Computer Science and Engineering student and CFO at In-Nova",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Lisbon",

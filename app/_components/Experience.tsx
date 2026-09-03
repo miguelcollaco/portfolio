@@ -28,32 +28,28 @@ const workExperiences: WorkEntry[] = [
       {
         title: "Chief Financial Officer",
         period: "June 2026 – Present",
-        highlights: [],
+        highlights: [
+          "Own budgeting and financial planning for the company, setting forecasts and tracking performance against targets.",
+          "Manage cash flow and treasury operations, ensuring liquidity and financial stability across ongoing initiatives.",
+          "Serve as a member of the company's executive board, contributing to strategic decision-making."
+        ],
       },
       {
         title: "Projects Department Director",
         period: "June 2025 – June 2026",
         highlights: [
-          "Lead the Projects Department, managing teams of developers and project managers.",
-          "Oversee project portfolio planning, execution, and delivery across multiple initiatives.",
-          "Serve as a member of the company's board, contributing to strategic decision-making."
+          "Led a 30-person Projects Department, managing teams of developers and project managers.",
+          "Oversaw portfolio planning, execution, and delivery across roughly 10 concurrent projects.",
+          "Represented the Projects Department on the company board, contributing to company-wide strategy."
         ],
       },
       {
-        title: "Project Manager",
-        period: "Feb 2025 – June 2025",
-        highlights: [
-          "Led cross-functional teams of developers and coordinated end-to-end technical project delivery.",
-          "Planned and tracked project scope, timelines, and deliverables using Agile / SCRUM methodologies.",
-          "Acted as the main point of contact between technical teams and stakeholders."
-        ],
-      },
-      {
-        title: "Frontend Developer",
+        title: "Developer & Project Manager",
         period: "Apr 2024 – June 2025",
         highlights: [
-          "Developed web and mobile applications using Next.js, React, and React Native.",
-          "Implemented API integrations and built responsive, user-focused interfaces across platforms."
+          "Led cross-functional teams of 4 developers and coordinated end-to-end technical project delivery.",
+          "Planned and tracked scope, timelines, and deliverables using Agile / SCRUM, acting as the main point of contact between technical teams and stakeholders.",
+          "Built responsive web and mobile applications with Next.js, React, and React Native, including API integrations."
         ],
       },
     ],
@@ -64,7 +60,11 @@ const workExperiences: WorkEntry[] = [
       {
         title: "Technology Summer Intern",
         period: "July 2026 – Aug 2026",
-        highlights: [],
+        highlights: [
+          "Built a Jenkins nightly job to monitor certificate expiry dates and automatically report status to Slack, reducing risk of unnoticed expirations.",
+          "Designed and built a multi-agent AI chatbot system with specialized sub-agents, accessible via Slack bot or direct supervisor requests, that delivered daily device KPI reports to Slack.",
+          "Engineered an automated investigation pipeline within the agent system that, given a PS4 crash, pulled crash data from Sony's crash portal and internal session logs, then used AI to analyze the data and generate a report with probable causes and fixes."
+        ],
       }
     ],
   },
