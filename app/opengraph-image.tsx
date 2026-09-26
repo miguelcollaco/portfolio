@@ -95,10 +95,10 @@ export default function Image() {
               }}
             >
               <div style={{ fontSize: 26, color: "#c8d8f0" }}>
-                CSE Student @ NOVA FCT
+                MSc Computer Science and Engineering @ NOVA FCT
               </div>
               <div style={{ fontSize: 26, color: "#c8d8f0" }}>
-                Projects Department Director @ In-Nova
+                CFO @ In-Nova · previously Sky and Clearis
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function Image() {
             <div
               style={{
                 fontSize: 18,
-                color: "#4a5e78",
+                color: "#7d8fa8",
                 letterSpacing: 0.5,
               }}
             >

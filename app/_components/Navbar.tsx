@@ -28,6 +28,7 @@ import { Github, LinkedIn } from "@/components/icons";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { EMAIL, GITHUB, LINKEDIN, CV } from "@/lib/site";
 
 const navItems = [
   { label: "About", id: "about" },
@@ -41,28 +42,28 @@ const linkCommands = [
     icon: FileText,
     label: "View CV",
     description: "Open my resume",
-    href: "/Miguel_Collaco_CV.pdf",
+    href: CV,
     newTab: true,
   },
   {
     icon: Github,
     label: "GitHub",
     description: "See my code",
-    href: "https://github.com/miguelcollaco",
+    href: GITHUB,
     newTab: true,
   },
   {
     icon: LinkedIn,
     label: "LinkedIn",
     description: "Connect with me",
-    href: "https://www.linkedin.com/in/miguelcollaco",
+    href: LINKEDIN,
     newTab: true,
   },
   {
     icon: Mail,
     label: "Email",
     description: "Send me a message",
-    href: "mailto:miguel.l.collaco@gmail.com",
+    href: `mailto:${EMAIL}`,
     newTab: false,
   },
 ];
@@ -220,9 +221,9 @@ export default function Navbar() {
     <nav className="reveal-load reveal-load-down fixed top-0 left-0 right-0 z-50">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -bottom-16 -z-10 backdrop-blur-2xl mask-[linear-gradient(to_bottom,black,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -bottom-16 -z-10 bg-background/75 backdrop-blur-[80px] mask-[linear-gradient(to_bottom,black_50%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_50%,transparent)]"
       />
-      <div className="container mx-auto px-6 py-4">
+      <div className="mx-auto max-w-6xl px-6 py-4">
         <div className="flex items-center justify-between">
           <Link
             href="#"
@@ -231,6 +232,7 @@ export default function Navbar() {
               scrollTo("top");
             }}
             className="flex items-center gap-2"
+            aria-label="Back to top"
           >
             <div className="p-2 bg-primary/10 rounded-lg">
               <Code2 className="w-5 h-5 text-primary" />
@@ -267,17 +269,20 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
 
-          <Button
-            variant="ghost"
-            onClick={() => setOpen(true)}
-            aria-label={`Open command menu (${isMac ? "Command" : "Control"}+K)`}
-            className="h-9 gap-2 rounded-lg px-2.5 hover:bg-accent/10 hover:text-foreground"
-          >
-            <CommandIcon className="w-5 h-5" />
-            <kbd className="hidden md:inline rounded border border-border bg-muted px-1.5 py-0.5 font-sans text-[11px] leading-none text-muted-foreground">
-              {isMac ? "\u2318" : "Ctrl "}K
-            </kbd>
-          </Button>
+          <div className="flex items-center gap-1">
+            <ThemeToggle className="md:hidden" />
+            <Button
+              variant="ghost"
+              onClick={() => setOpen(true)}
+              aria-label={`Open command menu (${isMac ? "Command" : "Control"}+K)`}
+              className="h-9 gap-2 rounded-lg px-2.5 hover:bg-accent/10 hover:text-foreground"
+            >
+              <CommandIcon className="w-5 h-5" />
+              <kbd className="hidden md:inline rounded border border-border bg-muted px-1.5 py-0.5 font-sans text-[11px] leading-none text-muted-foreground">
+                {isMac ? "\u2318" : "Ctrl "}K
+              </kbd>
+            </Button>
+          </div>
         </div>
       </div>
 

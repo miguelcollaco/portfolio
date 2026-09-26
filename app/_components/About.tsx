@@ -6,19 +6,31 @@ import PHOTO from "@/public/photo.webp";
 export default function About() {
   return (
     <section id="about" className="py-24">
-      <div className="container mx-auto px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
           <span className="section-label">WHO I AM</span>
           <h2 className="section-title mt-4">About Me</h2>
         </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <Reveal delay={0.1} className="order-2 lg:order-1">
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              I&apos;m a Computer Science and Engineering student based in Portugal with a strong interest in technology and how it shapes the way we live and connect. From a young age, I&apos;ve always been drawn to tech, and over time I developed a particular interest in cybersecurity, distributed systems, and web development.
-              <br /><br />
-              I enjoy learning how systems work behind the scenes, building reliable applications, and exploring ways to make technology more secure and efficient.
-              <br /><br />
+          <Reveal
+            delay={0.1}
+            className="order-2 lg:order-1 space-y-6 text-muted-foreground text-lg leading-relaxed"
+          >
+            <p>
+              I&apos;m a software engineer and MSc student in Computer Science and
+              Engineering at NOVA School of Science and Technology in Lisbon, majoring
+              in Programming Languages and Software Systems with a minor in Systems
+              and Software Security.
+            </p>
+            <p>
+              I like understanding how systems work under the hood and building
+              software that is reliable, secure, and efficient. Recently that has
+              meant building multi-agent AI tooling at Sky, and shipping web and
+              mobile products at In-Nova, where I went from developer to leading a
+              30-person Projects Department and now serve as CFO.
+            </p>
+            <p>
               Outside of tech, I enjoy movies, music, gaming, and going to the gym.
             </p>
           </Reveal>

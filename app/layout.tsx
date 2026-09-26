@@ -1,28 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { NAME, SITE_URL, EMAIL, GITHUB, LINKEDIN, TAGLINE, DESCRIPTION } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://miguelcollaco.com"),
-  title: "Miguel Collaço | Software Engineer",
-  description:
-    "Computer Science and Engineering student and Projects Director at In-Nova",
-  applicationName: "Miguel Collaço",
-  authors: [{ name: "Miguel Collaço", url: "https://miguelcollaco.com" }],
-  creator: "Miguel Collaço",
-  publisher: "Miguel Collaço",
+  metadataBase: new URL(SITE_URL),
+  title: `${NAME} | Software Engineer`,
+  description: DESCRIPTION,
+  applicationName: NAME,
+  authors: [{ name: NAME, url: SITE_URL }],
+  creator: NAME,
+  publisher: NAME,
   keywords: [
     "Miguel Collaço",
     "Software Engineer",
@@ -41,35 +36,34 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Miguel Collaço | Software Engineer",
-    description: "CSE student and Projects Director at In-Nova",
-    url: "https://miguelcollaco.com",
-    siteName: "Miguel Collaço",
+    title: `${NAME} | Software Engineer`,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: NAME,
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Miguel Collaço | Software Engineer",
-    description: "CSE student and Projects Director at In-Nova",
+    title: `${NAME} | Software Engineer`,
+    description: DESCRIPTION,
   },
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Miguel Collaço",
-  url: "https://miguelcollaco.com",
-  image: "https://miguelcollaco.com/opengraph-image",
+  name: NAME,
+  url: SITE_URL,
+  image: `${SITE_URL}/opengraph-image`,
   jobTitle: "Software Engineer",
-  description:
-    "Computer Science and Engineering student and CFO at In-Nova",
+  description: TAGLINE,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Lisbon",
     addressCountry: "PT",
   },
-  email: "mailto:miguel.l.collaco@gmail.com",
+  email: `mailto:${EMAIL}`,
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "NOVA School of Science and Technology",
@@ -89,10 +83,7 @@ const personJsonLd = {
     "TypeScript",
     "Java",
   ],
-  sameAs: [
-    "https://github.com/miguelcollaco",
-    "https://www.linkedin.com/in/miguelcollaco",
-  ],
+  sameAs: [GITHUB, LINKEDIN],
 };
 
 /**
@@ -118,7 +109,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased transition-colors duration-300`}
+        className={`${geistSans.variable} antialiased transition-colors duration-300`}
       >
         {children}
         <SpeedInsights />

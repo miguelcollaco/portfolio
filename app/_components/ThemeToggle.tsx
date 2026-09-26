@@ -2,6 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 /**
  * The `dark` class on <html> is applied before first paint by the bootstrap
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
  * off that same class. Keeping no React state here means no hydration
  * mismatch and no flash of the wrong icon.
  */
-export default function ThemeToggle() {
+export default function ThemeToggle({ className }: { className?: string }) {
   function toggle() {
     const isDark = document.documentElement.classList.toggle("dark");
     try {
@@ -25,7 +26,7 @@ export default function ThemeToggle() {
       size="icon"
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="relative w-9 h-9 rounded-full hover:bg-accent/10 hover:text-foreground"
+      className={cn("relative w-9 h-9 rounded-full hover:bg-accent/10 hover:text-foreground", className)}
     >
       <div className="absolute duration-500 transition-transform scale-0 rotate-180 dark:scale-100 dark:rotate-0">
         <Moon className="w-5 h-5" />

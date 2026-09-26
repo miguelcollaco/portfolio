@@ -9,12 +9,17 @@ import Footer from "./_components/Footer";
 export default function Index() {
   return (
     <div className="min-h-screen bg-background">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Expertise />
-      <Contact />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Hero />
+        <About />
+        <Experience />
+        <Expertise />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

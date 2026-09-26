@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Code2,
   Globe,
@@ -9,6 +10,9 @@ import {
 } from "lucide-react";
 import { Github, LinkedIn } from "@/components/icons";
 import ThemeToggle from "./ThemeToggle";
+import { NAME, EMAIL, GITHUB, LINKEDIN, CV } from "@/lib/site";
+
+import PHOTO from "@/public/photo.webp";
 
 const links = [
   {
@@ -21,25 +25,25 @@ const links = [
     icon: Github,
     label: "GitHub",
     description: "View my GitHub profile",
-    href: "https://github.com/miguelcollaco",
+    href: GITHUB,
   },
   {
     icon: LinkedIn,
     label: "LinkedIn",
     description: "View my LinkedIn profile",
-    href: "https://www.linkedin.com/in/miguelcollaco",
+    href: LINKEDIN,
   },
   {
     icon: Mail,
     label: "Email",
     description: "Get in touch with me",
-    href: "mailto:miguel.l.collaco@gmail.com",
+    href: `mailto:${EMAIL}`,
   },
   {
     icon: FileText,
     label: "Curriculum Vitae",
     description: "View my CV",
-    href: "/Miguel_Collaco_CV.pdf",
+    href: CV,
   },
 ];
 
@@ -62,19 +66,21 @@ export default function Links() {
       </div>
 
       <div className="w-full max-w-md flex flex-col items-center mt-14">
-        {/* Monogram */}
-        <div
-          className="reveal-load flex size-16 items-center justify-center rounded-2xl border border-border bg-card text-xl font-bold tracking-tight"
+        <Image
+          src={PHOTO}
+          alt=""
+          width={80}
+          height={80}
+          loading="eager"
+          className="reveal-load size-20 rounded-full border border-border bg-card object-cover object-top"
           style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
-        >
-          MC
-        </div>
+        />
 
         <h1
           className="reveal-load mt-5 text-2xl font-bold"
           style={{ "--reveal-delay": "0.17s" } as React.CSSProperties}
         >
-          Miguel Collaço
+          {NAME}
         </h1>
 
         <div
@@ -82,10 +88,8 @@ export default function Links() {
           style={{ "--reveal-delay": "0.24s" } as React.CSSProperties}
         >
           <span>Software Engineer</span>
-          <span className="text-border">•</span>
-          <span>CSE Student</span>
-          <span className="text-border">•</span>
-          <span>Projects Director</span>
+          <span aria-hidden className="text-border">•</span>
+          <span>MSc CSE Student</span>
         </div>
 
         <div
@@ -93,7 +97,7 @@ export default function Links() {
           style={{ "--reveal-delay": "0.31s" } as React.CSSProperties}
         >
           <MapPin className="w-4 h-4" />
-          <span>Based in Portugal</span>
+          <span>Lisbon, Portugal</span>
         </div>
 
         {/* Link cards */}
@@ -126,7 +130,7 @@ export default function Links() {
 
       {/* Footer */}
       <footer className="mt-auto pt-12 w-full max-w-md flex flex-col items-center text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} Miguel Collaço. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {NAME}. All rights reserved.</p>
       </footer>
     </main>
   );

@@ -5,7 +5,6 @@ import {
   MailOpen,
   MapPin,
   ArrowRight,
-  ExternalLink,
 } from "lucide-react";
 import { Github, LinkedIn } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -15,6 +14,7 @@ import { useRef, useState, useCallback, useEffect, useSyncExternalStore } from "
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import Reveal from "./Reveal";
+import { EMAIL, GITHUB, LINKEDIN } from "@/lib/site";
 
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
@@ -289,13 +289,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24">
-      <div className="container mx-auto px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="section-label">OPEN TO OPPORTUNITIES</span>
-          </div>
-          <h2 className="section-title">Let&apos;s Connect</h2>
+          <span className="section-label">GET IN TOUCH</span>
+          <h2 className="section-title mt-4">Let&apos;s Connect</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
             I&apos;m always open to discussing Computer Science projects, research
             collaborations, or technical inquiries. Feel free to reach out.
@@ -406,14 +403,14 @@ export default function Contact() {
                 )}
 
                 {status === "success" && (
-                  <p role="status" className="text-green-500 text-sm">
-                    ✅ Message sent successfully! I’ll get back to you soon.
+                  <p role="status" className="text-green-700 dark:text-green-400 text-sm">
+                    Message sent successfully! I’ll get back to you soon.
                   </p>
                 )}
 
                 {status === "error" && (
-                  <p role="alert" className="text-red-500 text-sm">
-                    ❌ Something went wrong. Please try again later.
+                  <p role="alert" className="text-destructive text-sm">
+                    Something went wrong. Please try again later.
                   </p>
                 )}
 
@@ -438,8 +435,8 @@ export default function Contact() {
           >
             <div>
               <a
-                href="mailto:miguel.l.collaco@gmail.com"
-                className="group flex items-center justify-between p-5 bg-card border rounded-xl card-hover-scale group"
+                href={`mailto:${EMAIL}`}
+                className="group flex items-center justify-between p-5 bg-card border rounded-xl card-hover-scale"
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
@@ -450,17 +447,17 @@ export default function Contact() {
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
                       Email me
                     </p>
-                    <p className="font-medium">miguel.l.collaco@gmail.com</p>
+                    <p className="font-medium break-all">{EMAIL}</p>
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowRight className="w-4 h-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
             </div>
 
             <div>
               <div className="grid grid-cols-2 gap-5 md:gap-8">
                 <a
-                  href="https://www.linkedin.com/in/miguelcollaco/"
+                  href={LINKEDIN}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
@@ -476,7 +473,7 @@ export default function Contact() {
                   </div>
                 </a>
                 <a
-                  href="https://github.com/miguelcollaco"
+                  href={GITHUB}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover-scale group"
@@ -495,7 +492,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <div className="flex items-center p-5 gap-5 bg-card border rounded-xl card-hover group">
+              <div className="flex items-center p-5 gap-5 bg-card border rounded-xl">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>

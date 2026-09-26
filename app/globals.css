@@ -48,7 +48,7 @@ html {
   --popover: 0 0% 100%;
   --popover-foreground: 220 20% 10%;
 
-  --primary: 168 76% 36%;
+  --primary: 168 76% 28%;
   --primary-foreground: 0 0% 100%;
 
   --secondary: 220 14% 92%;
@@ -57,24 +57,24 @@ html {
   --muted: 220 14% 92%;
   --muted-foreground: 220 10% 40%;
 
-  --accent: 168 76% 36%;
+  --accent: 168 76% 28%;
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 210 40% 98%;
 
   --border: 220 14% 88%;
   --input: 220 14% 88%;
-  --ring: 168 76% 36%;
+  --ring: 168 76% 28%;
 
   --sidebar-background: 0 0% 100%;
   --sidebar-foreground: 220 20% 10%;
-  --sidebar-primary: 168 76% 36%;
+  --sidebar-primary: 168 76% 28%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 220 14% 92%;
   --sidebar-accent-foreground: 220 20% 10%;
   --sidebar-border: 220 14% 88%;
-  --sidebar-ring: 168 76% 36%;
+  --sidebar-ring: 168 76% 28%;
 }
 
 :root.dark {
@@ -171,10 +171,6 @@ html {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-geist-sans), sans-serif;
   }
-
-  .font-mono {
-    font-family: var(--font-geist-mono), monospace;
-  }
 }
 
 @layer components {
@@ -187,7 +183,7 @@ html {
   }
 
   .gradient-text {
-    @apply bg-linear-to-r from-primary to-emerald-400 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-primary to-emerald-700 dark:to-emerald-400 bg-clip-text text-transparent;
   }
 
   .card-hover {
@@ -211,15 +207,11 @@ html {
   }
 
   .skill-badge {
-    @apply px-3 py-1.5 text-sm font-medium bg-secondary border border-border rounded-lg text-muted-foreground hover:border-primary/50 hover:text-foreground transition-all duration-200;
+    @apply px-3 py-1.5 text-sm font-medium bg-secondary border border-border rounded-lg text-muted-foreground;
   }
 
-  .timeline-dot {
-    @apply absolute left-0 top-2 w-3 h-3 rounded-full bg-primary border-4 border-background;
-  }
-
-  .timeline-line {
-    @apply absolute left-1.25 top-6 w-0.5 h-full bg-border;
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground;
   }
 }
 
@@ -254,3 +246,24 @@ html {
   }
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+  }
+
+  .card-hover-scale:hover {
+    scale: none;
+  }
+}

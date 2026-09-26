@@ -5,7 +5,7 @@ const skillCategories = [
   {
     icon: Code2,
     title: "Languages",
-    skills: ["Java", "JavaScript", "Typescript", "Kotlin", "C", "Python", "SQL"],
+    skills: ["Java", "JavaScript", "TypeScript", "Kotlin", "C", "Python", "SQL"],
   },
   {
     icon: Monitor,
@@ -15,7 +15,7 @@ const skillCategories = [
   {
     icon: Server,
     title: "Backend",
-    skills: ["Spring Boot", "Express.js"],
+    skills: ["Node.js", "Express.js", "Spring Boot"],
   },
   {
     icon: Database,
@@ -37,7 +37,7 @@ const skillCategories = [
 export default function Expertise() {
   return (
     <section id="expertise" className="py-24">
-      <div className="container mx-auto px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
           <span className="section-label">MY CAPABILITIES</span>
           <h2 className="section-title mt-4">Technical Expertise</h2>

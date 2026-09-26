@@ -1,33 +1,24 @@
-import { GraduationCap, Briefcase } from "lucide-react";
 import Reveal from "./Reveal";
 
 type Role = {
   title: string;
   period: string;
-  description?: string;
   highlights?: string[];
   tags?: string[];
 };
 
-type WorkEntry = {
+type Entry = {
   organization: string;
   roles: Role[];
 };
 
-type EducationEntry = {
-  title: string;
-  organization: string;
-  period: string;
-  highlights?: string[];
-};
-
-const workExperiences: WorkEntry[] = [
+const work: Entry[] = [
   {
     organization: "In-Nova",
     roles: [
       {
         title: "Chief Financial Officer",
-        period: "June 2026 – Present",
+        period: "Jun 2026 – Present",
         highlights: [
           "Own budgeting and financial planning for the company, setting forecasts and tracking performance against targets.",
           "Manage cash flow and treasury operations, ensuring liquidity and financial stability across ongoing initiatives.",
@@ -36,7 +27,7 @@ const workExperiences: WorkEntry[] = [
       },
       {
         title: "Projects Department Director",
-        period: "June 2025 – June 2026",
+        period: "Jun 2025 – Jun 2026",
         highlights: [
           "Led a 30-person Projects Department, managing teams of developers and project managers.",
           "Oversaw portfolio planning, execution, and delivery across roughly 10 concurrent projects.",
@@ -45,12 +36,13 @@ const workExperiences: WorkEntry[] = [
       },
       {
         title: "Developer & Project Manager",
-        period: "Apr 2024 – June 2025",
+        period: "Apr 2024 – Jun 2025",
         highlights: [
           "Led cross-functional teams of 4 developers and coordinated end-to-end technical project delivery.",
           "Planned and tracked scope, timelines, and deliverables using Agile / SCRUM, acting as the main point of contact between technical teams and stakeholders.",
           "Built responsive web and mobile applications with Next.js, React, and React Native, including API integrations."
         ],
+        tags: ["Next.js", "React", "React Native", "Agile / Scrum"],
       },
     ],
   },
@@ -59,12 +51,13 @@ const workExperiences: WorkEntry[] = [
     roles: [
       {
         title: "Technology Summer Intern",
-        period: "July 2026 – Aug 2026",
+        period: "Jul 2026 – Aug 2026",
         highlights: [
           "Built a Jenkins nightly job to monitor certificate expiry dates and automatically report status to Slack, reducing risk of unnoticed expirations.",
           "Designed and built a multi-agent AI chatbot system with specialized sub-agents, accessible via Slack bot or direct supervisor requests, that delivered daily device KPI reports to Slack.",
           "Engineered an automated investigation pipeline within the agent system that, given a PS4 crash, pulled crash data from Sony's crash portal and internal session logs, then used AI to analyze the data and generate a report with probable causes and fixes."
         ],
+        tags: ["Jenkins", "Slack API", "LLM agents"],
       }
     ],
   },
@@ -73,176 +66,113 @@ const workExperiences: WorkEntry[] = [
     roles: [
       {
         title: "Fullstack Developer Intern",
-        period: "Feb 2025 – July 2025",
+        period: "Feb 2025 – Jul 2025",
         highlights: [
           "Built responsive Vue.js interfaces for a Procurement Platform used by GALP.",
-          "Implemented back-end logic and optimized MongoDB aggregations and indexes for performance"
+          "Implemented back-end logic and optimized MongoDB aggregations and indexes for performance."
         ],
+        tags: ["Vue.js", "MongoDB", "Node.js"],
       }
     ],
-  }, 
+  },
 ];
 
-const educationExperiences: EducationEntry[] = [
+const education: Entry[] = [
   {
-    title: "MSc in Computer Science and Engineering",
     organization: "NOVA School of Science and Technology",
-    period: "Sep 2025 – Present",
-    highlights: [
-      "Major: Programming Languages and Software Systems",
-      "Minor: Systems and Software Security",
+    roles: [
+      {
+        title: "MSc in Computer Science and Engineering",
+        period: "Sep 2025 – Present",
+        highlights: [
+          "Major in Programming Languages and Software Systems.",
+          "Minor in Systems and Software Security.",
+        ],
+      },
+      {
+        title: "BSc in Computer Science and Engineering",
+        period: "Sep 2022 – Jun 2025",
+      },
     ],
   },
-  {
-    title: "BSc in Computer Science and Engineering",
-    organization: "NOVA School of Science and Technology",
-    period: "Sep 2022 – June 2025",
-  },
 ];
 
-function WorkTimeline({ items }: { items: WorkEntry[] }) {
+function Timeline({ heading, items }: { heading: string; items: Entry[] }) {
   return (
-    <section className="relative">
-      <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
-      <div className="space-y-8">
-        {items.map((entry, i) => (
-          <Reveal
-            key={entry.organization}
-            delay={i * 0.15}
-            className="relative pl-10"
-          >
-            <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
+    <div>
+      <Reveal>
+        <h3 className="mb-6 text-xl font-semibold">{heading}</h3>
+      </Reveal>
 
-            <div className="bg-card border border-border rounded-xl p-6 card-hover">
-              <p className={`text-primary font-semibold ${entry.roles.length > 1 ? 'mb-2.5' : ''}`}>
-                {entry.organization}
-              </p>
+      <div className="space-y-6">
+        {items.map((entry) => {
+          // Several roles at one organization are joined by a line, LinkedIn-style.
+          const stacked = entry.roles.length > 1;
 
-              {entry.roles.map((role, j) => (
-                <div key={role.title} className="space-y-4">
-                  {j > 0 && <hr className="border-border mt-5" />}
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
-                    <h3 className="font-semibold text-lg">{role.title}</h3>
-                    <span className="text-xs text-muted-foreground font-medium shrink-0">
-                      {role.period}
-                    </span>
-                  </div>
+          return (
+            <Reveal
+              key={entry.organization}
+              className="rounded-xl border bg-card p-6 md:p-8"
+            >
+              <h4 className="text-lg font-semibold">{entry.organization}</h4>
 
-                  {role.description && (
-                    <p className="text-muted-foreground">{role.description}</p>
-                  )}
-
-                  {role.highlights && role.highlights.length > 0 && (
-                    <ul className="space-y-2">
-                      {role.highlights.map((highlight) => (
-                        <li
-                          key={highlight}
-                          className="text-sm text-muted-foreground flex items-start gap-2"
-                        >
-                          <span className="text-primary">•</span>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {role.tags && role.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {role.tags.map((tag) => (
-                        <span key={tag} className="skill-badge">
-                          {tag}
-                        </span>
-                      ))}
+              <ol className="mt-5 space-y-6">
+                {entry.roles.map((role) => (
+                  <li
+                    key={role.title}
+                    className={
+                      stacked
+                        ? "relative pl-6 before:absolute before:left-0 before:top-2 before:size-2 before:rounded-full before:bg-primary after:absolute after:left-[3.5px] after:top-5 after:-bottom-5 after:w-px after:bg-border last:after:hidden"
+                        : undefined
+                    }
+                  >
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                      <p className="font-medium">{role.title}</p>
+                      <p className="shrink-0 text-sm tabular-nums text-muted-foreground">
+                        {role.period}
+                      </p>
                     </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        ))}
+
+                    {role.highlights && (
+                      <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-muted-foreground marker:text-primary/60">
+                        {role.highlights.map((highlight) => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {role.tags && (
+                      <ul aria-label="Technologies" className="mt-4 flex flex-wrap gap-2">
+                        {role.tags.map((tag) => (
+                          <li key={tag} className="skill-badge px-2.5 py-1 text-xs">
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
-  );
-}
-
-function EducationTimeline({ items }: { items: EducationEntry[] }) {
-  return (
-    <section className="relative">
-      <div className="absolute left-1.25 top-0 bottom-0 w-0.5 bg-border" />
-      <div className="space-y-8">
-        {items.map((exp, i) => (
-          <Reveal
-            key={exp.title}
-            delay={i * 0.15}
-            className="relative pl-10"
-          >
-            <div className="absolute left-0 top-8 w-3 aspect-square rounded-full bg-primary border-4 border-background" />
-
-            <div className="bg-card border border-border rounded-xl p-6 card-hover space-y-5">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div>
-                  <h3 className="font-semibold text-lg">{exp.title}</h3>
-                  <p className="text-primary text-sm">{exp.organization}</p>
-                </div>
-                <span className="text-xs text-muted-foreground font-medium">
-                  {exp.period}
-                </span>
-              </div>
-
-              {exp.highlights && exp.highlights.length > 0 && (
-                <ul className="space-y-2">
-                  {exp.highlights.map((highlight) => (
-                    <li
-                      key={highlight}
-                      className="text-sm text-muted-foreground flex items-start gap-2"
-                    >
-                      <span className="text-primary">•</span>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </section>
+    </div>
   );
 }
 
 export default function Experience() {
   return (
     <section id="experience" className="py-24">
-      <div className="container mx-auto px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <span className="section-label">PROFESSIONAL JOURNEY</span>
-          <h2 className="section-title mt-4">Experience & Education</h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl">
-            A curated timeline of my academic foundations and professional
-            growth in Computer Science and Engineering.
-          </p>
+          <span className="section-label">BACKGROUND</span>
+          <h2 className="section-title mt-4">Experience &amp; Education</h2>
         </Reveal>
 
         <div className="space-y-16">
-          <div>
-            <Reveal delay={0.1} className="flex items-center gap-3 mb-8">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Briefcase className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">Work Experience</h3>
-            </Reveal>
-            <WorkTimeline items={workExperiences} />
-          </div>
-
-          <div>
-            <Reveal delay={0.1} className="flex items-center gap-3 mb-8">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <GraduationCap className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">Education</h3>
-            </Reveal>
-            <EducationTimeline items={educationExperiences} />
-          </div>
+          <Timeline heading="Work" items={work} />
+          <Timeline heading="Education" items={education} />
         </div>
       </div>
     </section>
