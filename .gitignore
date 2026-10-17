@@ -42,3 +42,7 @@ next-env.d.ts
 
 # pnpm (regenerated locally; breaks Vercel builds if committed)
 pnpm-workspace.yaml
+
+# AI agent instructions (local only)
+CLAUDE.md
+AGENTS.md
