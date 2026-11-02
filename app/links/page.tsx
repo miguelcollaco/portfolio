@@ -4,6 +4,9 @@ import Links from "../_components/Links";
 export const metadata: Metadata = {
   title: "Links | Miguel Collaço",
   description: "All my links in one place — portfolio, GitHub, LinkedIn, and more.",
+  alternates: {
+    canonical: "/links",
+  },
   openGraph: {
     title: "Links | Miguel Collaço",
     description: "All my links in one place — portfolio, GitHub, LinkedIn, and more.",

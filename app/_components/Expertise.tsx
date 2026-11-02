@@ -1,4 +1,4 @@
-import { Monitor, Server, Database, Wrench, NotebookPen, Code2 } from "lucide-react";
+import { Monitor, Server, ShieldCheck, Wrench, NotebookPen, Code2 } from "lucide-react";
 import Reveal from "./Reveal";
 
 const skillCategories = [
@@ -14,18 +14,18 @@ const skillCategories = [
   },
   {
     icon: Server,
-    title: "Backend",
-    skills: ["Node.js", "Express.js", "Spring Boot"],
+    title: "Backend & Data",
+    skills: ["Node.js", "Express.js", "Spring Boot", "MongoDB", "PostgreSQL", "MySQL"],
   },
   {
-    icon: Database,
-    title: "Data",
-    skills: ["MongoDB", "PostgreSQL", "MySQL"],
+    icon: ShieldCheck,
+    title: "AI & Security",
+    skills: ["LLM agents", "Multi-agent systems", "Systems & software security"],
   },
   {
     icon: Wrench,
     title: "Tools & Workflow",
-    skills: ["Git", "Docker", "Postman", "CI/CD", "Scrum", "Figma"],
+    skills: ["Git", "Docker", "Jenkins", "Postman", "CI/CD", "Scrum", "Figma"],
   },
   {
     icon: NotebookPen,

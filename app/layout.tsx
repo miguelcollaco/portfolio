@@ -91,7 +91,7 @@ const personJsonLd = {
  * dark theme, and marks the document as JS-capable so CSS can safely hide
  * elements it intends to reveal on scroll.
  */
-const bootstrapScript = `(function(){try{var d=document.documentElement;d.classList.add('js');if(localStorage.getItem('theme')==='light'){d.classList.remove('dark')}}catch(e){}})()`;
+const bootstrapScript = `(function(){try{var d=document.documentElement;d.classList.add('js');var t=localStorage.getItem('theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme: light)').matches)){d.classList.remove('dark')}}catch(e){}})()`;
 
 export default function RootLayout({
   children,

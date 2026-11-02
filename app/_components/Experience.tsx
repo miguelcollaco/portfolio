@@ -9,20 +9,35 @@ type Role = {
 
 type Entry = {
   organization: string;
+  description?: string;
   roles: Role[];
 };
 
 const work: Entry[] = [
   {
+    organization: "Sky",
+    roles: [
+      {
+        title: "Technology Summer Intern",
+        period: "Jul 2026 – Aug 2026",
+        highlights: [
+          "Built a Jenkins nightly job to monitor certificate expiry dates and automatically report status to Slack, reducing risk of unnoticed expirations.",
+          "Designed and built a multi-agent AI chatbot system with specialized sub-agents, accessible via Slack bot or direct supervisor requests, that delivered daily device KPI reports to Slack.",
+          "Engineered an automated investigation pipeline within the agent system that, given a PS4 crash, pulled crash data from Sony's crash portal and internal session logs, then used AI to analyze the data and generate a report with probable causes and fixes."
+        ],
+        tags: ["Jenkins", "Slack API", "LLM agents"],
+      }
+    ],
+  },
+  {
     organization: "In-Nova",
+    description: "Junior enterprise: a tech consultancy run by students at NOVA FCT.",
     roles: [
       {
         title: "Chief Financial Officer",
         period: "Jun 2026 – Present",
         highlights: [
-          "Own budgeting and financial planning for the company, setting forecasts and tracking performance against targets.",
-          "Manage cash flow and treasury operations, ensuring liquidity and financial stability across ongoing initiatives.",
-          "Serve as a member of the company's executive board, contributing to strategic decision-making."
+          "Own budgeting, forecasting, cash flow, and treasury, and sit on the executive board.",
         ],
       },
       {
@@ -44,21 +59,6 @@ const work: Entry[] = [
         ],
         tags: ["Next.js", "React", "React Native", "Agile / Scrum"],
       },
-    ],
-  },
-  {
-    organization: "Sky",
-    roles: [
-      {
-        title: "Technology Summer Intern",
-        period: "Jul 2026 – Aug 2026",
-        highlights: [
-          "Built a Jenkins nightly job to monitor certificate expiry dates and automatically report status to Slack, reducing risk of unnoticed expirations.",
-          "Designed and built a multi-agent AI chatbot system with specialized sub-agents, accessible via Slack bot or direct supervisor requests, that delivered daily device KPI reports to Slack.",
-          "Engineered an automated investigation pipeline within the agent system that, given a PS4 crash, pulled crash data from Sony's crash portal and internal session logs, then used AI to analyze the data and generate a report with probable causes and fixes."
-        ],
-        tags: ["Jenkins", "Slack API", "LLM agents"],
-      }
     ],
   },
   {
@@ -115,6 +115,9 @@ function Timeline({ heading, items }: { heading: string; items: Entry[] }) {
               className="rounded-xl border bg-card p-6 md:p-8"
             >
               <h4 className="text-lg font-semibold">{entry.organization}</h4>
+              {entry.description && (
+                <p className="mt-1 text-sm text-muted-foreground">{entry.description}</p>
+              )}
 
               <ol className="mt-5 space-y-6">
                 {entry.roles.map((role) => (

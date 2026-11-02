@@ -19,6 +19,7 @@ import { EMAIL, GITHUB, LINKEDIN } from "@/lib/site";
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const CAPTCHA_LOAD_TIMEOUT_MS = 10_000;
 
 const PLACEHOLDERS: { name: string; email: string; message: string }[] = [
   {
@@ -202,6 +203,7 @@ export default function Contact() {
   // initial page load and mounted on first interaction with the form instead.
   const [captchaMounted, setCaptchaMounted] = useState(false);
   const pendingSubmit = useRef(false);
+  const captchaLoaded = useRef(false);
 
   const mountCaptcha = useCallback(() => setCaptchaMounted(true), []);
 
@@ -218,17 +220,22 @@ export default function Contact() {
   const onSubmit = useCallback(() => {
     setStatus("sending");
 
-    if (!captchaMounted) {
-      // Submitted before the widget was mounted - run it once it loads.
+    if (!captchaLoaded.current) {
+      // Submitted before the widget was ready - run it once it loads. A blocked
+      // script (ad blockers) never reports an error, so give it a deadline.
       pendingSubmit.current = true;
       setCaptchaMounted(true);
+      window.setTimeout(() => {
+        if (!captchaLoaded.current) setErrorState();
+      }, CAPTCHA_LOAD_TIMEOUT_MS);
       return;
     }
 
     captchaRef.current?.execute();
-  }, [captchaMounted]);
+  }, [setErrorState]);
 
   const onCaptchaLoad = useCallback(() => {
+    captchaLoaded.current = true;
     if (!pendingSubmit.current) return;
     pendingSubmit.current = false;
     captchaRef.current?.execute();
@@ -294,8 +301,9 @@ export default function Contact() {
           <span className="section-label">GET IN TOUCH</span>
           <h2 className="section-title mt-4">Let&apos;s Connect</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
-            I&apos;m always open to discussing Computer Science projects, research
-            collaborations, or technical inquiries. Feel free to reach out.
+            I&apos;m available now for full-time software engineering roles, part-time
+            positions, and internships. I&apos;m also always open to discussing Computer
+            Science projects, research collaborations, or technical inquiries.
           </p>
         </Reveal>
 
@@ -410,7 +418,11 @@ export default function Contact() {
 
                 {status === "error" && (
                   <p role="alert" className="text-destructive text-sm">
-                    Something went wrong. Please try again later.
+                    Something went wrong. Please email me at{" "}
+                    <a href={`mailto:${EMAIL}`} className="underline">
+                      {EMAIL}
+                    </a>
+                    .
                   </p>
                 )}
 
