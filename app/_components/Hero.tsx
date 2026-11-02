@@ -1,4 +1,4 @@
-import { ArrowRight, Download, Mail, MailOpen } from "lucide-react";
+import { ArrowRight, FileText, Mail, MailOpen } from "lucide-react";
 import { Github, LinkedIn } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { NAME, EMAIL, GITHUB, LINKEDIN, CV } from "@/lib/site";
@@ -29,9 +29,9 @@ export default function Hero() {
             style={{ "--reveal-delay": "0.15s" } as React.CSSProperties}
           >
             <Button asChild size="lg">
-              <a href={CV} download>
-                <Download />
-                Download CV
+              <a href={CV} target="_blank" rel="noopener noreferrer">
+                <FileText />
+                View CV
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="hover:bg-secondary hover:text-foreground">
