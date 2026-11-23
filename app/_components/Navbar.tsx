@@ -2,12 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
-  Code2,
   Command as CommandIcon,
   Home,
   User,
   Briefcase,
-  Sparkles,
+  FolderGit2,
+  Activity,
+  Printer,
   Mail,
   FileText,
   CornerDownLeft,
@@ -31,9 +32,11 @@ import { cn } from "@/lib/utils";
 import { EMAIL, GITHUB, LINKEDIN, CV } from "@/lib/site";
 
 const navItems = [
+  { label: "Projects", id: "projects" },
+  { label: "Now", id: "now" },
+  { label: "Setup", id: "setup" },
+  { label: "Journey", id: "journey" },
   { label: "About", id: "about" },
-  { label: "Experience", id: "experience" },
-  { label: "Expertise", id: "expertise" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -68,12 +71,16 @@ const linkCommands = [
   },
 ];
 
+// `keywords` are hidden search terms: typing "whoami" or "git log" still lands
+// on the right section without a separate list of shell-style duplicates.
 const navCommands = [
-  { icon: Home, label: "Home", description: "Welcome to my website", id: "top" },
-  { icon: User, label: "About", description: "Learn more about me", id: "about" },
-  { icon: Briefcase, label: "Experience", description: "My professional experience", id: "experience" },
-  { icon: Sparkles, label: "Expertise", description: "What I work with", id: "expertise" },
-  { icon: Mail, label: "Contact", description: "Get in touch with me", id: "contact" },
+  { icon: Home, label: "Home", description: "Back to the top", id: "top", keywords: ["cd ~", "top"] },
+  { icon: FolderGit2, label: "Projects", description: "Things I've built", id: "projects", keywords: ["ls", "work", "github"] },
+  { icon: Activity, label: "Now", description: "What I'm up to", id: "now", keywords: ["thesis", "tla+", "status"] },
+  { icon: Printer, label: "Setup", description: "Desk and workshop", id: "setup", keywords: ["printer", "3d printing", "desk", "cad"] },
+  { icon: Briefcase, label: "Journey", description: "Where I've been", id: "journey", keywords: ["git log", "experience", "education"] },
+  { icon: User, label: "About", description: "Who I am", id: "about", keywords: ["whoami", "me"] },
+  { icon: Mail, label: "Contact", description: "Get in touch with me", id: "contact", keywords: ["sudo hire-me", "hire", "email"] },
 ];
 
 // The platform never changes, so this store never notifies; it exists purely to
@@ -234,10 +241,9 @@ export default function Navbar() {
             className="flex items-center gap-2"
             aria-label="Back to top"
           >
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Code2 className="w-5 h-5 text-primary" />
-            </div>
-            <span className="font-bold text-lg">MC</span>
+            <span className="font-mono text-base font-semibold">
+              <span className="text-primary">~/</span>mc
+            </span>
           </Link>
 
           <div
@@ -303,6 +309,7 @@ export default function Navbar() {
               <CommandItem
                 key={cmd.id}
                 value={cmd.label}
+                keywords={cmd.keywords}
                 onSelect={() => scrollTo(cmd.id)}
                 className="gap-3 py-3"
               >

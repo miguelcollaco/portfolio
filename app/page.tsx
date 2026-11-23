@@ -1,8 +1,10 @@
 import Navbar from "./_components/Navbar";
 import Hero from "./_components/Hero";
-import About from "./_components/About";
+import Projects from "./_components/Projects";
+import Now from "./_components/Now";
+import Setup from "./_components/Setup";
 import Experience from "./_components/Experience";
-import Expertise from "./_components/Expertise";
+import About from "./_components/About";
 import Contact from "./_components/Contact";
 import Footer from "./_components/Footer";
 
@@ -15,9 +17,11 @@ export default function Index() {
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
-        <About />
+        <Projects />
+        <Now />
+        <Setup />
         <Experience />
-        <Expertise />
+        <About />
         <Contact />
       </main>
       <Footer />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -7,6 +7,11 @@ import { NAME, SITE_URL, EMAIL, GITHUB, LINKEDIN, TAGLINE, DESCRIPTION } from "@
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -29,8 +34,9 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "TypeScript",
-    "Cybersecurity",
-    "Distributed Systems",
+    "Rust",
+    "LLM agents",
+    "TLA+",
   ],
   alternates: {
     canonical: "/",
@@ -76,12 +82,14 @@ const personJsonLd = {
   knowsAbout: [
     "Software Engineering",
     "Web Development",
-    "Cybersecurity",
-    "Distributed Systems",
+    "Systems and Software Security",
+    "Formal Methods",
+    "TLA+",
+    "LLM agents",
+    "TypeScript",
+    "Rust",
     "React",
     "Next.js",
-    "TypeScript",
-    "Java",
   ],
   sameAs: [GITHUB, LINKEDIN],
 };
@@ -109,7 +117,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} antialiased transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased transition-colors duration-300`}
       >
         {children}
         <SpeedInsights />

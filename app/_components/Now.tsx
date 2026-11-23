@@ -1,0 +1,48 @@
+import Reveal from "./Reveal";
+
+// Update by hand. Keep entries short and in the present tense.
+const now: { key: string; text: string }[] = [
+  {
+    key: "thesis",
+    text: "Watching how a REST API behaves, inferring the rules it seems to follow (likely invariants), and turning them into TLA+ specifications that can be model-checked.",
+  },
+  {
+    key: "studying",
+    text: "Final year of the MSc in Computer Science and Engineering at NOVA: Programming Languages and Software Systems, with a minor in Systems and Software Security.",
+  },
+  {
+    key: "in-nova",
+    text: "CFO of the student-run tech consultancy where I started as a developer. Besides budgets and cash flow, I moved our project hosting to a self-managed VPS running Dokploy, so members can deploy their work cheaply and on their own.",
+  },
+  {
+    key: "learning",
+    text: "CAD in Fusion 360, so I can design parts for my 3D printer instead of only downloading other people's.",
+  },
+];
+
+export default function Now() {
+  return (
+    <section id="now" className="py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal className="mb-12">
+          <span className="section-label">02 // now</span>
+          <h2 className="section-title mt-4">What I&apos;m up to</h2>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <dl className="divide-y divide-border rounded-2xl border bg-card">
+            {now.map((item) => (
+              <div
+                key={item.key}
+                className="grid gap-1.5 px-6 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6 md:px-8"
+              >
+                <dt className="spec-key pt-0.5">{item.key}</dt>
+                <dd className="leading-relaxed text-muted-foreground">{item.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -117,6 +117,8 @@ html {
 }
 
 @theme inline {
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -174,8 +176,29 @@ html {
 }
 
 @layer components {
+  /* Mono "01 // projects" labels: the main hacker accent, kept small. */
   .section-label {
-    @apply text-xs font-semibold tracking-[0.2em] uppercase text-primary;
+    @apply font-mono text-sm font-medium tracking-tight text-primary;
+  }
+
+  /* Dotted grid behind the hero, faded out with a mask. Pure CSS. */
+  .hero-grid {
+    background-image: radial-gradient(hsl(var(--foreground) / 0.14) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 75% 65% at 30% 45%, black 20%, transparent 75%);
+  }
+
+  .hero-glow {
+    background: radial-gradient(
+      ellipse 45% 40% at 25% 40%,
+      hsl(var(--primary) / 0.14),
+      transparent 70%
+    );
+  }
+
+  /* Mono keys for key: value rows (the Now list). */
+  .spec-key {
+    @apply font-mono text-sm text-primary;
   }
 
   .section-title {

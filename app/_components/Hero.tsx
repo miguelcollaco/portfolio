@@ -8,19 +8,19 @@ const iconLink =
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center pt-20 pb-16">
-      <div className="px-6 md:px-20">
+    <section id="hero" className="relative isolate min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+      <div aria-hidden className="hero-glow pointer-events-none absolute inset-0 -z-10" />
+      <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 -z-10" />
+
+      <div className="mx-auto w-full max-w-6xl px-6">
         <div className="max-w-3xl space-y-8">
-          <div className="reveal-load space-y-4">
+          <div className="reveal-load space-y-5">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               {NAME}
             </h1>
-            <p className="text-xl md:text-2xl font-medium">
-              Software Engineer &amp; <span className="gradient-text">MSc student</span> in
-              Computer Science and Engineering
-            </p>
-            <p className="text-lg text-muted-foreground">
-              CFO at In-Nova · previously Sky and Clearis · Lisbon
+            <p className="max-w-2xl text-xl md:text-2xl text-muted-foreground leading-snug text-balance">
+              Software engineer in Lisbon. I build tools that make{" "}
+              <span className="text-foreground">slow, annoying things disappear</span>.
             </p>
           </div>
 
@@ -29,15 +29,15 @@ export default function Hero() {
             style={{ "--reveal-delay": "0.15s" } as React.CSSProperties}
           >
             <Button asChild size="lg">
-              <a href={CV} target="_blank" rel="noopener noreferrer">
-                <FileText />
-                View CV
+              <a href="#projects">
+                See what I build
+                <ArrowRight />
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="hover:bg-secondary hover:text-foreground">
-              <a href="#contact">
-                Get in touch
-                <ArrowRight />
+              <a href={CV} target="_blank" rel="noopener noreferrer">
+                <FileText />
+                View CV
               </a>
             </Button>
 

@@ -10,11 +10,12 @@ import { Github, LinkedIn } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useRef, useState, useCallback, useEffect, useSyncExternalStore } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import Reveal from "./Reveal";
 import { EMAIL, GITHUB, LINKEDIN } from "@/lib/site";
+import { useLisbonClock } from "@/lib/lisbon-clock";
 
 const ACCESS_KEY = "a399e8e5-c236-40be-b194-9837d4494a83";
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
@@ -120,44 +121,6 @@ type FormValues = {
 
 type Status = "idle" | "sending" | "success" | "error";
 
-const LISBON_TIME = new Intl.DateTimeFormat("pt-PT", {
-  timeZone: "Europe/Lisbon",
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
-const LISBON_ZONE = new Intl.DateTimeFormat("en", {
-  timeZone: "Europe/Lisbon",
-  timeZoneName: "short",
-});
-
-function subscribeToMinute(onChange: () => void) {
-  const now = new Date();
-  const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-
-  let intervalId: ReturnType<typeof setInterval>;
-  const timeoutId = setTimeout(() => {
-    onChange();
-    intervalId = setInterval(onChange, 60_000);
-  }, msUntilNextMinute);
-
-  return () => {
-    clearTimeout(timeoutId);
-    clearInterval(intervalId);
-  };
-}
-
-function getLisbonClock() {
-  const now = new Date();
-  const zone =
-    LISBON_ZONE.formatToParts(now).find((p) => p.type === "timeZoneName")?.value ?? "";
-  return `${LISBON_TIME.format(now)} (${zone})`;
-}
-
-function getLisbonClockServer() {
-  return "";
-}
-
 const DEFAULT_VALUES: FormValues = {
   access_key: ACCESS_KEY,
   name: "",
@@ -170,13 +133,7 @@ export default function Contact() {
 
   const [status, setStatus] = useState<Status>("idle");
 
-  // Ticks on the minute boundary. The snapshot is a stable string within any
-  // given minute, which is what useSyncExternalStore requires.
-  const lisbonClock = useSyncExternalStore(
-    subscribeToMinute,
-    getLisbonClock,
-    getLisbonClockServer,
-  );
+  const lisbonClock = useLisbonClock();
 
   const [placeholder, setPlaceholder] = useState(PLACEHOLDERS[0]);
 
@@ -298,7 +255,7 @@ export default function Contact() {
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <span className="section-label">GET IN TOUCH</span>
+          <span className="section-label">06 // contact</span>
           <h2 className="section-title mt-4">Let&apos;s Connect</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl">
             I&apos;m available now for full-time software engineering roles, part-time

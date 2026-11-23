@@ -8,8 +8,8 @@ export default function About() {
     <section id="about" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <span className="section-label">WHO I AM</span>
-          <h2 className="section-title mt-4">About Me</h2>
+          <span className="section-label">05 // whoami</span>
+          <h2 className="section-title mt-4">About me</h2>
         </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -18,20 +18,21 @@ export default function About() {
             className="order-2 lg:order-1 space-y-6 text-muted-foreground text-lg leading-relaxed"
           >
             <p>
-              I&apos;m a software engineer and MSc student in Computer Science and
-              Engineering at NOVA School of Science and Technology in Lisbon, majoring
-              in Programming Languages and Software Systems with a minor in Systems
-              and Software Security.
+              I&apos;m Miguel, a software engineer from Lisbon finishing an MSc in
+              Computer Science and Engineering at NOVA. I like knowing how things work
+              under the hood, and I get a kick out of making a slow, annoying task
+              disappear.
             </p>
             <p>
-              I like understanding how systems work under the hood and building
-              software that is reliable, secure, and efficient. Recently that has
-              meant building multi-agent AI tooling at Sky, and shipping web and
-              mobile products at In-Nova, where I went from developer to leading a
-              30-person Projects Department and now serve as CFO.
+              That&apos;s the thread through most of what I do: an LLM agent at Sky that
+              does the crash-portal digging so engineers don&apos;t have to, a desktop
+              app that turns a 20-click portal into one, a self-hosted deploy setup for
+              In-Nova. I&apos;ve also learnt a lot from the other side of the table, going
+              from developer to running a 30-person department and now the company&apos;s
+              finances.
             </p>
             <p>
-              Outside of tech, I enjoy movies, music, gaming, and going to the gym.
+              Away from code: 3D printing, learning CAD, movies, music, games and the gym.
             </p>
           </Reveal>
 

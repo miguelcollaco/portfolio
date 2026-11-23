@@ -112,7 +112,7 @@ export default function Image() {
             }}
           >
             <div style={{ display: "flex", gap: 10 }}>
-              {["React", "Next.js", "TypeScript", "Node.js"].map((tech) => (
+              {["TypeScript", "Rust", "LLM agents", "TLA+"].map((tech) => (
                 <div
                   key={tech}
                   style={{
