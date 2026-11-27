@@ -38,7 +38,7 @@ export default function Projects() {
           <span className="section-label">02 // projects</span>
           <h2 className="section-title mt-4">Things I&apos;ve built</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            Side projects that started with something annoying me.
+            Side projects across distributed systems, the web and security.
           </p>
         </Reveal>
 

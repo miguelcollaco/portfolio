@@ -20,15 +20,20 @@ export default function About() {
             <p>
               I&apos;m Miguel, a software engineer from Lisbon finishing an MSc in
               Computer Science and Engineering at NOVA School of Science and Technology.
-              I like knowing how things work under the hood, and I get a kick out of
-              making a slow, annoying task disappear.
+              I&apos;ve been drawn to tech for as long as I can remember, mostly to how
+              things actually work under the hood, and what happens when they break.
             </p>
             <p>
-              That&apos;s the thread through most of what I do: an LLM agent at Sky that
-              does the crash-portal digging so engineers don&apos;t have to, a desktop
-              app that turns a 20-click portal into one, a self-hosted deploy setup for
-              In-Nova. I&apos;ve also learnt a lot from the other side of the table, going
-              from developer to running a 30-person department and now the company&apos;s
+              Three areas keep pulling me back. Security, which is why I took the Systems
+              and Software Security minor. The web, which I&apos;ve built professionally at
+              In-Nova and Clearis. And distributed systems: getting machines to agree when
+              networks and clocks don&apos;t cooperate, from a multi-region uptime monitor
+              to a peer-to-peer watch party, and now a thesis that turns REST API
+              behaviour into TLA+ specifications.
+            </p>
+            <p>
+              Along the way I&apos;ve also learnt from the other side of the table, going
+              from developer to running a 30-person department at In-Nova and now its
               finances.
             </p>
             <p>

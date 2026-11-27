@@ -19,8 +19,9 @@ export default function Hero() {
               {NAME}
             </h1>
             <p className="max-w-2xl text-xl md:text-2xl text-muted-foreground leading-snug text-balance">
-              Software engineer in Lisbon. I build tools that make{" "}
-              <span className="text-foreground">slow, annoying things disappear</span>.
+              Software engineer in Lisbon, hooked on tech for as long as I can remember.
+              These days that means{" "}
+              <span className="text-foreground">cybersecurity, the web and distributed systems</span>.
             </p>
           </div>
 
