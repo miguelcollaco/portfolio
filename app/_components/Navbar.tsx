@@ -32,11 +32,11 @@ import { cn } from "@/lib/utils";
 import { EMAIL, GITHUB, LINKEDIN, CV } from "@/lib/site";
 
 const navItems = [
+  { label: "About", id: "about" },
   { label: "Projects", id: "projects" },
   { label: "Now", id: "now" },
   { label: "Setup", id: "setup" },
   { label: "Journey", id: "journey" },
-  { label: "About", id: "about" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -75,11 +75,11 @@ const linkCommands = [
 // on the right section without a separate list of shell-style duplicates.
 const navCommands = [
   { icon: Home, label: "Home", description: "Back to the top", id: "top", keywords: ["cd ~", "top"] },
+  { icon: User, label: "About", description: "Who I am", id: "about", keywords: ["whoami", "me"] },
   { icon: FolderGit2, label: "Projects", description: "Things I've built", id: "projects", keywords: ["ls", "work", "github"] },
   { icon: Activity, label: "Now", description: "What I'm up to", id: "now", keywords: ["thesis", "tla+", "status"] },
   { icon: Printer, label: "Setup", description: "Desk and workshop", id: "setup", keywords: ["printer", "3d printing", "desk", "cad"] },
   { icon: Briefcase, label: "Journey", description: "Where I've been", id: "journey", keywords: ["git log", "experience", "education"] },
-  { icon: User, label: "About", description: "Who I am", id: "about", keywords: ["whoami", "me"] },
   { icon: Mail, label: "Contact", description: "Get in touch with me", id: "contact", keywords: ["sudo hire-me", "hire", "email"] },
 ];
 

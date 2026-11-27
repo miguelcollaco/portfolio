@@ -66,7 +66,7 @@ export default function Experience() {
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="section-label">04 // journey</span>
+            <span className="section-label">05 // journey</span>
             <h2 className="section-title mt-4">Where I&apos;ve been</h2>
           </div>
           <a

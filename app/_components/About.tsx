@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <span className="section-label">05 // whoami</span>
+          <span className="section-label">01 // whoami</span>
           <h2 className="section-title mt-4">About me</h2>
         </Reveal>
 
@@ -19,9 +19,9 @@ export default function About() {
           >
             <p>
               I&apos;m Miguel, a software engineer from Lisbon finishing an MSc in
-              Computer Science and Engineering at NOVA. I like knowing how things work
-              under the hood, and I get a kick out of making a slow, annoying task
-              disappear.
+              Computer Science and Engineering at NOVA School of Science and Technology.
+              I like knowing how things work under the hood, and I get a kick out of
+              making a slow, annoying task disappear.
             </p>
             <p>
               That&apos;s the thread through most of what I do: an LLM agent at Sky that

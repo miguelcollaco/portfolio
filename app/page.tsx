@@ -17,11 +17,11 @@ export default function Index() {
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
+        <About />
         <Projects />
         <Now />
         <Setup />
         <Experience />
-        <About />
         <Contact />
       </main>
       <Footer />

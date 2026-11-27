@@ -89,12 +89,29 @@ export default function Setup() {
     <section id="setup" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12">
-          <span className="section-label">03 // setup</span>
+          <span className="section-label">04 // setup</span>
           <h2 className="section-title mt-4">Desk &amp; workshop</h2>
         </Reveal>
 
         <div className="space-y-6">
-          <Reveal delay={0.05} className="overflow-hidden rounded-2xl border bg-card">
+          <Reveal delay={0.05} className="rounded-2xl border bg-card p-6 md:p-8">
+            <h3 className="text-xl font-semibold">The desk</h3>
+            <p className="mt-2 text-muted-foreground">What I work, play and tinker on.</p>
+
+            <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-12">
+              {desk.map((column, i) => (
+                <div key={i} className="space-y-8">
+                  {column.map((group) => (
+                    <div key={group.title}>
+                      <GroupTitle icon={group.icon} title={group.title} />
+                      <SpecList specs={group.specs} />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="overflow-hidden rounded-2xl border bg-card">
             {PRINTER_PHOTO && (
               <div className="relative aspect-video bg-secondary">
                 <Image
@@ -129,23 +146,6 @@ export default function Setup() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="rounded-2xl border bg-card p-6 md:p-8">
-            <h3 className="text-xl font-semibold">The desk</h3>
-            <p className="mt-2 text-muted-foreground">What I work, play and tinker on.</p>
-
-            <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-12">
-              {desk.map((column, i) => (
-                <div key={i} className="space-y-8">
-                  {column.map((group) => (
-                    <div key={group.title}>
-                      <GroupTitle icon={group.icon} title={group.title} />
-                      <SpecList specs={group.specs} />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
